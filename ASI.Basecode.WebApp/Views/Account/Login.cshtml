@@ -1,69 +1,118 @@
-﻿@model LoginViewModel
-@using static ASI.Basecode.Resources.Views.Screen
-@section styles {
-    <link rel="stylesheet" href="~/css/login.css" />
-}
-@{
-    ViewBag.LoginView = true;
-    ViewData["Title"] = "Login Page";
-}
-<div>
-    @Html.AntiForgeryToken()
-</div>
-<div class="container py-5" style="display:flex; align-content:center;height:calc(100vh - 64px)">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-10">
-            <div class="card rounded-3 text-black">
-                <div class="row g-0 w-1000px">
-                    <div class="col-lg-6">
-                        <div class="card-body p-md-5 mx-md-4">
-                            <div class="text-center">
-                                <img src="~/img/asi-logo-invert.svg"
-                                     style="width: 185px;" alt="logo">
-                            </div>
-                            <form method="post" action="/Account/Login" id="loginForm">
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example11">@UserId</label>
-                                    <input type="text" id="form2Example11" class="form-control"
-                                           asp-for="UserId" placeholder="Enter userid" />
-                                    <span asp-validation-for="UserId" class="text-danger"></span>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example22">@Password</label>
-                                    <input type="password" id="form2Example22" class="form-control"
-                                           asp-for="Password" placeholder="Enter password" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="text-center pt-1 mb-5 pb-1 d-flex flex-column align-items-center">
-                                    <button class="btn btn-primary btn-block login-btn gradient-custom-2 mb-3" type="submit">
-                                        @Login
-                                    </button>
-                                    <div>
-                                        <a class="text-muted" href="#!">@ForgotPass</a>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center pb-4">
-                                    <p class="mb-0 me-2 mr-1">@DontHaveAcc</p>
-                                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-danger">@CreateNew</a>
-                                </div>
-                            </form>
-                        </div>
+﻿    @model LoginViewModel
+    @using static ASI.Basecode.Resources.Views.Screen
+    @section styles {
+        <link rel="stylesheet" href="~/css/login.css" />
+    }
+    @{
+        ViewBag.LoginView = true;
+        ViewData["Title"] = "Login Page";
+    }
+    <div>
+        @Html.AntiForgeryToken()
+    </div>
+    @* <div class="container py-5" style="display:flex; align-content:start;height:calc(100vh - 64px)"> *@
+    @*     <div class="col-xl-10"> *@
+    @*         <div class="card rounded-3 text-black"> *@
+    @*             <div class="row g-0 w-1000px"> *@
+    @* *@
+    @*                 <div class="col-lg-6"> *@
+    @*                     <div class="card-body p-md-5 mx-md-4"> *@
+    @*                         <form method="post" action="/Account/Login" id="loginForm"> *@
+    @* *@
+    @*                             <div class="form-outline mb-4"> *@
+    @*                                 <label class="form-label" for="form2Example11">@UserId</label> *@
+    @*                                 <input type="text" id="form2Example11" class="form-control" *@
+    @*                                        asp-for="UserId"/> *@
+    @*                                 <span asp-validation-for="UserId" class="text-danger"></span> *@
+    @*                             </div> *@
+    @*                             <div class="form-outline mb-4"> *@
+    @*                                 <label class="form-label" for="form2Example22">@Password</label> *@
+    @*                                 <input type="password" id="form2Example22" class="form-control" *@
+    @*                                        asp-for="Password" placeholder="Enter password"/> *@
+    @*                                 <span asp-validation-for="Password" class="text-danger"></span> *@
+    @*                             </div> *@
+    @*                             <div class="text-center pt-1 mb-5 pb-1 d-flex flex-column align-items-center"> *@
+    @*                                 <button class="btn btn-primary btn-block login-btn gradient-custom-2 mb-3" type="submit"> *@
+    @*                                     @Login *@
+    @*                                 </button> *@
+    @*                                 <div> *@
+    @*                                     <a class="text-muted" href="#!">@ForgotPass</a> *@
+    @*                                 </div> *@
+    @*                             </div> *@
+    @*                             <div class="d-flex align-items-center justify-content-center pb-4"> *@
+    @*                                 <p class="mb-0 me-2 mr-1">@DontHaveAcc</p> *@
+    @*                                 <a asp-controller="Account" asp-action="Register" class="btn btn-outline-danger">@CreateNew</a> *@
+    @*                             </div> *@
+    @*                         </form> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*                 $1$ <div class="col-lg-6 d-flex"> #1# *@
+    @*                 $1$     <img style="width:400px"src="~/img/LiveIT.png" /> #1# *@
+    @*                 $1$ </div> #1# *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </div> *@
+    
+    
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        
+        <div class="row w-100 mx-auto">
+            <!-- Left Graphic Section -->
+            <div class="col-lg-6 col-md-6 d-none d-md-block p-0">
+                <div class="left-section h-100 d-flex justify-content-center align-items-center">
+                    <div class="text-center text-white">
+                        <h1 class="display-4">Track your expenses.</h1>
+                        <p class="mt-4">Make your life easier with our expense tracker.</p>
+                        <img src="~/images/calculator.png" alt="Expense tracker" class="img-fluid"/>
                     </div>
-                    <div class="col-lg-6 d-flex">
-                        <img style="width:400px"src="~/img/LiveIT.png" />
+                </div>
+            </div>
+
+            <!-- Right Form Section -->
+            <div class="col-lg-6 col-md-6 d-flex align-items-center">
+                
+                <div class="w-100 p-4 p-md-5">
+                    
+                    <div class="login-form">
+                        
+                        <h2 class="mb-2">Sign in</h2>
+                        <p class="mb-3">Welcome back to expense tracker!</p>
+                        <hr class="text-muted mb-4">
+
+                        <form method="post" action="/Account/Login" id="loginForm">
+                            <div class="form-group mb-3">
+                                <input type="text" id="email" class="form-control rounded-pill p-3" placeholder="Email" asp-for="UserId"/>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-5 position-relative">
+                                <input type="password" id="password" class="form-control rounded-pill p-3" placeholder="Password" asp-for="Password"/>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <i class="position-absolute eye-icon" id="togglePassword"></i>
+                                <a href="#!" class="text-muted small forgot-password ">Forgot Password?</a>
+                            </div>
+                            <div class="form-group mb-2">
+                                <button class="btn btn-block text-white rounded-pill gradient-bg p-2" type="submit">Sign in</button>
+                            </div>
+                            <div class="d-flex justify-content-center pt-0">
+                                <p class="mb-0 text-muted small">Don't have an account? </p>
+                                <a asp-controller="Account" asp-action="Register" class="text-black-50 small sign-up font-weight-bold "> Sign Up</a>
+                            </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@section scripts {
-    <script>
-        // Check for error message and display Toastr notification
-        var errorMessage = '@TempData["ErrorMessage"]';
-        if (errorMessage) {
-            toastr.error(errorMessage);
-        }
-    </script>
-}
+    @section scripts {
+        <script>
+            // Check for error message and display Toastr notification
+            var errorMessage = '@TempData["ErrorMessage"]';
+            if (errorMessage) {
+                toastr.error(errorMessage);
+            }
+        </script>
+    }

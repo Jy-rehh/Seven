@@ -7,53 +7,109 @@
 @section styles {
     <link rel="stylesheet" href="~/css/login.css" />
 }
-<div class="container py-5 h-100 register-box">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-10">
-            <div class="card rounded-3 text-black">
-                <div class="row g-0">
-                    <div class="card-body p-md-5 mx-md-4">
+@* <div class="container py-5 h-100 register-box"> *@
+@*     <div class="row d-flex justify-content-center align-items-center h-100"> *@
+@*         <div class="col-xl-10"> *@
+@*             <div class="card rounded-3 text-black"> *@
+@*                 <div class="row g-0"> *@
+@*                     <div class="card-body p-md-5 mx-md-4"> *@
+@* *@
+@*                         <div class="text-center"> *@
+@*                             <img src="https://www.alliance.com.ph/images/asi-logo-invert.svg" *@
+@*                                  style="width: 185px;" alt="logo"> *@
+@*                         </div> *@
+@* *@
+@*                         <form method="post" action="/Account/Register"> *@
+@*                             <div class="form-outline mb-4"> *@
+@*                                 <label class="form-label" for="userId">UserId</label> *@
+@*                                 <input type="text" id="userId" class="form-control" *@
+@*                                        asp-for="UserId" placeholder="Enter userid" /> *@
+@*                                 <span asp-validation-for="UserId" class="text-danger"></span> *@
+@*                             </div> *@
+@*                             <div class="form-outline mb-4"> *@
+@*                                 <label class="form-label" for="name">Name</label> *@
+@*                                 <input type="text" id="name" class="form-control" *@
+@*                                        asp-for="Name" placeholder="Enter name" /> *@
+@*                                 <span asp-validation-for="Name" class="text-danger"></span> *@
+@*                             </div> *@
+@*                             <div class="form-outline mb-4"> *@
+@*                                 <label class="form-label" for="password">Password</label> *@
+@*                                 <input type="password" id="password" class="form-control" *@
+@*                                        asp-for="Password" placeholder="Enter password" /> *@
+@*                                 <span asp-validation-for="Password" class="text-danger"></span> *@
+@*                             </div> *@
+@*                             <div class="form-outline mb-4"> *@
+@*                                 <label class="form-label" for="confirmpassword">Confirm Password</label> *@
+@*                                 <input type="password" id="confirmpassword" class="form-control"  *@
+@*                                        asp-for="ConfirmPassword" placeholder="Confirm Password" /> *@
+@*                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span> *@
+@*                             </div> *@
+@*                             <div class="text-center pt-1 mb-5 pb-1 d-flex flex-column align-items-center"> *@
+@*                                 <button class="btn btn-primary btn-block login-btn gradient-custom-2 mb-3" type="submit"> *@
+@*                                     Register *@
+@*                                 </button> *@
+@*                                 <a asp-controller="Account" asp-action="Login"> *@
+@*                                     &#8592 Back *@
+@*                                 </a> *@
+@*                             </div> *@
+@*                         </form> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+<div class="container-fluid d-flex align-items-center justify-content-center">
 
-                        <div class="text-center">
-                            <img src="https://www.alliance.com.ph/images/asi-logo-invert.svg"
-                                 style="width: 185px;" alt="logo">
+    <div class="row w-100 mx-auto">
+        <!-- Left Graphic Section -->
+        <div class="col-lg-6 col-md-6 d-none d-md-block p-0">
+            <div class="left-section h-100 d-flex justify-content-center align-items-center">
+                <div class="text-center text-white">
+                    <h1 class="display-4">Track your expenses.</h1>
+                    <p class="mt-4">Make your life easier with our expense tracker.</p>
+                    <img src="~/images/calculator.png" alt="Expense tracker" class="img-fluid"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Form Section -->
+        <div class="col-lg-6 col-md-6 d-flex align-items-center">
+            <div class="w-100 p-4 p-md-5">
+                <div class="login-form">
+                    <h2 class="mb-2">Sign up</h2>
+                    <p class="mb-3">Welcome to expense tracker!</p>
+                    <hr class="text-muted mb-4">
+
+                    <form method="post" action="/Account/Login" id="loginForm">
+                        <div class="form-group mb-3">
+                            <input type="text" id="email" class="form-control rounded-pill p-3" placeholder="Email" asp-for="UserId"/>
+                            <span asp-validation-for="UserId" class="text-danger small"></span>
+                        </div>
+                        <div class="form-group mb-3 position-relative">
+                            <!-- Password Input -->
+                            <input type="password" id="password" class="form-control rounded-pill p-3" placeholder="Password" asp-for="Password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                            <i class="position-absolute eye-icon" id="togglePassword"></i>
                         </div>
 
-                        <form method="post" action="/Account/Register">
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="userId">UserId</label>
-                                <input type="text" id="userId" class="form-control"
-                                       asp-for="UserId" placeholder="Enter userid" />
-                                <span asp-validation-for="UserId" class="text-danger"></span>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="name">Name</label>
-                                <input type="text" id="name" class="form-control"
-                                       asp-for="Name" placeholder="Enter name" />
-                                <span asp-validation-for="Name" class="text-danger"></span>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" class="form-control"
-                                       asp-for="Password" placeholder="Enter password" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="confirmpassword">Confirm Password</label>
-                                <input type="password" id="confirmpassword" class="form-control" 
-                                       asp-for="ConfirmPassword" placeholder="Confirm Password" />
-                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                            </div>
-                            <div class="text-center pt-1 mb-5 pb-1 d-flex flex-column align-items-center">
-                                <button class="btn btn-primary btn-block login-btn gradient-custom-2 mb-3" type="submit">
-                                    Register
-                                </button>
-                                <a asp-controller="Account" asp-action="Login">
-                                    &#8592 Back
-                                </a>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group mb-4 position-relative">
+                            <!-- Confirm Password Input -->
+                            <input type="password" id="confirmPassword" class="form-control rounded-pill p-3 " placeholder="Confirm Password" asp-for="ConfirmPassword" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                            <i class="position-absolute eye-icon" id="toggleConfirmPassword"></i>
+                        </div>
+                        
+                        <div class="form-group mb-2">
+                            <button class="btn btn-block text-white rounded-pill gradient-bg p-2" type="submit">Sign up</button>
+                        </div>
+                        <div class="d-flex justify-content-center pt-0">
+                            <p class="mb-0 text-muted small">Already have an account? </p>
+                            <a asp-controller="Account" asp-action="Login" class="text-black-50 small sign-up font-weight-bold "> Sign in</a>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>

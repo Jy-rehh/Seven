@@ -1,29 +1,148 @@
+/* Custom Gradient for Background */
 .gradient-custom-2 {
     /* fallback for old browsers */
     background: #ff0000; /* Red */
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ff0000, #000000); /* Red, Black */
+    background: -webkit-linear-gradient(to right, #ff0000, #000000); /* Red to Black */
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #ff0000, #000000); /* Red, Black */
+    background: linear-gradient(to right, #ff0000, #000000); /* Red to Black */
 }
 
-.login-btn {
-    width: 180px;
-}
-
-.register-box {
-    width: 600px;
-}
-
+/* Full height for larger screens */
 @media (min-width: 768px) {
     .gradient-form {
         height: 100vh !important;
     }
 }
 
-@media (min-width: 769px) {
-    .gradient-custom-2 {
-        border-top-right-radius: .3rem;
-        border-bottom-right-radius: .3rem;
-    }
+/* Button Width Customization */
+.login-btn {
+    width: 180px;
+    background-color: #000; /* Optional button background if you want a solid color */
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 10px 0;
+    border: none;
+    border-radius: 25px;
+    transition: background 0.3s ease;
 }
+
+.login-btn:hover {
+    background-color: #ff0000; /* Red background on hover */
+}
+
+/* Registration box sizing */
+.register-box {
+    width: 600px;
+    padding: 2rem;
+    background-color: #fff; /* Optional */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional Styling Adjustments */
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.left-section {
+    background-color: #193f4f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.left-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.left-section p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.left-section img {
+    width: 70%;
+    margin-top: 20px;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: auto;
+    text-align: left;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+}
+
+p {
+    font-size: 1.0rem;
+    color: #000000;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: border-color 0.3s ease;
+    max-width: 100%;
+}
+
+.form-control:focus {
+    border-color: #1A554F;
+    box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+    outline: none;
+}
+
+/* Custom gradient background for the button */
+.gradient-bg {
+    background: linear-gradient(90deg, #385B66, #548E87);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.gradient-bg:hover {
+    background: linear-gradient(90deg, #385B66, #548E87);
+}
+
+.eye-icon {
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.forgot-password {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    font-size: 0.8rem;
+}
+
+.sign-up {
+    color: #000000 !important;
+    font-size: 0.8rem;
+}
+.sign-up:hover, a.text-primary:focus  {
+    color: #1A554F !important;
+}
+
+
+/* Ensure full height for the container */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
