@@ -41,27 +41,41 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpGet]
         public IActionResult Delete(int Id)
         {
-            var data = _categoryService.GetAllCategory(Id);
-            return View(data);
+            var category = _categoryService.GetAllCategory(Id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            _categoryService.DeleteCategory(Id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
         {
             _categoryService.AddCategory(model, UserId);
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult Edit(CategoryViewModel model)
         {
-            _categoryService.UpdateCategory(model, UserId);
-            return RedirectToAction("Create");
+            if (ModelState.IsValid)
+            {
+                _categoryService.UpdateCategory(model, UserId);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         [HttpPost]
-        public IActionResult PostDelete(int Id)
+        public IActionResult PosDelete(int Id)
         {
+            var category = _categoryService.GetAllCategory(Id);
+            if (category == null)
+            {
+                return NotFound();
+            }
             _categoryService.DeleteCategory(Id);
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
     }
 }

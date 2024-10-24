@@ -92,7 +92,7 @@ namespace ASI.Basecode.WebApp.Controllers
 
             //return RedirectToAction("Index", "Home");
 
-            var loginResult = _userService.AuthenticateUser(model.UserId, model.Password, ref user);
+            var loginResult = _userService.AuthenticateUser(model.userIdOrEmail, model.Password, ref user);
             if (loginResult == LoginResult.Success)
             {
                 // 認証OK
@@ -103,7 +103,7 @@ namespace ASI.Basecode.WebApp.Controllers
             else
             {
                 // 認証NG
-                TempData["ErrorMessage"] = "Incorrect UserId or Password";
+                TempData["ErrorMessage"] = "Incorrect Username, Email or Password";
                 return View();
             }
             return View();
