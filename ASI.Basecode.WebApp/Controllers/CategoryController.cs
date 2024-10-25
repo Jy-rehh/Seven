@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace ASI.Basecode.WebApp.Controllers
@@ -22,11 +23,12 @@ namespace ASI.Basecode.WebApp.Controllers
         {
             _categoryService = categoryService;
         }
-        public IActionResult Index(int Id)
+        public IActionResult Index()
         {
-            var data = _categoryService.GetAllCategory(Id);
+            var data = _categoryService.GetAllCategory();
             return View(data);
         }
+        #region Get Methods
         [HttpGet]
         public IActionResult Create()
         {
@@ -35,20 +37,18 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            var data = _categoryService.GetAllCategory(Id);
+            var data = _categoryService.RetrieveCategory(Id);
             return View(data);
         }
         [HttpGet]
         public IActionResult Delete(int Id)
         {
-            var category = _categoryService.GetAllCategory(Id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            _categoryService.DeleteCategory(Id);
-            return RedirectToAction("Index");
+            var data = _categoryService.RetrieveCategory(Id);
+            return View(data);
         }
+        #endregion
+
+        #region Post Methods
 
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
@@ -56,26 +56,20 @@ namespace ASI.Basecode.WebApp.Controllers
             _categoryService.AddCategory(model, UserId);
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult Edit(CategoryViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                _categoryService.UpdateCategory(model, UserId);
-                return RedirectToAction("Index");
-            }
-            return View(model);
-        }
-        [HttpPost]
-        public IActionResult PosDelete(int Id)
-        {
-            var category = _categoryService.GetAllCategory(Id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            _categoryService.DeleteCategory(Id);
+            _categoryService.UpdateCategory(model, UserId);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult PostDelete(int CategoryId)
+        {
+            _categoryService.DeleteCategory(CategoryId);
+            return RedirectToAction("Index");
+        }
+        #endregion
     }
 }

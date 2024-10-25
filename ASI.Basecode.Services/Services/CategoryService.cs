@@ -19,10 +19,12 @@ namespace ASI.Basecode.Services.Services
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
-        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
+        private readonly IConfiguration _config;
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper, IConfiguration configuration)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _config = configuration;
         }
         public void AddCategory(CategoryViewModel model, string userId)
         {
@@ -35,8 +37,9 @@ namespace ASI.Basecode.Services.Services
             _categoryRepository.AddCategory(newCategory);
 
         }
-        public List<CategoryViewModel> GetAllCategory(int Id)
+        public List<CategoryViewModel> GetAllCategory()
         {
+            var serverUrl = _config.GetValue<string>("ServerUrl");
             var data = _categoryRepository.GetAllCategory().Select(s => new CategoryViewModel
             {
                 CategoryId = s.CategoryId,
@@ -65,6 +68,7 @@ namespace ASI.Basecode.Services.Services
         public void UpdateCategory(CategoryViewModel model, string userId)
         {
             var category = _categoryRepository.GetAllCategory().Where(x => x.CategoryId.Equals(model.CategoryId)).FirstOrDefault();
+            model.DateCreated = category.DateCreated;
             if (category != null)
             {
                 _mapper.Map(model, category);

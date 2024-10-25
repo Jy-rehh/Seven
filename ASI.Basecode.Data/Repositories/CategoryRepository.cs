@@ -29,7 +29,7 @@ namespace ASI.Basecode.Data.Repositories
             this.GetDbSet<Category>().Update(model);
             UnitOfWork.SaveChanges();
         }
-        public void DeleteCategory(Category model)
+        public void DeleteCategory(Category model) 
         {
             this.GetDbSet<Category>().Remove(model);
             UnitOfWork.SaveChanges();
