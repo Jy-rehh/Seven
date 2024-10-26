@@ -93,7 +93,7 @@ p {
     border: 1px solid #ddd;
     padding: 15px;
     font-size: 1rem;
-    border-radius: 25px;
+    border-radius: 15px;
     transition: border-color 0.3s ease;
     max-width: 100%;
 }

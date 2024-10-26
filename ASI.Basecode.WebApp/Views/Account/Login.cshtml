@@ -56,17 +56,10 @@
     
     
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        
         <div class="row w-100 mx-auto">
             <!-- Left Graphic Section -->
-            <div class="col-lg-6 col-md-6 d-none d-md-block p-0">
-                <div class="left-section h-100 d-flex justify-content-center align-items-center">
-                    <div class="text-center text-white">
-                        <h1 class="display-4">Track your expenses.</h1>
-                        <p class="mt-4">Make your life easier with our expense tracker.</p>
-                        <img src="~/images/calculator.png" alt="Expense tracker" class="img-fluid"/>
-                    </div>
-                </div>
+            <div class="col-lg-6 d-flex p-0">
+                <img style="height:600px"src="~/img/Track-Expenses.png" />
             </div>
 
             <!-- Right Form Section -->
@@ -82,14 +75,16 @@
 
                         <form method="post" action="/Account/Login" id="loginForm">
                             <div class="form-group mb-3">
-                                <input type="text" id="email" class="form-control rounded-pill p-3" placeholder="Email" asp-for="UserId"/>
-                                <span asp-validation-for="UserId" class="text-danger"></span>
+                                <p class="mb-2">Email</p>
+                                <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="UserId"/>
+                                <span asp-validation-for="UserId" class="text-danger small"></span>
                             </div>
                             <div class="form-group mb-5 position-relative">
-                                <input type="password" id="password" class="form-control rounded-pill p-3" placeholder="Password" asp-for="Password"/>
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <p class="mb-2">Password</p>
+                                <input type="password" id="password" class="form-control rounded-pill p-3" asp-for="Password"/>
+                                <span asp-validation-for="Password" class="text-danger small"></span>
                                 <i class="position-absolute eye-icon" id="togglePassword"></i>
-                                <a href="#!" class="text-muted small forgot-password ">Forgot Password?</a>
+                                <a href="#!" class="text-muted small forgot-password">Forgot Password?</a>
                             </div>
                             <div class="form-group mb-2">
                                 <button class="btn btn-block text-white rounded-pill gradient-bg p-2" type="submit">Sign in</button>
