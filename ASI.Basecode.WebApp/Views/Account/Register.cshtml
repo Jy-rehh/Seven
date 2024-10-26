@@ -77,7 +77,7 @@
                     <p class="mb-3">Welcome to expense tracker!</p>
                     <hr class="text-muted mb-4">
 
-                    <form method="post" action="/Account/Login" id="loginForm">
+                    <form method="post" action="/Account/Register" id="loginForm">
                         <div class="form-group mb-2">
                             <p class="mb-2">Name</p>
                             <input type="text" id="name" class="form-control rounded-pill p-3" asp-for="Name"/>
@@ -85,13 +85,13 @@
                         </div>
                         <div class="form-group mb-2">
                             <p class="mb-2">Username</p>
-                            <input type="text" id="name" class="form-control rounded-pill p-3" asp-for="UserId"/>
+                            <input type="text" id="useId" class="form-control rounded-pill p-3" asp-for="UserId"/>
                             <span asp-validation-for="UserId" class="text-danger small"></span>
                         </div>
                         <div class="form-group mb-2">
                             <p class="mb-2">Email</p>
-                            <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="UserId"/>
-                            <span asp-validation-for="UserId" class="text-danger small"></span>
+                            <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="Email"/>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
                         <p class="mb-2">Password</p>
                         <div class="form-group mb-2 position-relative d-flex align-items-center">
