@@ -77,8 +77,8 @@
                         <form method="post" action="/Account/Login" id="loginForm">
                             <div class="form-group mb-3">
                                 <p class="mb-2">Email</p>
-                                <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="UserId"/>
-                                <span asp-validation-for="UserId" class="text-danger small"></span>
+                                <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="userIdOrEmail"/>
+                                <span asp-validation-for="userIdOrEmail" class="text-danger small"></span>
                             </div>
                             <p class="mb-2">Password</p>
                             <div class="form-group mb-5 position-relative d-flex align-items-center">
@@ -99,8 +99,6 @@
                                 <a asp-controller="Account" asp-action="Register" class="text-black-50 small sign-up font-weight-bold "> Sign Up</a>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>
