@@ -22,14 +22,24 @@ namespace ASI.Basecode.Services.Services
             _repository = repository;
         }
 
-        public LoginResult AuthenticateUser(string userId, string password, ref User user)
+        public LoginResult AuthenticateUser(string userIdOrEmail, string password, ref User user)
         {
-            user = new User();
             var passwordKey = PasswordManager.EncryptPassword(password);
-            user = _repository.GetUsers().Where(x => x.UserId == userId &&
-                                                     x.Password == passwordKey).FirstOrDefault();
+
+            bool isEmail = userIdOrEmail.Contains("@");
+            user = isEmail
+                   ? _repository.GetUsers().FirstOrDefault(x => x.Email == userIdOrEmail && x.Password == passwordKey)
+                   : _repository.GetUsers().FirstOrDefault(x => x.UserId == userIdOrEmail && x.Password == passwordKey);
 
             return user != null ? LoginResult.Success : LoginResult.Failed;
+
+
+            //user = new User();
+            //var passwordKey = PasswordManager.EncryptPassword(password);
+            //user = _repository.GetUsers().Where(x => x.UserId == userId &&
+            //                                         x.Password == passwordKey).FirstOrDefault();
+
+            //return user != null ? LoginResult.Success : LoginResult.Failed;
         }
 
         public void AddUser(UserViewModel model)
@@ -38,6 +48,7 @@ namespace ASI.Basecode.Services.Services
             if (!_repository.UserExists(model.UserId))
             {
                 _mapper.Map(model, user);
+                user.Email = model.Email;
                 user.Password = PasswordManager.EncryptPassword(model.Password);
                 user.CreatedTime = DateTime.Now;
                 user.UpdatedTime = DateTime.Now;
