@@ -1,0 +1,86 @@
+.menu-btn {
+    width: auto;
+    background-color: transparent;
+    border: none;
+    color: #1A554F;
+    font-weight: bold;
+}
+
+    .menu-btn:focus {
+        outline: none;
+    }
+
+    .menu-btn:hover {
+        background-color: #D9D9D9;
+        transition: background-color 0.3s ease;
+    }
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    margin-right: 950px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: x-large;
+    font-weight: bold;
+    color: #FFFFFF;
+
+}
+h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    color: #1A554F;
+}
+.main-content {
+    border-radius: 10px;
+    margin-top: 70px; /* Create space for the fixed header */
+    margin-left: 175px;
+    width: 1250px; /* Set the width to 1021px */
+    height: 100%; /* Set the height to 826px */
+    background-color: #5A706C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 70px; /* Start the sidebar below the header */
+    width: 250px;
+    height: calc(100% - 70px); /* Adjust height to fill the space below the header */
+    overflow-y: auto;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 60px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.expenses, .categories {
+    width: 50%; /* Adjust as needed */
+    height: 90%; /* Adjust height for better visibility */
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-left: 30px;
+}
+.expense, .category {
+    width: 25%; /* Adjust as needed */
+    height: 90%; /* Adjust height for better visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-left: 30px;
+}
