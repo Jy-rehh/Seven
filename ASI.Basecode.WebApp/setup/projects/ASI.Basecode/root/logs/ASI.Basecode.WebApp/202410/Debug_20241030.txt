@@ -1,0 +1,99 @@
+2024-10-30 10:16:19.930 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-30 10:22:11.816 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .Any(x => x.UserId == __userId_0)'
+2024-10-30 10:22:12.650 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM User AS u
+            WHERE u.UserId == @__userId_0)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+2024-10-30 10:22:13.062 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-30 10:22:28.756 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-30 10:23:44.386 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-30 10:24:57.175 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .Any(x => x.UserId == __userId_0)'
+2024-10-30 10:24:57.964 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM User AS u
+            WHERE u.UserId == @__userId_0)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+2024-10-30 10:24:58.581 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-30 10:25:14.053 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-30 10:26:12.916 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-30 10:26:59.269 +08:00 [DBG] 'AsiBasecodeDBContext' generated a temporary value for the property 'Id.User'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:26:59.466 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:26:59.478 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-10-30 10:26:59.497 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-10-30 10:26:59.541 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-10-30 10:26:59.691 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-30 10:27:15.178 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-30 10:29:15.471 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-30 10:44:37.486 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-30 10:45:46.623 +08:00 [DBG] 'AsiBasecodeDBContext' generated a temporary value for the property 'Id.User'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:45:46.817 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:45:46.829 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-10-30 10:45:46.850 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-10-30 10:45:46.890 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-10-30 10:45:47.046 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:45:47.765 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:45:47.780 +08:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2024-10-30 10:45:47.870 +08:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2024-10-30 10:45:48.677 +08:00 [DBG] The foreign key property 'User.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2024-10-30 10:45:48.754 +08:00 [DBG] Committing transaction.
+2024-10-30 10:45:48.787 +08:00 [DBG] Committed transaction.
+2024-10-30 10:45:48.802 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:45:48.857 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:45:48.866 +08:00 [DBG] Disposing transaction.
+2024-10-30 10:45:48.927 +08:00 [DBG] An entity of type 'User' tracked by 'AsiBasecodeDBContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:45:48.950 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2024-10-30 10:45:53.791 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-30 10:46:07.225 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-30 10:46:08.160 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-30 10:46:08.292 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:46:08.300 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:46:08.365 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-10-30 10:46:08.379 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:46:08.385 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-10-30 10:46:08.837 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.

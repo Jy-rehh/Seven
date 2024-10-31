@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 <header class="@((ViewBag.LoginView == true) ? "hide-navbar" : "")">
-    <div class="logosec hover-pointer">
-        <img src="~/img/asi-logo-invert.svg"
-             style="width: 185px;" alt="logo"
+    <div class="logosec hover-pointer" style="display: flex; justify-content: center; align-items: center;">
+        <img src="~/img/expenSave-logo.png"
+             style="width: 200px; display: block; margin-left: 120px" alt="logo"
              onclick="window.location.href = '@Url.Action("Index", "Home")';">
     </div>
     <div class="logosec">
@@ -17,13 +17,13 @@
             <div class="dropdown">
                 <ul>
                     <li>
-                        <i class="fa-solid fa-gear"></i>
-                        <a href="#">Settings</a>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="#">Profile</a>
                     </li>
-                    <li>
+                    @* <li>
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <a asp-action="SignOutUser" asp-controller="Account">Logout</a>
-                    </li>
+                    </li> *@
                 </ul>
             </div>
         </div>
