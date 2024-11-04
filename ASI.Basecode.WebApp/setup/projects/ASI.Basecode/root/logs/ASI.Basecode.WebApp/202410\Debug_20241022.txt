@@ -1,0 +1,16 @@
+2024-10-22 13:52:14.060 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 13:53:28.012 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 13:53:59.572 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 13:54:38.374 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 13:55:30.880 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 13:57:45.351 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 14:16:12.555 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 14:29:52.795 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 14:39:52.982 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 14:43:22.627 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 14:48:06.578 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 15:09:37.810 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 15:25:30.864 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 15:27:07.681 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 15:32:09.165 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-22 15:54:39.359 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
@@ -29,7 +30,7 @@ namespace ASI.Basecode.WebApp.Controllers
             return View(data);
         }
         #region Get Methods
-        [HttpGet]
+        [HttpGet][AllowAnonymous]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +58,7 @@ namespace ASI.Basecode.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost] 
         public IActionResult Edit(CategoryViewModel model)
         {
             _categoryService.UpdateCategory(model, UserId);

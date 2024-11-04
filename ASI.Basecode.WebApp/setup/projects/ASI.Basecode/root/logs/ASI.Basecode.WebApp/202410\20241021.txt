@@ -1,0 +1,77 @@
+2024-10-21 20:24:31.862 +08:00 [INF] Application is shutting down...
+2024-10-21 20:25:10.961 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 20:25:10.979 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 20:25:10.983 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 20:25:10.983 +08:00 [INF] Hosting environment: Production
+2024-10-21 20:25:10.983 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 20:25:26.930 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 20:29:41.763 +08:00 [INF] Application is shutting down...
+2024-10-21 20:29:45.743 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 20:29:45.759 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 20:29:45.762 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 20:29:45.762 +08:00 [INF] Hosting environment: Production
+2024-10-21 20:29:45.762 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 20:29:47.722 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 20:30:58.608 +08:00 [INF] Application is shutting down...
+2024-10-21 20:31:01.823 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 20:31:01.839 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 20:31:01.841 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 20:31:01.842 +08:00 [INF] Hosting environment: Production
+2024-10-21 20:31:01.842 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 20:31:05.732 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 20:33:04.302 +08:00 [INF] Application is shutting down...
+2024-10-21 20:33:07.491 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 20:33:07.507 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 20:33:07.510 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 20:33:07.510 +08:00 [INF] Hosting environment: Production
+2024-10-21 20:33:07.510 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 20:33:11.088 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 20:37:55.565 +08:00 [INF] Application is shutting down...
+2024-10-21 20:37:58.793 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 20:37:58.810 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 20:37:58.813 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 20:37:58.813 +08:00 [INF] Hosting environment: Production
+2024-10-21 20:37:58.813 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 20:38:01.097 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 21:54:37.678 +08:00 [INF] Application is shutting down...
+2024-10-21 21:54:43.370 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 21:54:43.386 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 21:54:43.389 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 21:54:43.390 +08:00 [INF] Hosting environment: Production
+2024-10-21 21:54:43.390 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 21:54:48.624 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 21:57:09.459 +08:00 [INF] Application is shutting down...
+2024-10-21 21:57:13.820 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 21:57:13.841 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 21:57:13.844 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 21:57:13.844 +08:00 [INF] Hosting environment: Production
+2024-10-21 21:57:13.844 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 21:57:17.128 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 21:58:16.530 +08:00 [INF] Application is shutting down...
+2024-10-21 21:58:18.148 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 21:58:18.164 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 21:58:18.166 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 21:58:18.167 +08:00 [INF] Hosting environment: Production
+2024-10-21 21:58:18.167 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 21:58:21.535 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 21:59:20.392 +08:00 [INF] Application is shutting down...
+2024-10-21 21:59:22.807 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 21:59:22.822 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 21:59:22.825 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 21:59:22.825 +08:00 [INF] Hosting environment: Production
+2024-10-21 21:59:22.825 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 21:59:26.688 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 22:03:20.029 +08:00 [INF] Application is shutting down...
+2024-10-21 22:03:22.789 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 22:03:22.806 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 22:03:22.808 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 22:03:22.809 +08:00 [INF] Hosting environment: Production
+2024-10-21 22:03:22.809 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 22:03:27.357 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-21 22:07:34.323 +08:00 [INF] Application is shutting down...
+2024-10-21 22:07:39.729 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-21 22:07:39.746 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-21 22:07:39.748 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-21 22:07:39.749 +08:00 [INF] Hosting environment: Production
+2024-10-21 22:07:39.749 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-21 22:08:44.421 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.

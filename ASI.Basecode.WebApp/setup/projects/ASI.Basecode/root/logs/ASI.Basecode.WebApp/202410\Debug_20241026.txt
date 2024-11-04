@@ -1,0 +1,36 @@
+2024-10-26 09:37:15.092 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 09:52:39.161 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 09:56:00.901 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:02:26.757 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:07:02.688 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:08:10.239 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:08:39.105 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:11:25.781 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:27:17.599 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:34:04.000 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:38:18.558 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 10:43:35.247 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 17:25:11.739 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-26 17:25:55.993 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-26 17:25:56.150 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-26 17:25:56.220 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-26 17:26:10.993 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-26 17:48:49.077 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-26 17:49:03.657 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.

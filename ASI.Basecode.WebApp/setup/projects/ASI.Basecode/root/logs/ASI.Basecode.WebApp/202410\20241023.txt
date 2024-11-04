@@ -1,0 +1,71 @@
+2024-10-23 13:26:12.415 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:26:12.448 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:26:12.454 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:26:12.454 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:26:12.454 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:26:16.866 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:35:46.849 +08:00 [INF] Application is shutting down...
+2024-10-23 13:35:51.228 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:35:51.253 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:35:51.257 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:35:51.258 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:35:51.258 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:35:52.237 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:35:52.237 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:38:47.832 +08:00 [INF] Application is shutting down...
+2024-10-23 13:38:51.491 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:38:51.506 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:38:51.510 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:38:51.511 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:38:51.511 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:38:53.186 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:43:04.592 +08:00 [INF] Application is shutting down...
+2024-10-23 13:43:08.130 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:43:08.146 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:43:08.149 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:43:08.149 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:43:08.149 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:43:09.310 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:45:27.299 +08:00 [INF] Application is shutting down...
+2024-10-23 13:45:30.423 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:45:30.438 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:45:30.441 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:45:30.441 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:45:30.441 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:45:32.992 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:46:58.973 +08:00 [INF] Application is shutting down...
+2024-10-23 13:47:02.113 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:47:02.130 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:47:02.133 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:47:02.133 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:47:02.133 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:47:03.786 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:50:27.055 +08:00 [INF] Application is shutting down...
+2024-10-23 13:50:30.481 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:50:30.496 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:50:30.499 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:50:30.499 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:50:30.499 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:50:31.737 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:54:00.023 +08:00 [INF] Application is shutting down...
+2024-10-23 13:54:03.328 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:54:03.343 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:54:03.346 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:54:03.346 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:54:03.346 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:54:04.692 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:57:36.546 +08:00 [INF] Application is shutting down...
+2024-10-23 13:57:40.134 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:57:40.149 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:57:40.152 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:57:40.152 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:57:40.152 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:57:41.553 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 13:58:54.379 +08:00 [INF] Application is shutting down...
+2024-10-23 13:58:57.682 +08:00 [INF] Now listening on: http://localhost:5000
+2024-10-23 13:58:57.697 +08:00 [INF] Now listening on: https://localhost:5001
+2024-10-23 13:58:57.700 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-23 13:58:57.700 +08:00 [INF] Hosting environment: Production
+2024-10-23 13:58:57.700 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-10-23 13:58:59.402 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-23 17:35:29.159 +08:00 [INF] Application is shutting down...

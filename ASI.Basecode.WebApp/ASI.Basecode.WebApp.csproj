@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <None Remove="appsettings.json.rej" />
+    <None Remove="setup\projects\ASI.Basecode\root\logs\ASI.Basecode.WebApp\202410\Error_20241026.txt" />
+    <None Remove="setup\projects\ASI.Basecode\root\logs\ASI.Basecode.WebApp\202410\20241026.txt" />
+    <None Remove="setup\projects\ASI.Basecode\root\logs\ASI.Basecode.WebApp\202410\20241023.txt" />
+    <None Remove="setup\projects\ASI.Basecode\root\logs\ASI.Basecode.WebApp\202410\20241022.txt" />
   </ItemGroup>
 
   <ItemGroup>

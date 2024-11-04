@@ -1,0 +1,96 @@
+2024-10-31 17:24:28.815 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 17:24:44.054 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-31 17:24:44.211 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-31 17:24:44.288 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-31 17:24:59.085 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-31 17:26:46.760 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-31 17:27:01.337 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-31 17:34:02.049 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 17:45:41.997 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 17:45:54.416 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-31 17:45:54.596 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-31 17:45:54.683 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-31 17:46:09.519 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-31 17:50:56.192 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 21:29:03.529 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 21:47:21.654 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 22:16:03.874 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-31 22:16:04.031 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-31 22:16:04.114 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-31 22:16:18.899 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-31 22:22:21.996 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 22:24:55.982 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 22:27:56.213 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-10-31 22:35:02.589 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-10-31 22:35:02.756 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-10-31 22:35:02.849 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-10-31 22:35:17.642 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-10-31 22:49:02.581 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
