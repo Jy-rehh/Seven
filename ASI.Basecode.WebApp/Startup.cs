@@ -1,6 +1,8 @@
 ﻿using ASI.Basecode.Data;
 using ASI.Basecode.Resources.Constants;
+using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
+using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Authentication;
 using ASI.Basecode.WebApp.Extensions.Configuration;
 using ASI.Basecode.WebApp.Models;
@@ -153,5 +155,6 @@ namespace ASI.Basecode.WebApp
             this._app.UseAuthentication();
             this._app.UseAuthorization();
         }
+
     }
 }

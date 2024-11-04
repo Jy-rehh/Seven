@@ -15,15 +15,15 @@
 
 <div class="sidebar" style="position: fixed; left: 0; height: 100%; width: 150px; background-color: #F3F3F3; display: flex; flex-direction: column; justify-content: space-between;">
     <div class="sidebar_menu">
-        <button class="menu-btn" aria-label="Home">
+        <button class="menu-btn" aria-label="Home" onclick="window.location.href = '@Url.Action("Index", "Home")';">
             <i class="fas fa-home"></i>
             <span>Home</span>
         </button>
-        <button class="menu-btn" aria-label="Expenses">
+        <button class="menu-btn" aria-label="Expenses" onclick="window.location.href = '@Url.Action("Index", "Expense")';">
             <i class="fas fa-money-bill"></i>
             <span>Expenses</span>
         </button>
-        <button class="menu-btn" aria-label="Category">
+        <button class="menu-btn" aria-label="Category" onclick="window.location.href = '@Url.Action("Index", "Category")';">
             <i class="fas fa-folder"></i>
             <span>Category</span>
         </button>
@@ -46,75 +46,6 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Main Content Section -->
-<div class="main-content">
-    <h1>
-        ExpenSave Trends
-    </h1>
-    <div class="container">
-        <div class="expenses">
-            <canvas id="expensesChart"></canvas>
-        </div>
-        <div class="expense">
-           <h2>Expenses</h2>
-        </div>
-    </div>
-    <div class="container">
-        <div class="categories">
-            <canvas id="categoryChart"></canvas>
-        </div>
-        <div class="category">
-            <h2>Category</h2>
-        </div>
-    </div>
+<div>
+    @await Html.PartialAsync("Dashboard")
 </div>
-
-<script>
-    var ctxExpenses = document.getElementById('expensesChart').getContext('2d');
-    var expensesChart = new Chart(ctxExpenses, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [{
-                label: 'Expenses',
-                data: [120, 150, 180, 140, 200, 170],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 2,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    var ctxCategory = document.getElementById('categoryChart').getContext('2d');
-    var categoryChart = new Chart(ctxCategory, {
-        type: 'line',
-        data: {
-            labels: ['Food', 'Transport', 'Entertainment', 'Bills', 'Shopping', 'Misc'],
-            datasets: [{
-                label: 'Categories',
-                data: [50, 70, 30, 100, 80, 40],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 2,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
