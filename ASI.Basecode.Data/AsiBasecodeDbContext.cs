@@ -18,7 +18,7 @@ namespace ASI.Basecode.Data
         }
 
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<Expense> Expense { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -63,7 +63,7 @@ namespace ASI.Basecode.Data
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.Title)
+                entity.Property(e => e.UserId)
                     .IsRequired()
                     .IsUnicode(false);
             });
