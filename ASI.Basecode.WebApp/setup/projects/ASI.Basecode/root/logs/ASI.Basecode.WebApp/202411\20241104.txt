@@ -471,3 +471,10 @@ ClientConnectionId:00000000-0000-0000-0000-000000000000
 2024-11-04 14:03:27.023 +08:00 [INF] Hosting environment: Production
 2024-11-04 14:03:27.023 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
 2024-11-04 14:03:31.388 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-04 21:22:33.509 +08:00 [INF] Application is shutting down...
+2024-11-04 21:26:47.324 +08:00 [INF] Now listening on: http://localhost:5000
+2024-11-04 21:26:47.340 +08:00 [INF] Now listening on: https://localhost:5001
+2024-11-04 21:26:47.344 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-04 21:26:47.344 +08:00 [INF] Hosting environment: Production
+2024-11-04 21:26:47.344 +08:00 [INF] Content root path: /Users/angelarlenesiaboc/Seven/ASI.Basecode.WebApp/
+2024-11-04 21:27:12.757 +08:00 [INF] Application is shutting down...
