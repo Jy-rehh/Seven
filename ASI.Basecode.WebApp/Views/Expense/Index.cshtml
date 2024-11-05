@@ -1,32 +1,78 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
-    <link rel="stylesheet" href="~/css/expenses.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> <!-- Add Bootstrap CSS -->
 }
+
 @model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
 
 @{
-    ViewData["Title"] = "Expense";
+    ViewData["Title"] = "Expenses";
 }
 
-<div class="main-content">
-    <h1>Index</h1>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+<div class="nav-upper" >
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal">
+        <i class="fa-solid fa-circle-plus"></i> Add Expense
+    </a>    <div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add form fields for expense details -->
+                    <form asp-action="Create">
+                        <div class="form-group">
+                            <label for="Title">Title</label>
+                            <input type="text" class="form-control" id="Title" name="Title" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <select class="form-control" id="Category" name="Category" required>
+                                <option value="" disabled selected>Select a category</option>
+                                <!-- Options will be populated here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Amount">Amount</label>
+                            <input type="number" class="form-control" id="Amount" name="Amount" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="DateCreated">Date</label>
+                            <input type="date" class="form-control" id="DateCreated" name="DateCreated" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="Description">Description</label>
+                            <input type="text" class="form-control" id="Description" name="Description"></input>
+                        </div>
+                        <!-- Add more fields as needed -->
+                        <button type="submit" class="btn btn-secondary">Save Expense</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="main-content">
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserId)
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
-                <th>
-                    Cover Image
-                </th>
-                <th></th>
             </tr>
         </thead>
 
@@ -35,14 +81,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ExpenseId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ExpenseId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
                     </td>
                 </tr>
             }

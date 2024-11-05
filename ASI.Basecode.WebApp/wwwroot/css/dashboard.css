@@ -137,3 +137,37 @@ h2 {
     text-align: center;
     margin-left: 50px;
 }
+
+    /* Button styling */
+.nav-upper .btn-primary {
+    background-color: #1A554F;
+    border-color: #1A554F;
+    color: #FFFFFF;
+    margin-top: 85px;
+    margin-left: 80px;
+    border-radius: 20px;
+    position:relative;
+}
+
+.btn-secondary {
+    background-color: #1A554F;
+    border-color: #1A554F;
+    color: #FFFFFF;
+    position:center;
+    border-radius: 20px;
+    margin-left: 300px;
+}
+
+/* Modal adjustments */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #1A554F;
+    color: #FFFFFF;
+}
+
+.modal-body {
+    padding: 30px;
+}
