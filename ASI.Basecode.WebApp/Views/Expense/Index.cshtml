@@ -26,7 +26,7 @@
                     <form asp-action="Create">
                         <div class="form-group">
                             <label for="Title">Title</label>
-                            <input type="text" class="form-control" id="Title" name="Title" />
+                            <input type="text" class="form-control" id="Title" name="Title" required>
                         </div>
                         <div class="form-group">
                             <label for="Category">Category</label>
@@ -46,7 +46,7 @@
 
                         <div class="form-group">
                             <label for="Description">Description</label>
-                            <input type="text" class="form-control" id="Description" name="Description"></input>
+                            <input type="text" class="form-control" id="Description" name="Description">
                         </div>
                         <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-secondary">Save Expense</button>
@@ -55,14 +55,28 @@
             </div>
         </div>
     </div>
-
+    <div class="filter">
+        <select class="filter-control" id="Filter" name="Filter" required>
+            <option value="" disabled selected>Filter</option>
+            <!-- Options will be populated here -->
+        </select>
+    </div>
+    <div class="sort">
+        <select class="sort-control" id="Sort" name="Sort" required>
+            <option value="" disabled selected>Sort</option>
+            <!-- Options will be populated here -->
+        </select>
+    </div>
 </div>
 <div class="main-content">
-    <table class="table">
+    <table class="table" style="color: #ffffff;">
         <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Amount)

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ASI.Basecode.WebApp.Controllers
 {
@@ -28,6 +29,7 @@ namespace ASI.Basecode.WebApp.Controllers
             var data = _expensesService.GetAllExpenses();
             return View(data);
         }
+
         #region Get Methods
         [HttpGet]
         public IActionResult Create()
@@ -47,6 +49,25 @@ namespace ASI.Basecode.WebApp.Controllers
             return View(data);
         }
         #endregion
+        //public IActionResult Expenses(List<string> selectedCategories)
+        //{
+        //    var expenses = _expensesService.GetAllExpenses();
+
+        //    if (selectedCategories != null && selectedCategories.Any())
+        //    {
+        //        // Attempt to convert selectedCategories to a list of integers
+        //        var selectedCategoryIds = selectedCategories
+        //            .Where(c => int.TryParse(c, out _))
+        //            .Select(int.Parse)
+        //            .ToList();
+
+        //        // Filter expenses by integer CategoryId
+        //        expenses = expenses.Where(e => selectedCategoryIds.Contains(e.CategoryId)).ToList();
+        //    }
+
+        //    return View(expenses);
+        //}
+
 
         #region Post Methods
 
