@@ -1,45 +1,51 @@
-﻿@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+﻿@section styles {
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link rel="stylesheet" href="~/css/expenses.css" />
+}
+@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Expense";
 }
 
-<h1>Index</h1>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="main-content">
+    <h1>Index</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                Cover Image
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ExpenseId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ExpenseId })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    Cover Image
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ExpenseId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ExpenseId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

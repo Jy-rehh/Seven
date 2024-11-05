@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!-- Sidebar Section -->
+<div class="@((ViewBag.LoginView == true) ? "hide-navbar" : "")">
+    <div class="sidebar" style="position: fixed; left: 0; height: 100%; width: 150px; background-color: #F3F3F3; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="sidebar_menu">
+            <button class="menu-btn" aria-label="Home" onclick="window.location.href = '@Url.Action("Index", "Home")';">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="menu-btn" aria-label="Expenses" onclick="window.location.href = '@Url.Action("Index", "Expense")';">
+                <i class="fas fa-money-bill"></i>
+                <span>Expenses</span>
+            </button>
+            <button class="menu-btn" aria-label="Category" onclick="window.location.href = '@Url.Action("Index", "Category")';">
+                <i class="fas fa-folder"></i>
+                <span>Category</span>
+            </button>
+            <button class="menu-btn" aria-label="Report">
+                <i class="fas fa-chart-bar"></i>
+                <span>Report</span>
+            </button>
+            <button class="menu-btn" aria-label="Settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+
+            <!-- Logout button positioned at the bottom -->
+            <div class="logout-container">
+                <button class="menu-btn logout-btn" aria-label="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a asp-action="SignOutUser" asp-controller="Account">Logout</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
