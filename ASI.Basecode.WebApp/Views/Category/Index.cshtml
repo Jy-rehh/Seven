@@ -3,13 +3,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         /* Custom button color */
-        .btn-custom {
-            background-color: #548E87; /* Set the background color */
-            color: white; /* Set the text color to white */
+        .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
         }
 
-            .btn-custom:hover {
-                background-color: #3e7062; /* Darken the background on hover */
+            /* Optional: Add a hover effect for buttons */
+            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover {
+                background: #548E87;
                 color: white;
             }
 
@@ -28,12 +31,10 @@
             align-items: center;
         }
 
-        /* Custom background color for the table */
         .table {
-            background-color: #39BBAE; /* Table background color */
-            color: white; /* Text color */
+            background-color: #39BBAE;
+            color: black;
         }
-
     </style>
 }
 
@@ -93,7 +94,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Sorting options can be added here, e.g., Name or Description -->
                 <form>
                     <div class="form-group">
                         <label for="sortBy">Sort By</label>
@@ -224,8 +224,9 @@
             var categoryName = button.data('category-name');
 
             var modal = $(this);
-            modal.find('#categoryId').val(categoryId);
             modal.find('#categoryName').text(categoryName);
+            modal.find('#categoryId').val(categoryId);
         });
     </script>
 }
+
