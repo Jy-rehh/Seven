@@ -18,7 +18,7 @@ namespace ASI.Basecode.Data
         }
 
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Expense> Expense { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +26,7 @@ namespace ASI.Basecode.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Addr=LARAHLANESERDAN\\MSSQLSERVER01; database=AsiBasecodeDB; Trusted_Connection=True; MultipleActiveResultSets=true;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Addr=.\\SQLEXPRESS; database=AsiBasecodeDB; Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
             }
         }
 
@@ -63,7 +63,7 @@ namespace ASI.Basecode.Data
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.Title)
                     .IsRequired()
                     .IsUnicode(false);
             });
@@ -79,7 +79,9 @@ namespace ASI.Basecode.Data
 
                 entity.Property(e => e.CreatedTime).HasColumnType("datetime");
 
-                entity.Property(e => e.Email).HasMaxLength(50);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Name)
                     .IsRequired()

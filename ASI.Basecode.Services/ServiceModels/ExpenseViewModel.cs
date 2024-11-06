@@ -16,6 +16,5 @@ namespace ASI.Basecode.Services.ServiceModels
         public float Amount { get; set; }
         public DateTime DateCreated { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; }
     }
 }

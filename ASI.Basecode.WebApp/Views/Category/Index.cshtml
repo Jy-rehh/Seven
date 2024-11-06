@@ -7,14 +7,54 @@
 @{
     ViewData["Title"] = "Category";
 }
+
+<div class="nav-upper">
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
+        <i class="fa-solid fa-circle-plus"></i> Add Category
+    </a>    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add form fields for Category details -->
+                    <form asp-action="Create">
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" name="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Description">Description</label>
+                            <input type="text" class="form-control" id="Description" name="Description">
+                        </div>
+                        <!-- Add more fields as needed -->
+                        <button type="submit" class="btn btn-secondary">Save Category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter">
+        <select class="filter-control" id="Filter" name="Filter" required>
+            <option value="" disabled selected>Filter</option>
+            <!-- Options will be populated here -->
+        </select>
+    </div>
+    <div class="sort">
+        <select class="sort-control" id="Sort" name="Sort" required>
+            <option value="" disabled selected>Sort</option>
+            <!-- Options will be populated here -->
+        </select>
+    </div>
+</div>
+
 <div class="main-content">
-
-    <h1>Index</h1>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-
-    <table class="table">
+    <table class="table" style="color: #ffffff;">
         <thead>
             <tr>
                 <th>
@@ -24,7 +64,10 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>
-                    Cover Image
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    Edit/Delete
                 </th>
                 <th></th>
             </tr>
@@ -39,6 +82,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |

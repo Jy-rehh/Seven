@@ -35,7 +35,6 @@ namespace ASI.Basecode.Services.Services
             newExpenses.Amount = model.Amount;
             newExpenses.DateCreated = DateTime.Now;
             newExpenses.Description = model.Description;
-            newExpenses.Status = model.Status;
             _expensesRepository.AddExpenses(newExpenses);
 
         }
@@ -48,10 +47,9 @@ namespace ASI.Basecode.Services.Services
                 CategoryId = s.CategoryId,
                 UserId = s.UserId,
                 Title = s.Title,
-                Amount = s.Amount,
+                Amount = (float)s.Amount,
                 DateCreated = s.DateCreated,
                 Description = s.Description,
-                Status = s.Status,
             }).ToList();
             return data;
         }
@@ -63,7 +61,7 @@ namespace ASI.Basecode.Services.Services
                 CategoryId = s.CategoryId,
                 UserId = s.UserId,
                 Title = s.Title,
-                Amount = s.Amount,
+                Amount = (float)s.Amount,
                 DateCreated = s.DateCreated,
                 Description = s.Description,
             }).FirstOrDefault();

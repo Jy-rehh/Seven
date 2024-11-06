@@ -9,9 +9,8 @@ namespace ASI.Basecode.Data.Models
         public int CategoryId { get; set; }
         public int UserId { get; set; }
         public string Title { get; set; }
-        public float Amount { get; set; }
+        public double Amount { get; set; }
         public DateTime DateCreated { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; }
     }
 }
