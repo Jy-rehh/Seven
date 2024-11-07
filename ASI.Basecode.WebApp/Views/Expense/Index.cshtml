@@ -9,7 +9,7 @@
     ViewData["Title"] = "Expenses";
 }
 
-<div class="nav-upper" >
+<div class="nav-upper">
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal">
         <i class="fa-solid fa-circle-plus"></i> Add Expense
     </a>    <div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
@@ -28,29 +28,21 @@
                             <label for="Title">Title</label>
                             <input type="text" class="form-control" id="Title" name="Title" required>
                         </div>
-                        @* <div class="form-group">
+                        <div class="form-group">
                             <label for="Category">Category</label>
-                            <select class="form-control" id="Category" name="Category" required>
+                            <select class="form-control" id="Category" name="Category" @* required *@>
                                 <option value="" disabled selected>Select a category</option>
                                 <!-- Options will be populated here -->
                             </select>
-                        </div> *@
-
-
-                        <div class="form-group">
-                            <label for="Category">Category</label>
-                            <input type="text" class="form-control" id="Category" name="Category" required>
                         </div>
-
                         <div class="form-group">
                             <label for="Amount">Amount</label>
                             <input type="number" class="form-control" id="Amount" name="Amount" step="0.01" required>
                         </div>
-
-                       @*  <div class="form-group">
+                        <div class="form-group">
                             <label for="DateCreated">Date</label>
                             <input type="date" class="form-control" id="DateCreated" name="DateCreated" required>
-                        </div> *@
+                        </div>
 
                         <div class="form-group">
                             <label for="Description">Description</label>
@@ -106,16 +98,11 @@
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CategoryId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
                     </td>
                 </tr>
             }
