@@ -194,16 +194,3 @@ h2 {
     color: #FFFFFF;
     padding: 5px;
 }
-
-.table {
-    text-align: center;
-    margin: 0 auto;
-}
-
-.tbody, .table th {
-    padding: 20px;
-}
-
-.table td {
-    padding: 15px;
-}
