@@ -1,5 +1,6 @@
 ﻿using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.ServiceModels;
+using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -79,9 +80,16 @@ namespace ASI.Basecode.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostDelete(int ExpensesId)
+        public IActionResult Edit(ExpenseViewModel model)
         {
-            _expensesService.DeleteExpenses(ExpensesId);
+            _expensesService.UpdateExpenses(model, UserId);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult PostDelete(int ExpenseId)
+        {
+            _expensesService.DeleteExpenses(ExpenseId);
             return RedirectToAction("Index");
         }
         #endregion

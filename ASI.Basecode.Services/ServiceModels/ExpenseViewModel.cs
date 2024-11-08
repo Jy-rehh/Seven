@@ -11,7 +11,7 @@ namespace ASI.Basecode.Services.ServiceModels
     {
         public int ExpenseId { get; set; }
         public int CategoryId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Title { get; set; }
         public float Amount { get; set; }
         public DateTime DateCreated { get; set; }
