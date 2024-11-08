@@ -86,6 +86,10 @@ namespace ASI.Basecode.Services.Services
                 _categoryRepository.DeleteCategory(category);
             }
         }
+        public bool CategoryExists(string categoryName)
+        {
+            return _categoryRepository.GetAllCategory().Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }
     

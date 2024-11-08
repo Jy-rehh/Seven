@@ -128,6 +128,11 @@ namespace ASI.Basecode.WebApp.Controllers
                     TempData["ErrorMessage"] = "This email is already in use.";
                     return View(); // Return to the Register view with the error message
                 }
+                if (_userService.CheckUsernameExists(model.UserId))
+                {
+                    TempData["ErrorMessage"] = "This username is already in use.";
+                    return View();
+                }
 
                 // Add the new user if the email is unique
                 _userService.AddUser(model);
