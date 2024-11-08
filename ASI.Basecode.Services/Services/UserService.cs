@@ -5,7 +5,6 @@ using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
 using AutoMapper;
 using System;
-using System.IO;
 using System.Linq;
 using static ASI.Basecode.Resources.Constants.Enums;
 
@@ -32,36 +31,31 @@ namespace ASI.Basecode.Services.Services
                    : _repository.GetUsers().FirstOrDefault(x => x.UserId == userIdOrEmail && x.Password == passwordKey);
 
             return user != null ? LoginResult.Success : LoginResult.Failed;
-
-
-            //user = new User();
-            //var passwordKey = PasswordManager.EncryptPassword(password);
-            //user = _repository.GetUsers().Where(x => x.UserId == userId &&
-            //                                         x.Password == passwordKey).FirstOrDefault();
-
-            //return user != null ? LoginResult.Success : LoginResult.Failed;
         }
 
         public void AddUser(UserViewModel model)
         {
+            if (CheckEmailExists(model.Email))
+            {
+                throw new InvalidOperationException("This email is already in use.");
+            }
+
             var user = new User();
             _mapper.Map(model, user);
             user.Email = model.Email;
             user.Password = PasswordManager.EncryptPassword(model.Password);
             user.CreatedTime = DateTime.Now;
             user.UpdatedTime = DateTime.Now;
-            user.CreatedBy = System.Environment.UserName;
-            user.UpdatedBy = System.Environment.UserName;
+            user.CreatedBy = Environment.UserName;
+            user.UpdatedBy = Environment.UserName;
 
             _repository.AddUser(user);
-            //if (!_repository.UserExists(model.UserId))
-            //{
-                
-            //}
-            //else
-            //{
-            //    throw new InvalidDataException(Resources.Messages.Errors.UserExists);
-            //}
+        }
+
+        public bool CheckEmailExists(string email)
+        {
+            return _repository.GetUsers().Any(u => u.Email == email);
         }
     }
 }
+
