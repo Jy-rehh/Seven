@@ -1,6 +1,7 @@
 ﻿using ASI.Basecode.Data;
 using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Repositories;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.ServiceModels;
 using AutoMapper;
@@ -30,7 +31,7 @@ namespace ASI.Basecode.Services.Services
         {
             var newExpenses = new Expense();
             newExpenses.CategoryId = model.CategoryId;
-            newExpenses.UserId = model.UserId;
+            newExpenses.UserId = userId;
             newExpenses.Title = model.Title;
             newExpenses.Amount = model.Amount;
             newExpenses.DateCreated = DateTime.Now;
@@ -66,6 +67,17 @@ namespace ASI.Basecode.Services.Services
                 Description = s.Description,
             }).FirstOrDefault();
             return expenses;
+        }
+        public void UpdateExpenses(ExpenseViewModel model, string userId)
+        {
+            var expense = _expensesRepository.GetAllExpenses().Where(x => x.ExpenseId.Equals(model.ExpenseId)).FirstOrDefault();
+            model.DateCreated = expense.DateCreated;
+            if (expense != null)
+            {
+                _mapper.Map(model, expense);
+                expense.UserId = userId;
+                _expensesRepository.UpdateExpenses(expense);
+            }
         }
         public void DeleteExpenses(int Id)
         {

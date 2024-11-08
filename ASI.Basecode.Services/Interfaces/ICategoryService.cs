@@ -14,5 +14,6 @@ namespace ASI.Basecode.Services.Interfaces
         CategoryViewModel RetrieveCategory(int id);
         void UpdateCategory(CategoryViewModel model, string userId);
         void DeleteCategory(int id);
+        bool CategoryExists(string categoryName);
     }
 }

@@ -12,6 +12,7 @@ namespace ASI.Basecode.Services.Interfaces
         void AddExpenses(ExpenseViewModel model, string userId);
         List<ExpenseViewModel> GetAllExpenses();
         ExpenseViewModel RetrieveExpenses(int id);
+        void UpdateExpenses(ExpenseViewModel model, string userId);
         void DeleteExpenses(int id);
     }
 }

@@ -611,3 +611,428 @@
 2024-11-08 13:26:21.882 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-08 13:26:21.888 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-08 13:26:21.918 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:23:00.482 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-08 21:23:10.620 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-08 21:23:10.952 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-08 21:23:11.078 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 21:23:26.614 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:23:52.026 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-08 21:24:00.319 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-08 21:24:00.629 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-08 21:24:00.751 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:01.006 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:01.144 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:01.193 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:01.205 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:01.233 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:24:02.972 +08:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2024-11-08 21:24:02.981 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Category>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.CategoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.CreatedBy (string) Required Ansi, 1], [Property: Category.DateCreated (DateTime) Required, 2], [Property: Category.DateUpdated (DateTime) Required, 3], [Property: Category.Description (string) Required Ansi, 4], [Property: Category.Name (string) Required Ansi, 5] }
+        SELECT c.CategoryId, c.CreatedBy, c.DateCreated, c.DateUpdated, c.Description, c.Name
+        FROM Category AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Category>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 21:24:02.987 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:02.991 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:03.006 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.015 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.017 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.019 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.022 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.024 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:24:03.027 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:03.029 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:03.364 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:24:04.076 +08:00 [DBG] Compiling query expression: 
+'DbSet<Expense>()'
+2024-11-08 21:24:04.081 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Expense>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (int) Required, 6] }
+        SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
+        FROM Expense AS e), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 21:24:04.087 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:04.088 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:23.930 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:23.932 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:24:24.012 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:38:12.977 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-08 21:38:38.362 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-08 21:38:38.686 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-08 21:38:38.812 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:39.261 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:39.393 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:39.443 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:39.455 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:39.481 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:38:41.181 +08:00 [DBG] Compiling query expression: 
+'DbSet<Expense>()'
+2024-11-08 21:38:41.187 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Expense>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (string) Required Ansi, 6] }
+        SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
+        FROM Expense AS e), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 21:38:41.196 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:41.200 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:41.216 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.229 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.231 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.234 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.235 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.238 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:41.242 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:41.244 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:41.510 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:38:44.049 +08:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2024-11-08 21:38:44.055 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Category>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.CategoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.CreatedBy (string) Required Ansi, 1], [Property: Category.DateCreated (DateTime) Required, 2], [Property: Category.DateUpdated (DateTime) Required, 3], [Property: Category.Description (string) Required Ansi, 4], [Property: Category.Name (string) Required Ansi, 5] }
+        SELECT c.CategoryId, c.CreatedBy, c.DateCreated, c.DateUpdated, c.Description, c.Name
+        FROM Category AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Category>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 21:38:44.061 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:44.063 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:44.073 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.082 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.084 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.087 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.088 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.090 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:44.095 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:44.097 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:44.301 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 21:38:45.598 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:45.601 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:45.609 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.611 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.613 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.615 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.617 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.619 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 21:38:45.625 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:45.627 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 21:38:45.631 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:06:56.506 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-08 22:07:06.842 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-08 22:07:07.168 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-08 22:07:07.298 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:07.587 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:07.718 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:07.772 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:07.785 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:07.815 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:10.392 +08:00 [DBG] Compiling query expression: 
+'DbSet<Expense>()'
+2024-11-08 22:07:10.398 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Expense>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (string) Required Ansi, 6] }
+        SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
+        FROM Expense AS e), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 22:07:10.408 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:10.413 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:10.430 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.442 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.445 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.447 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.449 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.452 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:10.457 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:10.459 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:10.776 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:18.657 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.660 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.667 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.672 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.675 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.714 +08:00 [DBG] An entity of type 'Expense' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.724 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:18.730 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:18.748 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:18.762 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.766 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.771 +08:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2024-11-08 22:07:18.788 +08:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2024-11-08 22:07:18.893 +08:00 [DBG] Committing transaction.
+2024-11-08 22:07:18.900 +08:00 [DBG] Committed transaction.
+2024-11-08 22:07:18.905 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.907 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.913 +08:00 [DBG] Disposing transaction.
+2024-11-08 22:07:18.918 +08:00 [DBG] An entity of type 'Expense' tracked by 'AsiBasecodeDBContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.926 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2024-11-08 22:07:18.929 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:18.947 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.949 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.956 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.959 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.960 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.962 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.964 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.967 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:18.972 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.974 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:18.977 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:23.978 +08:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2024-11-08 22:07:23.984 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Category>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.CategoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.CreatedBy (string) Required Ansi, 1], [Property: Category.DateCreated (DateTime) Required, 2], [Property: Category.DateUpdated (DateTime) Required, 3], [Property: Category.Description (string) Required Ansi, 4], [Property: Category.Name (string) Required Ansi, 5] }
+        SELECT c.CategoryId, c.CreatedBy, c.DateCreated, c.DateUpdated, c.Description, c.Name
+        FROM Category AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Category>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 22:07:23.990 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:23.993 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:24.004 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.017 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.019 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.022 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.025 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.028 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:24.032 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:24.034 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:24.232 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:31.311 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.313 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.321 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.324 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.326 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.329 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.333 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.336 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.341 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.345 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:31.349 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:31.358 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:31.361 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.364 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.365 +08:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2024-11-08 22:07:31.368 +08:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2024-11-08 22:07:31.392 +08:00 [DBG] Committing transaction.
+2024-11-08 22:07:31.394 +08:00 [DBG] Committed transaction.
+2024-11-08 22:07:31.397 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.400 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.403 +08:00 [DBG] Disposing transaction.
+2024-11-08 22:07:31.413 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.416 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2024-11-08 22:07:31.420 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:31.454 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.456 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.466 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.469 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.472 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.476 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.480 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:31.485 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.488 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:31.493 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:36.184 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.186 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.193 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.195 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.198 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.201 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.204 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.206 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.208 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:36.210 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:36.212 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:36.215 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.217 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.219 +08:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2024-11-08 22:07:36.221 +08:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2024-11-08 22:07:36.235 +08:00 [DBG] Committing transaction.
+2024-11-08 22:07:36.237 +08:00 [DBG] Committed transaction.
+2024-11-08 22:07:36.239 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.240 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.242 +08:00 [DBG] Disposing transaction.
+2024-11-08 22:07:36.246 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.249 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2024-11-08 22:07:36.253 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:36.265 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.267 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.274 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.276 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.278 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.279 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:36.283 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.285 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:36.289 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:53.127 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.129 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.139 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.141 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.145 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.148 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.151 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.153 +08:00 [DBG] SaveChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:53.155 +08:00 [DBG] DetectChanges starting for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:53.157 +08:00 [DBG] DetectChanges completed for 'AsiBasecodeDBContext'.
+2024-11-08 22:07:53.159 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.161 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.163 +08:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2024-11-08 22:07:53.164 +08:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2024-11-08 22:07:53.179 +08:00 [DBG] Committing transaction.
+2024-11-08 22:07:53.181 +08:00 [DBG] Committed transaction.
+2024-11-08 22:07:53.183 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.184 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.185 +08:00 [DBG] Disposing transaction.
+2024-11-08 22:07:53.189 +08:00 [DBG] An entity of type 'Category' tracked by 'AsiBasecodeDBContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.191 +08:00 [DBG] SaveChanges completed for 'AsiBasecodeDBContext' with 1 entities written to the database.
+2024-11-08 22:07:53.193 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:07:53.205 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.206 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.216 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.217 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.219 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.220 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:07:53.224 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.226 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:07:53.231 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:09:37.193 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:37.196 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:37.202 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:37.204 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:37.205 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:37.207 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:37.211 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:37.212 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:37.215 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:09:45.674 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:45.676 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:45.683 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.685 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.688 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.690 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.692 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.694 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:09:45.698 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:45.699 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:09:45.934 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 22:10:17.011 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:10:17.012 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:10:17.019 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:10:17.020 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:10:17.022 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:10:17.024 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 22:10:17.028 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:10:17.030 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server '.\SQLEXPRESS'.
+2024-11-08 22:10:17.307 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
