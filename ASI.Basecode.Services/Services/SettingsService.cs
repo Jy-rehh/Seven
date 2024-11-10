@@ -1,63 +1,63 @@
-﻿using ASI.Basecode.Data.Interfaces;  // Import the ISettingsRepository interface
-using ASI.Basecode.Data.Models;
+﻿using ASI.Basecode.Data.Models;
 using ASI.Basecode.Services.Interfaces;
-using ASI.Basecode.WebApp.Models;  // Import the SettingsViewModel
-using System.Threading.Tasks;
+using ASI.Basecode.Services.ServiceModels;
 
 namespace ASI.Basecode.Services.Services
 {
     public class SettingsService : ISettingsService
     {
-        private readonly ISettingsRepository _settingsRepository;  // Dependency injection of the repository
-
-        // Constructor to inject ISettingsRepository
-        public SettingsService(ISettingsRepository settingsRepository)
+        private Settings _settings = new Settings
         {
-            _settingsRepository = settingsRepository;
+            Username = "DefaultUser",  // Example default value
+            Field1 = "Field1Value",    // Example default value
+            Field2 = "Field2Value"     // Example default value
+        };
+
+        // Implement GetSettings from ISettingsService
+        public Settings GetSettings()
+        {
+            return _settings;
         }
 
-        // Fetch user settings by username
-        public async Task<SettingsViewModel> GetUserSettings(string username)
+        // Implement SaveSettings from ISettingsService
+        public void SaveSettings(string username, string field1, string field2)
         {
-            // Fetch settings from the repository asynchronously
-            var settings = await _settingsRepository.GetSettingsByUsernameAsync(username);
-
-            // If settings are found, map to SettingsViewModel. Otherwise, return a new instance.
-            if (settings != null)
-            {
-                // Manually map Settings to SettingsViewModel
-                var model = new SettingsViewModel
-                {
-                    Username = settings.Username,
-                    Field1 = settings.Field1,  // Replace with actual fields from Settings
-                    Field2 = settings.Field2   // Replace with actual fields from Settings
-                };
-                return model;
-            }
-
-            return new SettingsViewModel();  // Return an empty ViewModel if no settings found
+            _settings.Username = username;
+            _settings.Field1 = field1;
+            _settings.Field2 = field2;
         }
 
-        // Update user settings
-        public async Task UpdateUserSettings(string username, SettingsViewModel model)
+        // Implement GetUserSettings from ISettingsService
+        public Settings GetUserSettings(string username)
         {
-            // Map SettingsViewModel to Settings before updating
-            var settings = new Settings
+            // Example logic: return user settings based on the username
+            // In a real application, you would likely fetch this data from a database
+            return new Settings
             {
                 Username = username,
-                Field1 = model.Field1,  // Replace with actual fields from SettingsViewModel
-                Field2 = model.Field2   // Replace with actual fields from SettingsViewModel
+                Field1 = "UserField1",
+                Field2 = "UserField2"
             };
-
-            // Update the settings in the repository asynchronously
-            await _settingsRepository.UpdateSettings(username, settings);
         }
 
-        // Reset user settings to default
-        public async Task ResetUserSettings(string username)
+        // Implement UpdateUserSettings from ISettingsService
+        public void UpdateUserSettings(string username, SettingsViewModel settings)
         {
-            // Reset the settings in the repository asynchronously
-            await _settingsRepository.ResetSettingsToDefault(username);
+            // Example logic: update user settings
+            _settings.Username = username;
+            _settings.Field1 = settings.Field1;
+            _settings.Field2 = settings.Field2;
+        }
+
+        // Implement ResetUserSettings from ISettingsService
+        public void ResetUserSettings(string username)
+        {
+            // Example logic: reset the user's settings to default values
+            _settings.Username = "DefaultUser";
+            _settings.Field1 = "DefaultField1";
+            _settings.Field2 = "DefaultField2";
         }
     }
 }
+
+
