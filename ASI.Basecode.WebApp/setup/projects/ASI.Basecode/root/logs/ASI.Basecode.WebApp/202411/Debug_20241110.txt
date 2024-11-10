@@ -307,3 +307,311 @@
 2024-11-10 08:46:01.619 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:46:01.629 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:46:01.649 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:07:36.318 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-10 20:07:50.439 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-10 20:07:50.948 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-10 20:07:51.175 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:07:51.551 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:07:51.757 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:07:51.832 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:07:51.857 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:07:51.896 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:08:04.259 +08:00 [DBG] Compiling query expression: 
+'DbSet<Expense>()'
+2024-11-10 20:08:04.279 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Expense>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (string) Required Ansi, 6] }
+        SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
+        FROM Expense AS e), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-10 20:08:04.292 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:04.298 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:04.332 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:08:04.358 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:04.365 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:04.839 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:08:06.531 +08:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2024-11-10 20:08:06.548 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Category>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.CategoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.CreatedBy (string) Required Ansi, 1], [Property: Category.DateCreated (DateTime) Required, 2], [Property: Category.DateUpdated (DateTime) Required, 3], [Property: Category.Description (string) Required Ansi, 4], [Property: Category.Name (string) Required Ansi, 5] }
+        SELECT c.CategoryId, c.CreatedBy, c.DateCreated, c.DateUpdated, c.Description, c.Name
+        FROM Category AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Category>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-10 20:08:06.578 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:06.587 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:06.631 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:08:06.675 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:06.683 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:07.048 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:08:08.521 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:08.526 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:08.545 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:08:08.558 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:08.564 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:08.573 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:08:21.774 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:21.782 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:21.805 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:08:21.824 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:21.834 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:08:21.845 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:20:16.051 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:16.062 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:16.087 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:20:16.102 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:16.107 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:16.120 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:20:17.140 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:17.143 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:17.154 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:20:17.160 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:17.164 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:20:17.174 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:26:26.103 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:26:26.116 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:26:26.168 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:26:26.191 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:26:26.199 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:26:26.211 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:32:57.584 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:57.606 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:57.630 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:32:57.646 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:57.652 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:57.660 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:32:58.832 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:58.837 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:58.850 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:32:58.857 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:58.861 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:32:58.869 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:33:01.190 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:33:01.197 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:33:01.229 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:33:01.251 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:33:01.263 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:33:01.274 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:04.954 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:04.975 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:05.022 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:05.054 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:05.070 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:05.091 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:07.689 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:07.703 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:07.753 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:07.783 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:07.792 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:07.803 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:10.313 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:10.321 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:10.353 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:10.387 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:10.403 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:10.418 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:12.383 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:12.400 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:12.428 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:12.439 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:12.449 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:12.459 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:13.467 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:13.482 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:13.509 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:13.527 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:13.534 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:13.542 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:16.508 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:16.519 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:16.553 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:16.574 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:16.584 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:16.594 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:39:18.494 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:18.501 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:18.539 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:39:18.556 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:18.564 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:39:18.572 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:09.575 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:09.578 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:09.592 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:09.598 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:09.601 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:09.613 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:16.554 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:16.563 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:16.590 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:16.621 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:16.635 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:16.654 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:21.100 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:21.104 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:21.122 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:21.132 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:21.138 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:21.149 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:22.722 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:22.729 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:22.762 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:22.777 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:22.786 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:22.793 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:24.216 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:24.221 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:24.236 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:24.245 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:24.250 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:24.257 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:25.839 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:25.844 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:25.865 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:25.877 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:25.882 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:25.890 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:28.235 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:28.241 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:28.267 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:28.292 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:28.301 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:28.313 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:40:50.033 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:50.037 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:50.055 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:40:50.062 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:50.067 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:40:50.078 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:41:01.655 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:01.659 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:01.670 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:41:01.678 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:01.681 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:01.686 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:41:04.633 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:04.638 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:04.666 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:41:04.687 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:04.696 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:04.707 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:41:08.529 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:08.542 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:08.577 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:41:08.596 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:08.607 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:08.617 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:41:26.478 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:26.491 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:26.518 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:41:26.527 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:26.530 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:41:26.535 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 20:43:15.031 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:43:15.042 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:43:15.072 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 20:43:15.086 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:43:15.091 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 20:43:15.099 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 21:22:52.757 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:52.772 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:52.795 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 21:22:52.806 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:52.811 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:52.821 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 21:22:55.838 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:55.844 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:55.868 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 21:22:55.885 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:55.895 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:55.905 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 21:22:57.489 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:57.498 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:57.531 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 21:22:57.552 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:57.563 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:22:57.580 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 21:56:17.609 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-10 21:56:24.644 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-10 21:56:24.872 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-10 21:56:24.971 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:56:25.184 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:56:25.286 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 21:56:25.320 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:56:25.329 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 21:56:25.468 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-10 22:01:23.502 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-10 22:01:30.108 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-10 22:01:30.638 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-10 22:01:30.864 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 22:01:31.295 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 22:01:31.548 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 22:01:31.644 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 22:01:31.659 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
+2024-11-10 22:01:31.689 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
