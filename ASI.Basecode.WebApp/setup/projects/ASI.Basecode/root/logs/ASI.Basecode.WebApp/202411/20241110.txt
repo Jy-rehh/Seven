@@ -78,3 +78,35 @@ System.InvalidOperationException: The entity type 'Settings' requires a primary 
    at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2024-11-10 12:24:40.246 +08:00 [INF] Now listening on: https://localhost:60372
+2024-11-10 12:24:40.288 +08:00 [INF] Now listening on: http://localhost:60373
+2024-11-10 12:24:40.327 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-10 12:24:40.329 +08:00 [INF] Hosting environment: Development
+2024-11-10 12:24:40.331 +08:00 [INF] Content root path: C:\Users\Admin\Source\Repos\Seven\ASI.Basecode.WebApp\
+2024-11-10 12:24:41.688 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-10 12:24:57.892 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-10 12:24:58.035 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-10 12:24:58.458 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-10 12:24:58.629 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-10 12:24:59.047 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-10 12:24:59.225 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-10 12:24:59.286 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-10 12:24:59.302 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-10 12:24:59.531 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
