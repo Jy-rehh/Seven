@@ -7,3 +7,4 @@
         public string Field2 { get; set; }  // Example field
     }
 }
+
