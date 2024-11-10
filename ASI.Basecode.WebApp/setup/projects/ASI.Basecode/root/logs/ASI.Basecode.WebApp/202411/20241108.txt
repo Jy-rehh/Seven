@@ -62,3 +62,149 @@
 2024-11-08 06:22:11.488 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
 2024-11-08 06:22:11.490 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
 2024-11-08 06:22:11.494 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:19.006 +08:00 [INF] Now listening on: https://localhost:60372
+2024-11-08 06:31:19.055 +08:00 [INF] Now listening on: http://localhost:60373
+2024-11-08 06:31:19.106 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-08 06:31:19.109 +08:00 [INF] Hosting environment: Development
+2024-11-08 06:31:19.112 +08:00 [INF] Content root path: C:\Users\Admin\Source\Repos\Seven\ASI.Basecode.WebApp\
+2024-11-08 06:31:20.682 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-11-08 06:31:35.160 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:35.292 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(x => x.UserId == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
+2024-11-08 06:31:35.750 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<User>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
+        SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
+        FROM User AS u
+        WHERE (u.UserId == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .SingleOrDefault()'
+2024-11-08 06:31:35.933 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:36.358 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:36.527 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:36.587 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:36.603 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:36.854 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:45.143 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:45.147 +08:00 [DBG] Compiling query expression: 
+'DbSet<Expense>()'
+2024-11-08 06:31:45.156 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Expense>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (int) Required, 6] }
+        SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
+        FROM Expense AS e), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 06:31:45.166 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:45.171 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:45.203 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:45.206 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:45.646 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:47.522 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:47.528 +08:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2024-11-08 06:31:47.535 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Category>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.CategoryId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.CreatedBy (string) Required Ansi, 1], [Property: Category.DateCreated (DateTime) Required, 2], [Property: Category.DateUpdated (DateTime) Required, 3], [Property: Category.Description (string) Required Ansi, 4], [Property: Category.Name (string) Required Ansi, 5] }
+        SELECT c.CategoryId, c.CreatedBy, c.DateCreated, c.DateUpdated, c.Description, c.Name
+        FROM Category AS c), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Category>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)'
+2024-11-08 06:31:47.543 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:47.547 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:47.574 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:47.587 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:47.592 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:47.594 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:47.787 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:49.173 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:49.181 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:49.183 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:49.194 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:49.197 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:49.201 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:50.914 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:50.921 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:50.923 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:50.934 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:50.937 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:50.944 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:50.949 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:50.956 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:52.111 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:52.120 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:52.123 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:52.134 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:52.137 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:52.142 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:31:57.336 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:31:57.343 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:57.345 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:57.352 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:57.354 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:31:57.359 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:57.362 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:31:57.367 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:34:55.466 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:34:55.472 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:55.474 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:55.481 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:34:55.483 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-11-08 06:34:55.489 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:55.492 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:55.499 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:34:57.113 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:34:57.118 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:57.120 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:57.130 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:57.131 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:34:57.135 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
+2024-11-08 06:35:52.909 +08:00 [INF] Entity Framework Core 6.0.6 initialized 'AsiBasecodeDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.6' with options: CommandTimeout=120 
+2024-11-08 06:35:52.915 +08:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .Any(u => u.Email == __email_0)'
+2024-11-08 06:35:52.929 +08:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.SelectExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM User AS u
+            WHERE u.Email == @__email_0)), 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    ASI.Basecode.Data.AsiBasecodeDBContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+2024-11-08 06:35:52.950 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:35:52.952 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:35:52.964 +08:00 [DBG] Closing connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:35:52.966 +08:00 [DBG] Closed connection to database 'AsiBasecodeDB' on server 'DESKTOP-VUSDL53\SQLEXPRESS01'.
+2024-11-08 06:35:52.970 +08:00 [DBG] 'AsiBasecodeDBContext' disposed.
