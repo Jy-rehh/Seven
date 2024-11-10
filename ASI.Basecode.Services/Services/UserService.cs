@@ -56,6 +56,10 @@ namespace ASI.Basecode.Services.Services
         {
             return _repository.GetUsers().Any(u => u.Email == email);
         }
+        public bool CheckUsernameExists(string username)
+        {
+            return _repository.GetUsers().Any(u => u.UserId == username);
+        }
     }
 }
 

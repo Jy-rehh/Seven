@@ -81,11 +81,14 @@ namespace ASI.Basecode.Services.Services
         public void DeleteCategory(int Id)
         {
             var category = _categoryRepository.GetAllCategory().Where(x => x.CategoryId.Equals(Id)).FirstOrDefault();
-            if(category != null)
+            if (category != null)
             {
                 _categoryRepository.DeleteCategory(category);
             }
         }
+        public bool CategoryExists(string categoryName)
+        {
+            return _categoryRepository.GetAllCategory().Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }
-    

@@ -67,6 +67,10 @@ namespace ASI.Basecode.Data
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<User>(entity =>
