@@ -1,8 +1,10 @@
+
 2024-11-10 06:59:32.443 +08:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
 2024-11-10 06:59:41.450 +08:00 [DBG] Compiling query expression: 
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 06:59:41.673 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -10,7 +12,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -18,6 +22,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 06:59:41.783 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 06:59:42.021 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 06:59:42.129 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -35,10 +40,12 @@
         SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
         FROM Expense AS e), 
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
+
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
     False, 
     True
+
 )'
 2024-11-10 06:59:45.052 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 06:59:45.056 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
@@ -80,6 +87,7 @@
 2024-11-10 07:00:00.709 +08:00 [DBG] Compiling query expression: 
 'DbSet<Category>()'
 2024-11-10 07:00:00.714 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<Category>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -93,6 +101,7 @@
     False, 
     True
 )'
+
 2024-11-10 07:00:00.720 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:00:00.723 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:00:00.740 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -112,6 +121,7 @@
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 07:13:32.683 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -119,7 +129,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -127,6 +139,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 07:13:33.016 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:33.684 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:33.987 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -136,6 +149,7 @@
 2024-11-10 07:13:38.864 +08:00 [DBG] Compiling query expression: 
 'DbSet<Category>()'
 2024-11-10 07:13:38.876 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<Category>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -149,6 +163,7 @@
     False, 
     True
 )'
+
 2024-11-10 07:13:38.891 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:38.900 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:38.941 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -158,11 +173,14 @@
 2024-11-10 07:13:40.426 +08:00 [DBG] Compiling query expression: 
 'DbSet<Expense>()'
 2024-11-10 07:13:40.437 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<Expense>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
         Projection Mapping:
+
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Expense.ExpenseId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Expense.Amount (double) Required, 1], [Property: Expense.CategoryId (int) Required, 2], [Property: Expense.DateCreated (DateTime) Required, 3], [Property: Expense.Description (string) Required Ansi, 4], [Property: Expense.Title (string) Required Ansi, 5], [Property: Expense.UserId (string) Required Ansi, 6] }
+
         SELECT e.ExpenseId, e.Amount, e.CategoryId, e.DateCreated, e.Description, e.Title, e.UserId
         FROM Expense AS e), 
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Expense>, 
@@ -171,6 +189,7 @@
     False, 
     True
 )'
+
 2024-11-10 07:13:40.453 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:40.459 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 07:13:40.491 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Expense' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -234,6 +253,7 @@
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 08:18:44.872 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -241,7 +261,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -249,6 +271,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 08:18:44.983 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:18:45.218 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:18:45.483 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -269,10 +292,12 @@
         FROM User AS u
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
     False, 
     True
+
 )
     .SingleOrDefault()'
 2024-11-10 08:31:35.664 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
@@ -286,6 +311,7 @@
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 08:46:01.190 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -293,7 +319,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -301,6 +329,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 08:46:01.279 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:46:01.483 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 08:46:01.586 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -319,7 +348,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -327,6 +358,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 20:07:51.175 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 20:07:51.551 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 20:07:51.757 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -358,6 +390,7 @@
 2024-11-10 20:08:06.531 +08:00 [DBG] Compiling query expression: 
 'DbSet<Category>()'
 2024-11-10 20:08:06.548 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<Category>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -371,6 +404,7 @@
     False, 
     True
 )'
+
 2024-11-10 20:08:06.578 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 20:08:06.587 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 20:08:06.631 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -568,6 +602,7 @@
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 21:56:24.872 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -575,7 +610,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -583,6 +620,7 @@
     True
 )
     .SingleOrDefault()'
+
 2024-11-10 21:56:24.971 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 21:56:25.184 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 21:56:25.286 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
@@ -594,6 +632,7 @@
 'DbSet<User>()
     .FirstOrDefault(x => x.Email == __userIdOrEmail_0 && x.Password == __passwordKey_1)'
 2024-11-10 22:01:30.638 +08:00 [DBG] Generated query execution expression: 
+
 'queryContext => new SingleQueryingEnumerable<User>(
     (RelationalQueryContext)queryContext, 
     RelationalCommandCache.SelectExpression(
@@ -601,7 +640,9 @@
             EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.CreatedBy (string) Required MaxLength(50) Ansi, 1], [Property: User.CreatedTime (DateTime) Required, 2], [Property: User.Email (string) Required MaxLength(50), 3], [Property: User.Name (string) Required MaxLength(50) Ansi, 4], [Property: User.Password (string) Required MaxLength(50) Ansi, 5], [Property: User.UpdatedBy (string) Required MaxLength(50) Ansi, 6], [Property: User.UpdatedTime (DateTime) Required, 7], [Property: User.UserId (string) Required MaxLength(50) Ansi, 8] }
         SELECT TOP(1) u.Id, u.CreatedBy, u.CreatedTime, u.Email, u.Name, u.Password, u.UpdatedBy, u.UpdatedTime, u.UserId
         FROM User AS u
+
         WHERE (u.Email == @__userIdOrEmail_0) && (u.Password == @__passwordKey_1)), 
+
     Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
     ASI.Basecode.Data.AsiBasecodeDBContext, 
     False, 
@@ -609,6 +650,8 @@
     True
 )
     .SingleOrDefault()'
+
+
 2024-11-10 22:01:30.864 +08:00 [DBG] Opening connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 22:01:31.295 +08:00 [DBG] Opened connection to database 'AsiBasecodeDB' on server 'LARAHLANESERDAN\MSSQLSERVER01'.
 2024-11-10 22:01:31.548 +08:00 [DBG] Context 'AsiBasecodeDBContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.

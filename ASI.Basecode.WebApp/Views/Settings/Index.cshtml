@@ -1,0 +1,46 @@
+﻿@section styles {
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <style>
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+}
+@model ASI.Basecode.Services.ServiceModels.SettingsViewModel
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="container">
+    <h2>Settings</h2>
+
+    <form method="post" asp-action="SaveSettings">
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" class="form-control" id="Username" name="Username" value="@Model.Username" required>
+        </div>
+        <div class="form-group">
+            <label for="Field1">Field 1</label>
+            <input type="text" class="form-control" id="Field1" name="Field1" value="@Model.Field1" required>
+        </div>
+        <div class="form-group">
+            <label for="Field2">Field 2</label>
+            <input type="text" class="form-control" id="Field2" name="Field2" value="@Model.Field2" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
