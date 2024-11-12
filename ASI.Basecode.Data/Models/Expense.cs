@@ -12,5 +12,6 @@ namespace ASI.Basecode.Data.Models
         public double Amount { get; set; }
         public DateTime DateCreated { get; set; }
         public string Description { get; set; }
+        public bool Status { get; set; }
     }
 }

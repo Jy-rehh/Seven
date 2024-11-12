@@ -16,8 +16,7 @@ namespace ASI.Basecode.Data
             : base(options)
         {
         }
-        public DbSet<Settings> Settings { get; set; }
-
+        public virtual DbSet<Settings> Settings { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -44,10 +43,6 @@ namespace ASI.Basecode.Data
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DateUpdated).HasColumnType("datetime");
-
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()

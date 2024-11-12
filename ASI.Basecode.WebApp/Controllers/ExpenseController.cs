@@ -5,6 +5,7 @@ using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,7 +28,14 @@ namespace ASI.Basecode.WebApp.Controllers
         }
         public IActionResult Index()
         {
-            var data = _expensesService.GetAllExpenses();
+            var expenses = _expensesService.GetExpenseByUserId(UserId);
+            var categories = _expensesService.GetCategories();
+            var data = new ExpenseDataModel
+            {
+                ExpenseViewModel = expenses,
+                CategoryViewModel = categories
+            };
+            //var data = _expensesService.GetAllExpenses();
             return View(data);
         }
 

@@ -1,7 +1,6 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> <!-- Add Bootstrap CSS -->
-
     <style>
         /* Custom button color */
         .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
@@ -31,10 +30,11 @@
             justify-content: space-between;
             align-items: center;
         }
+
     </style>
 }
 
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+@model ASI.Basecode.Services.ServiceModels.ExpenseDataModel
 
 @{
     ViewData["Title"] = "Expenses";
@@ -60,12 +60,15 @@
                             <input type="text" class="form-control" id="Title" name="Title" required>
                         </div>
                         <div class="form-group">
-                            <label for="Category">Category</label>
-                            <select class="form-control" id="Category" name="Category" @* required *@>
-                                <option value="" disabled selected>Select a category</option>
-                                <!-- Options will be populated here -->
+                            <label for="category">Category</label>
+                            <select class="form-control" id="CategoryId" name="CategoryId" required>
+                                @foreach (var category in Model.CategoryViewModel)
+                                {
+                                    <option value="@category.CategoryId">@category.Name</option>
+                                }
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="Amount">Amount</label>
                             <input type="number" class="form-control" id="Amount" name="Amount" step="0.01" required>
@@ -81,10 +84,29 @@
             </div>
         </div>
     </div>
-    <!-- Sort By Button (on the opposite side) -->
-    <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#sortByModal">
-        <i class="fa-solid fa-sort"></i> Sort By
-    </a>
+    <!-- Filter Dropdown -->
+    <div class="filter">
+        <select class="filter-control" id="Filter" name="Filter">
+            <option value="" disabled selected>Filter by Category</option>
+            @foreach (var category in Model.CategoryViewModel)
+            {
+                <option value="@category.CategoryId">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <!-- Sort Dropdown -->
+    <div class="sort">
+        <select class="sort-control" id="Sort" name="Sort">
+            <option value="" disabled selected>Sort by</option>
+            <option value="titleAsc">Title (A-Z)</option>
+            <option value="titleDesc">Title (Z-A)</option>
+            <option value="amountAsc">Amount (Low to High)</option>
+            <option value="amountDesc">Amount (High to Low)</option>
+            <option value="dateAsc">Date (Oldest First)</option>
+            <option value="dateDesc">Date (Newest First)</option>
+        </select>
+    </div>
 </div>
 
 <!-- Sort By Modal -->
@@ -128,25 +150,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.ExpenseViewModel)
             {
-                <tr data-toggle="modal" 
-                    data-target="#expenseDetailModal" 
-                    data-id="@item.ExpenseId" 
-                    data-title="@item.Title" 
-                    data-category="@item.CategoryId" 
-                    data-amount="@item.Amount" 
-                    data-date="@item.DateCreated" 
-                    data-description="@item.Description" class="expense-row">
+                <tr data-toggle="modal" data-target="#expenseDetailModal"
+                    data-id="@item.ExpenseId" data-title="@item.Title"
+                    data-category="@item.CategoryId" data-amount="@item.Amount"
+                    data-date="@item.DateCreated" data-description="@item.Description"
+                    class="expense-row">
+
                     <td>@item.Title</td>
-                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td> <!-- Category Name based on CategoryId -->
                     <td>@item.Amount</td>
                     <td>@item.DateCreated</td>
                     <td>@item.Description</td>
                 </tr>
             }
         </tbody>
+
     </table>
+
 </div>
 
 <div class="modal fade" id="expenseDetailModal" tabindex="-1" role="dialog" aria-labelledby="expenseDetailModalLabel" aria-hidden="true">
@@ -168,8 +190,13 @@
                         <input type="text" class="form-control" id="editTitle" name="Title" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="editCategory">Category</label>
-                        <input type="text" class="form-control" id="editCategory" name="Category" disabled>
+                        <label for="category">Category</label>
+                        <select class="form-control" id="CategoryId" name="CategoryId" disabled>
+                            @foreach (var category in Model.CategoryViewModel)
+                            {
+                                <option value="@category.CategoryId">@category.Name</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="editAmount">Amount</label>
@@ -241,7 +268,7 @@
 
             // Enable edit mode
             $("#editBtn").click(function () {
-                $("#editExpenseForm input, #editExpenseForm textarea").prop("disabled", false);
+                $("#editExpenseForm input, #editExpenseForm textarea, #CategoryId").prop("disabled", false);
                 $("#saveChanges").show();
             });
 
@@ -267,6 +294,75 @@
                 $("#confirmDeleteModal").modal("hide");
                 $("#expenseDetailModal").modal("hide");
             });
+            // Trigger filtering when an option is selected in the filter dropdown
+            $('#Filter').change(function () {
+                let selectedCategory = $(this).val();
+                filterTable(selectedCategory);
+            });
+
+            // Trigger sorting when an option is selected in the sort dropdown
+            $('#Sort').change(function () {
+                let selectedSort = $(this).val();
+                sortTable(selectedSort);
+            });
+
+            // Function to filter table rows by category
+            function filterTable(categoryId) {
+                $(".expense-row").each(function () {
+                    // Get the category ID of the current row
+                    let rowCategoryId = $(this).data("category");
+
+                    // Show or hide the row based on the selected category
+                    if (categoryId === "" || rowCategoryId == categoryId) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Function to sort table rows based on selected criteria
+            function sortTable(sortOption) {
+                let rows = $('.expense-row').get();
+
+                rows.sort(function (a, b) {
+                    let valueA, valueB;
+
+                    switch (sortOption) {
+                        case "titleAsc":
+                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                            return valueA.localeCompare(valueB);
+                        case "titleDesc":
+                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                            return valueB.localeCompare(valueA);
+                        case "amountAsc":
+                            valueA = parseFloat($(a).find("td:nth-child(3)").text());
+                            valueB = parseFloat($(b).find("td:nth-child(3)").text());
+                            return valueA - valueB;
+                        case "amountDesc":
+                            valueA = parseFloat($(a).find("td:nth-child(3)").text());
+                            valueB = parseFloat($(b).find("td:nth-child(3)").text());
+                            return valueB - valueA;
+                        case "dateAsc":
+                            valueA = new Date($(a).find("td:nth-child(4)").text());
+                            valueB = new Date($(b).find("td:nth-child(4)").text());
+                            return valueA - valueB;
+                        case "dateDesc":
+                            valueA = new Date($(a).find("td:nth-child(4)").text());
+                            valueB = new Date($(b).find("td:nth-child(4)").text());
+                            return valueB - valueA;
+                        default:
+                            return 0;
+                    }
+                });
+
+                // Append sorted rows back to the table body
+                $.each(rows, function (index, row) {
+                    $("tbody").append(row);
+                });
+            }
         });
     </script>
 }

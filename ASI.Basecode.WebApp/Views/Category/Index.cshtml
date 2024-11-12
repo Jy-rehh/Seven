@@ -57,10 +57,6 @@
                             <label for="Name">Name</label>
                             <input type="text" class="form-control" id="Name" name="Name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="Description">Description</label>
-                            <input type="text" class="form-control" id="Description" name="Description">
-                        </div>
                         <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-secondary">Save Category</button>
                     </form>
@@ -91,7 +87,6 @@
                             <option value="name">Name</option>
                             <option value="dateCreated">Date Created</option>
                             <option value="dateUpdated">Date Updated</option>
-                            <option value="description">Description</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Sort</button>
@@ -109,7 +104,6 @@
                 <th>Name</th>
                 <th>Date Created</th>
                 <th>Date Updated</th>
-                <th>Description</th>
             </tr>
         </thead>
         <tbody>
@@ -121,12 +115,10 @@
                     data-id="@item.CategoryId"
                     data-name="@item.Name"
                     data-dateCreated="@item.DateCreated"
-                    data-dateUpdated="@item.DateUpdated"
-                    data-description="@item.Description">
+                    data-dateUpdated="@item.DateUpdated">
                     <td>@item.Name</td>
                     <td>@item.DateCreated</td>
                     <td>@item.DateUpdated</td>
-                    <td>@item.Description</td>
                 </tr>
             }
         </tbody>
@@ -151,10 +143,6 @@
                     <div class="form-group">
                         <label for="editName">Name</label>
                         <input type="text" class="form-control" id="editName" name="Name" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="editDescription">Description</label>
-                        <textarea class="form-control" id="editDescription" name="Description" rows="3" disabled></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary" id="saveChanges" style="display: none;">Save Changes</button>
