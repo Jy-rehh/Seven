@@ -33,21 +33,22 @@ namespace ASI.Basecode.Services.Services
             newCategory.CreatedBy = userId;
             newCategory.DateCreated = DateTime.Now;
             newCategory.DateUpdated = DateTime.Now;
-            newCategory.Description = model.Description;
+            newCategory.Status = false;
+            newCategory.TotalAmount = 0.00;
             _categoryRepository.AddCategory(newCategory);
 
         }
         public List<CategoryViewModel> GetAllCategory()
         {
             var serverUrl = _config.GetValue<string>("ServerUrl");
-            var data = _categoryRepository.GetAllCategory().Select(s => new CategoryViewModel
+            var data = _categoryRepository.GetAllCategory().Where(s => s.Status == false).Select(s => new CategoryViewModel
             {
                 CategoryId = s.CategoryId,
                 Name = s.Name,
                 CreatedBy = s.CreatedBy,
                 DateCreated = s.DateCreated,
                 DateUpdated = s.DateUpdated,
-                Description = s.Description,
+
             }).ToList();
             return data;
         }
@@ -60,7 +61,6 @@ namespace ASI.Basecode.Services.Services
                 CreatedBy = s.CreatedBy,
                 DateCreated = s.DateCreated,
                 DateUpdated = s.DateUpdated,
-                Description = s.Description,
 
             }).FirstOrDefault();
             return category;
@@ -74,16 +74,18 @@ namespace ASI.Basecode.Services.Services
                 _mapper.Map(model, category);
                 category.DateUpdated = DateTime.Now;
                 category.CreatedBy = userId;
+                category.TotalAmount = 0.00;
 
                 _categoryRepository.UpdateCategory(category);
             }
         }
         public void DeleteCategory(int Id)
         {
-            var category = _categoryRepository.GetAllCategory().Where(x => x.CategoryId.Equals(Id)).FirstOrDefault();
+            var category = _categoryRepository.GetAllCategory().FirstOrDefault(x => x.CategoryId == Id);
             if (category != null)
             {
-                _categoryRepository.DeleteCategory(category);
+                category.Status = true;
+                _categoryRepository.UpdateCategory(category);
             }
         }
         public bool CategoryExists(string categoryName)
