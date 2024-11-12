@@ -194,3 +194,87 @@ h2 {
     color: #FFFFFF;
     padding: 5px;
 }
+
+.table {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.tbody, .table th {
+    padding: 20px;
+}
+
+.table td {
+    padding: 15px;
+}
+
+.report-header {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Aligns content to the start (left) */
+    margin-bottom: 20px; /* Adds some space below the header */
+}
+
+    .report-header h1 {
+        margin-left: 50px; /* Removes default margin */
+        color: #1A554F;
+    }
+
+.report-btn {
+    display: inline-block;
+    margin-top: 10px; /* Adds space between h1 and button */
+    margin-left: 55px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffff; /* White text color */
+    background-color: #1A554F; /* Blue background color */
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+    .report-btn:hover {
+        background-color: #548E87; /* Darker blue on hover */
+    }
+
+/* New Styles for Header2 */
+.report-header2 {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: #1A554F; /* Background color */
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    margin-top: 100px;
+    margin-left: 75px;
+}
+
+.header-btn {
+    background-color: #ffffff;
+    color: #1A554F;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .header-btn:hover {
+        background-color: #548E87;
+    }
+
+.header-input {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 120px;
+    font-size: 1em;
+}
+
+.dropdown-toggle::after {
+    margin-left: 5px;
+    color: #1A554F;
+}

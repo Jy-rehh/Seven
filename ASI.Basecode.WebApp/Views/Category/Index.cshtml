@@ -1,14 +1,44 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Custom button color */
+        .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+            /* Optional: Add a hover effect for buttons */
+            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover {
+                background: #548E87;
+                color: white;
+            }
+
+        /* Ensures modal is centered */
+        .modal-dialog-centered-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Flex container for buttons */
+        .nav-upper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 }
 
 @model IEnumerable<ASI.Basecode.Services.ServiceModels.CategoryViewModel>
 
 @{
-    ViewData["Title"] = "Category";
+    ViewData["Title"] = "Categories";
 }
-
-<div class="nav-upper">
+<<div class="nav-upper">
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
         <i class="fa-solid fa-circle-plus"></i> Add Category
     </a>    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
@@ -27,7 +57,6 @@
                             <label for="Name">Name</label>
                             <input type="text" class="form-control" id="Name" name="Name" required>
                         </div>
-
                         <div class="form-group">
                             <label for="Description">Description</label>
                             <input type="text" class="form-control" id="Description" name="Description">
@@ -39,59 +68,168 @@
             </div>
         </div>
     </div>
-    <div class="filter">
-        <select class="filter-control" id="Filter" name="Filter" required>
-            <option value="" disabled selected>Filter</option>
-            <!-- Options will be populated here -->
-        </select>
-    </div>
-    <div class="sort">
-        <select class="sort-control" id="Sort" name="Sort" required>
-            <option value="" disabled selected>Sort</option>
-            <!-- Options will be populated here -->
-        </select>
+    <!-- Sort By Button (on the opposite side) -->
+    <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#sortByModal">
+        <i class="fa-solid fa-sort"></i> Sort By
+    </a>
+</div>
+<!-- Sort By Modal -->
+<div class="modal fade" id="sortByModal" tabindex="-1" role="dialog" aria-labelledby="sortByModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered-custom" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sortByModalLabel">Sort Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="sortBy">Sort By</label>
+                        <select class="form-control" id="sortBy">
+                            <option value="name">Name</option>
+                            <option value="dateCreated">Date Created</option>
+                            <option value="dateUpdated">Date Updated</option>
+                            <option value="description">Description</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sort</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Main Category Table -->
 <div class="main-content">
-    <table class="table" style="color: #ffffff;">
+    <table class="table" style="color: white;">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    Edit/Delete
-                </th>
-                <th></th>
+                <th>Name</th>
+                <th>Date Created</th>
+                <th>Date Updated</th>
+                <th>Description</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
-                    </td>
+                <tr class="category-row"
+                    data-toggle="modal"
+                    data-target="#categoryDetailModal"
+                    data-id="@item.CategoryId"
+                    data-name="@item.Name"
+                    data-dateCreated="@item.DateCreated"
+                    data-dateUpdated="@item.DateUpdated"
+                    data-description="@item.Description">
+                    <td>@item.Name</td>
+                    <td>@item.DateCreated</td>
+                    <td>@item.DateUpdated</td>
+                    <td>@item.Description</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="categoryDetailModal" tabindex="-1" role="dialog" aria-labelledby="categoryDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryDetailModalLabel">Category Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit form with fields disabled initially -->
+                <form id="editCategoryForm" method="post" asp-action="Edit">
+                    <input type="hidden" id="editCategoryId" name="CategoryId" />
+
+                    <div class="form-group">
+                        <label for="editName">Name</label>
+                        <input type="text" class="form-control" id="editName" name="Name" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea class="form-control" id="editDescription" name="Description" rows="3" disabled></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="saveChanges" style="display: none;">Save Changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="editBtn" class="btn btn-secondary">Edit</button>
+                <button id="deleteBtn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered-custom" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the category "<span id="categoryName"></span>"?</p>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="PostDelete" method="post">
+                    <input type="hidden" id="categoryId" name="CategoryId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Load category details into modal on row click
+            $(".category-row").click(function () {
+                let categoryId = $(this).data("id");
+                let categoryName = $(this).data("name");
+                let categoryDateCreated = $(this).data("datecreated");
+                let categoryDateUpdated = $(this).data("dateupdated");
+                let categoryDescription = $(this).data("description");
+
+                // Populate modal fields with row data
+                $("#editCategoryId").val(categoryId);
+                $("#editName").val(categoryName);
+                $("#editDescription").val(categoryDescription);
+
+                // Disable form fields initially
+                $("#editCategoryForm input, #editCategoryForm textarea").prop("disabled", true);
+                $("#saveChanges").hide();
+            });
+
+            // Enable edit mode
+            $("#editBtn").click(function () {
+                $("#editCategoryForm input, #editCategoryForm textarea").prop("disabled", false);
+                $("#saveChanges").show();
+            });
+
+            // Trigger delete confirmation modal with category name
+            $("#deleteBtn").click(function () {
+                let categoryId = $("#editCategoryId").val();
+                let categoryName = $("#editName").val(); // Retrieve the category name from the edit modal
+
+                $("#categoryId").val(categoryId);
+                $("#categoryName").text(categoryName);
+                $("#confirmDeleteModal").modal("show");
+            });
+        });
+    </script>
+}

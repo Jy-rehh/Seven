@@ -122,20 +122,32 @@ namespace ASI.Basecode.WebApp.Controllers
         {
             try
             {
+                // Check if the email already exists
+                if (_userService.CheckEmailExists(model.Email))
+                {
+                    TempData["ErrorMessage"] = "This email is already in use.";
+                    return View(); // Return to the Register view with the error message
+                }
+                if (_userService.CheckUsernameExists(model.UserId))
+                {
+                    TempData["ErrorMessage"] = "This username is already in use.";
+                    return View();
+                }
+
+                // Add the new user if the email is unique
                 _userService.AddUser(model);
                 return RedirectToAction("Login", "Account");
             }
-            catch(InvalidDataException ex)
+            catch (InvalidDataException ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                TempData["ErrorMessage"] = Resources.Messages.Errors.ServerError;
+                TempData["ErrorMessage"] = "An error occurred while processing your request. Please try again.";
             }
             return View();
         }
-
         /// <summary>
         /// Sign Out current account and return login view.
         /// </summary>

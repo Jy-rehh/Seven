@@ -43,4 +43,5 @@
   <ItemGroup>
     <Compile Remove="Views\Settings\ChangePassword.cs" />
   </ItemGroup>
+
 </Project>

@@ -16,6 +16,7 @@ namespace ASI.Basecode.Data
             : base(options)
         {
         }
+        public DbSet<Settings> Settings { get; set; }
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
@@ -64,6 +65,10 @@ namespace ASI.Basecode.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.Title)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
                     .IsRequired()
                     .IsUnicode(false);
             });
