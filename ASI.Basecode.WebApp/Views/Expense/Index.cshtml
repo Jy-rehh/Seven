@@ -1,6 +1,7 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> <!-- Add Bootstrap CSS -->
+
     <style>
         /* Custom button color */
         .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
@@ -30,7 +31,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
     </style>
 }
 
@@ -130,7 +130,14 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr data-toggle="modal" data-target="#expenseDetailModal" data-id="@item.ExpenseId" data-title="@item.Title" data-category="@item.CategoryId" data-amount="@item.Amount" data-date="@item.DateCreated" data-description="@item.Description" class="expense-row">
+                <tr data-toggle="modal" 
+                    data-target="#expenseDetailModal" 
+                    data-id="@item.ExpenseId" 
+                    data-title="@item.Title" 
+                    data-category="@item.CategoryId" 
+                    data-amount="@item.Amount" 
+                    data-date="@item.DateCreated" 
+                    data-description="@item.Description" class="expense-row">
                     <td>@item.Title</td>
                     <td>@item.CategoryId</td>
                     <td>@item.Amount</td>
