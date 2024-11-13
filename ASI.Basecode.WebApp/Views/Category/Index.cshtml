@@ -65,9 +65,16 @@
         </div>
     </div>
     <!-- Sort By Button (on the opposite side) -->
-    <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#sortByModal">
-        <i class="fa-solid fa-sort"></i> Sort By
-    </a>
+    <div class="sort">
+        <select class="sort-control" id="Sort" name="Sort">
+            <option value="" disabled selected>Sort by</option>
+            <option value="titleAsc">Title (A-Z)</option>
+            <option value="titleDesc">Title (Z-A)</option>
+            <option value="dateAsc">Date Created (Oldest First)</option>
+            <option value="dateDesc">Date Created (Newest First)</option>
+        </select>
+
+    </div>
 </div>
 <!-- Sort By Modal -->
 <div class="modal fade" id="sortByModal" tabindex="-1" role="dialog" aria-labelledby="sortByModalLabel" aria-hidden="true">
@@ -109,16 +116,10 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr class="category-row"
-                    data-toggle="modal"
-                    data-target="#categoryDetailModal"
-                    data-id="@item.CategoryId"
-                    data-name="@item.Name"
-                    data-dateCreated="@item.DateCreated"
-                    data-dateUpdated="@item.DateUpdated">
+                <tr class="category-row">
                     <td>@item.Name</td>
-                    <td>@item.DateCreated</td>
-                    <td>@item.DateUpdated</td>
+                    <td>@item.DateCreated.ToString("yyyy-MM-dd")</td>  <!-- Format for date sorting -->
+                    <td>@item.DateUpdated.ToString("yyyy-MM-dd")</td>
                 </tr>
             }
         </tbody>
@@ -218,6 +219,47 @@
                 $("#categoryName").text(categoryName);
                 $("#confirmDeleteModal").modal("show");
             });
+
+            // Trigger sorting when an option is selected in the sort dropdown
+            $('#Sort').change(function () {
+                let selectedSort = $(this).val();
+                sortTable(selectedSort);
+            });
+
+            // Function to sort category table rows based on selected criteria
+            function sortTable(sortOption) {
+                let rows = $('.category-row').get();
+
+                rows.sort(function (a, b) {
+                    let valueA, valueB;
+
+                    switch (sortOption) {
+                        case "titleAsc":
+                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                            return valueA.localeCompare(valueB);
+                        case "titleDesc":
+                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                            return valueB.localeCompare(valueA);
+                        case "dateAsc":
+                            valueA = new Date($(a).find("td:nth-child(2)").text());
+                            valueB = new Date($(b).find("td:nth-child(2)").text());
+                            return valueA - valueB;
+                        case "dateDesc":
+                            valueA = new Date($(a).find("td:nth-child(2)").text());
+                            valueB = new Date($(b).find("td:nth-child(2)").text());
+                            return valueB - valueA;
+                        default:
+                            return 0;
+                    }
+                });
+
+                // Append sorted rows back to the table body
+                $.each(rows, function (index, row) {
+                    $("tbody").append(row);
+                });
+            }
         });
     </script>
 }

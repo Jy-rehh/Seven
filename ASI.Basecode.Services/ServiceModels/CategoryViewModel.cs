@@ -17,4 +17,10 @@ namespace ASI.Basecode.Services.ServiceModels
         public string Description { get; set; }
         public bool Status { get; set; }
     }
+
+    public class CategoryDataModel
+    {
+        public IEnumerable<ExpenseViewModel> ExpenseViewModel { get; set; }
+        public IEnumerable<CategoryViewModel> CategoryViewModel { get; set; }
+    }
 }
