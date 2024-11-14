@@ -4,8 +4,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> <!-- Add Bootstrap CSS -->
 }
 
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+@model IEnumerable<ASI.Basecode.Services.ServiceModels.SettingsViewModel>
 
+<!-- Your view content here -->
 
 @{
     ViewData["Title"] = "Settings";
@@ -69,45 +70,4 @@
             <!-- Options will be populated here -->
         </select>
     </div>
-</div>
-<div class="main-content">
-    <table class="table" style="color: #ffffff;">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoryId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Amount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </div>
