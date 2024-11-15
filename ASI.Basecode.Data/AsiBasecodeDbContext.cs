@@ -16,9 +16,10 @@ namespace ASI.Basecode.Data
             : base(options)
         {
         }
-        public virtual DbSet<Settings> Settings { get; set; }
+
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -64,6 +65,19 @@ namespace ASI.Basecode.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Setting>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+                entity.Property(e => e.DateUpdated).HasColumnType("datetime");
+
+                entity.Property(e => e.Preference)
                     .IsRequired()
                     .IsUnicode(false);
             });

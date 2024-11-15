@@ -1,5 +1,6 @@
 ﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Repositories;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
@@ -33,23 +34,34 @@ namespace ASI.Basecode.Services.Services
             return user != null ? LoginResult.Success : LoginResult.Failed;
         }
 
-        public void AddUser(UserViewModel model)
+        public void AddUser(UserViewModel UserModel, SettingsViewModel settingModel)
         {
-            if (CheckEmailExists(model.Email))
+            try
             {
-                throw new InvalidOperationException("This email is already in use.");
+                var user = new User();
+                _mapper.Map(UserModel, user);
+                user.Email = UserModel.Email;
+                user.Password = PasswordManager.EncryptPassword(UserModel.Password);
+                user.CreatedTime = DateTime.Now;
+                user.UpdatedTime = DateTime.Now;
+                user.CreatedBy = Environment.UserName;
+                user.UpdatedBy = Environment.UserName;
+
+                _repository.AddUser(user);
+
+                var settings = new Setting
+                {
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    Preference = ""
+                };
+                _repository.AddSetting(settings);
             }
-
-            var user = new User();
-            _mapper.Map(model, user);
-            user.Email = model.Email;
-            user.Password = PasswordManager.EncryptPassword(model.Password);
-            user.CreatedTime = DateTime.Now;
-            user.UpdatedTime = DateTime.Now;
-            user.CreatedBy = Environment.UserName;
-            user.UpdatedBy = Environment.UserName;
-
-            _repository.AddUser(user);
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         public bool CheckEmailExists(string email)
@@ -59,6 +71,24 @@ namespace ASI.Basecode.Services.Services
         public bool CheckUsernameExists(string username)
         {
             return _repository.GetUsers().Any(u => u.UserId == username);
+        }
+
+
+        public UserViewModel GetUserByUserId(string userId)
+        {
+            var user = _repository.GetUserByUserId(userId);
+            return _mapper.Map<UserViewModel>(user);
+        }
+
+        public void UpdateUser(UserViewModel userModel)
+        {
+            var user = _repository.GetUserByUserId(userModel.UserId);
+            if (user != null)
+            {
+                user.Password = PasswordManager.EncryptPassword(userModel.Password);
+
+                _repository.UpdateUser(user);
+            }
         }
     }
 }

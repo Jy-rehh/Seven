@@ -1,50 +1,35 @@
 ﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
-using Microsoft.EntityFrameworkCore;
+using Basecode.Data.Repositories;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ASI.Basecode.Data.Repositories
 {
-    public class SettingsRepository : ISettingsRepository
+    public class SettingsRepository : BaseRepository, ISettingsRepository
     {
-        private readonly AsiBasecodeDBContext _context;
-
-        public SettingsRepository(AsiBasecodeDBContext context)
+        public SettingsRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _context = context;
-        }
 
-        public async Task<Settings> GetSettingsByUsernameAsync(string username)
+        }
+        public void AddSetting(Setting model)
         {
-            return await _context.Settings.FirstOrDefaultAsync(s => s.Username == username);
+            this.GetDbSet<Setting>().Add(model);
+            UnitOfWork.SaveChanges();
         }
-
-        public async Task UpdateSettings(string username, Settings settings)
+        public IEnumerable<Setting> GetAllSetting()
         {
-            var existingSettings = await _context.Settings
-                .FirstOrDefaultAsync(s => s.Username == username);
-
-            if (existingSettings != null)
-            {
-                existingSettings.Field1 = settings.Field1;
-                existingSettings.Field2 = settings.Field2;
-                await _context.SaveChangesAsync();
-            }
+            return this.GetDbSet<Setting>();
         }
-
-        public async Task ResetSettingsToDefault(string username)
-        {
-            var existingSettings = await _context.Settings
-                .FirstOrDefaultAsync(s => s.Username == username);
-
-            if (existingSettings != null)
-            {
-                existingSettings.Field1 = "DefaultField1";
-                existingSettings.Field2 = "DefaultField2";
-                await _context.SaveChangesAsync();
-            }
-        }
+        //public void UpdateSetting(Setting model)
+        //{
+        //    this.GetDbSet<Setting>().Update(model);
+        //    UnitOfWork.SaveChanges();
+        //}
+        
     }
 }
 
