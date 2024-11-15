@@ -1,4 +1,70 @@
-﻿/*nav-upper-options {
-    margin-bottom: 50px;
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #d4f0ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
-*/
+.container {
+    background-color: #a0d3d1;
+    padding: 20px;
+    border-radius: 15px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.section {
+    width: 45%;
+}
+h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.profile-pic {
+    background-color: #396160;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.button {
+    background-color: #395757;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.button:hover {
+    background-color: #2e4b4b;
+}
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #666;
+    text-decoration: none;
+}
