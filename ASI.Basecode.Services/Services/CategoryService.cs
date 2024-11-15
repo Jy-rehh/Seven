@@ -33,7 +33,7 @@ namespace ASI.Basecode.Services.Services
             newCategory.CreatedBy = userId;
             newCategory.DateCreated = DateTime.Now;
             newCategory.DateUpdated = DateTime.Now;
-            newCategory.Status = false;
+            newCategory.IsDeleted = false;
             newCategory.TotalAmount = 0.00;
             _categoryRepository.AddCategory(newCategory);
 
@@ -41,7 +41,7 @@ namespace ASI.Basecode.Services.Services
         public List<CategoryViewModel> GetAllCategory()
         {
             var serverUrl = _config.GetValue<string>("ServerUrl");
-            var data = _categoryRepository.GetAllCategory().Where(s => s.Status == false).Select(s => new CategoryViewModel
+            var data = _categoryRepository.GetAllCategory().Where(s => s.IsDeleted == false).Select(s => new CategoryViewModel
             {
                 CategoryId = s.CategoryId,
                 Name = s.Name,
@@ -84,7 +84,7 @@ namespace ASI.Basecode.Services.Services
             var category = _categoryRepository.GetAllCategory().FirstOrDefault(x => x.CategoryId == Id);
             if (category != null)
             {
-                category.Status = true;
+                category.IsDeleted = true;
                 _categoryRepository.UpdateCategory(category);
             }
         }

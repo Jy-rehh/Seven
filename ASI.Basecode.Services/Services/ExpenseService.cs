@@ -21,15 +21,13 @@ namespace ASI.Basecode.Services.Services
         private readonly IExpenseRepository _expensesRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
-        private readonly AsiBasecodeDBContext _dbContext;
         private readonly ICategoryRepository _categoryRepository;
-        public ExpenseService(AsiBasecodeDBContext asiBasecodeDBContext ,IExpenseRepository expensesRepository, ICategoryRepository categoryRepository, IMapper mapper, IConfiguration configuration)
+        public ExpenseService(IExpenseRepository expensesRepository, ICategoryRepository categoryRepository, IMapper mapper, IConfiguration configuration)
         {
             _expensesRepository = expensesRepository;
             _mapper = mapper;
             _config = configuration;
             _categoryRepository = categoryRepository;
-            _dbContext = asiBasecodeDBContext;
         }
         public void AddExpenses(ExpenseViewModel model, string userId)
         {
@@ -40,7 +38,7 @@ namespace ASI.Basecode.Services.Services
             newExpenses.Amount = model.Amount;
             newExpenses.DateCreated = DateTime.Now;
             newExpenses.Description = model.Description;
-            newExpenses.Status = false;
+            newExpenses.IsDeleted = false;
             _expensesRepository.AddExpenses(newExpenses);
 
         }
@@ -52,7 +50,7 @@ namespace ASI.Basecode.Services.Services
                 Name = s.Name,
             });
             var serverUrl = _config.GetValue<string>("ServerUrl");
-            var data = _expensesRepository.GetAllExpenses().Where(s => s.Status == false).Select(s => new ExpenseViewModel
+            var data = _expensesRepository.GetAllExpenses().Where(s => s.IsDeleted == false).Select(s => new ExpenseViewModel
             {
                 ExpenseId = s.ExpenseId,
                 CategoryId = s.CategoryId,
@@ -68,7 +66,7 @@ namespace ASI.Basecode.Services.Services
         public IEnumerable<ExpenseViewModel> GetExpenseByUserId(string userId)
         {
             var categories = _categoryRepository.GetAllCategory()
-                                                .Where(c => c.Status == false)
+                                                .Where(c => c.IsDeleted == false)
                                                 .ToDictionary(c => c.CategoryId, c => c.Name);
 
             var expenses = _expensesRepository.GetAllExpenses().Where(e => e.UserId == userId).Select(e => new ExpenseViewModel
@@ -88,7 +86,7 @@ namespace ASI.Basecode.Services.Services
         public ExpenseViewModel RetrieveExpenses(int Id)
         {
             var categories = _categoryRepository.GetAllCategory()
-            .Where(c => !c.Status)  // Exclude categories with Status = true
+            .Where(c => !c.IsDeleted)  // Exclude categories with Status = true
             .Select(s => new CategoryViewModel
             {
                 CategoryId = s.CategoryId,
@@ -124,7 +122,7 @@ namespace ASI.Basecode.Services.Services
             var expenses = _expensesRepository.GetAllExpenses().FirstOrDefault(x => x.ExpenseId == Id);
             if (expenses != null)
             {
-                expenses.Status = true;
+                expenses.IsDeleted = true;
                 _expensesRepository.UpdateExpenses(expenses);
             }
         }
@@ -132,7 +130,7 @@ namespace ASI.Basecode.Services.Services
         public IEnumerable<CategoryViewModel> GetCategories()
         {
             var categories = _categoryRepository.GetAllCategory()
-                .Where(c => c.Status == false) // Only include categories with Status = false
+                .Where(c => c.IsDeleted == false) // Only include categories with Status = false
                 .Select(c => new CategoryViewModel
                 {
                     CategoryId = c.CategoryId,

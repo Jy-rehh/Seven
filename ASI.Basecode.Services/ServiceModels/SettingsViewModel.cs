@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace ASI.Basecode.Services.ServiceModels
 {
     public class SettingsViewModel
     {
-        public string Username { get; set; }
-        public string Field1 { get; set; }  // Example field
-        public string Field2 { get; set; }  // Example field
+        public int UserId { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
+        public string Preference { get; set; }
+    }
+    public class SettingsDataModel
+    {
+        public IEnumerable<SettingsViewModel> SettingsViewModel { get; set; }
+        public IEnumerable<UserViewModel> UserViewModel { get; set; }
+        public ChangePasswordViewModel ChangePasswordViewModel { get; set; }
+
     }
 }
-

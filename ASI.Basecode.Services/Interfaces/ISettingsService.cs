@@ -10,14 +10,12 @@ namespace ASI.Basecode.Services.Interfaces
 {
     public interface ISettingsService
     {
-        // Existing methods
-        Settings GetSettings();
-        void SaveSettings(string username, string field1, string field2);
+        void UpdateSettings(ExpenseViewModel expenseModel, UserViewModel userModel);
+        List<SettingsViewModel> GetAllSetting();
+        IEnumerable<UserViewModel> GetUserSettings();
+        SettingsDataModel GetSettingsWithUsers();
+        void UpdateUser(UserViewModel userModel);
 
-        // New methods
-        Settings GetUserSettings(string username);
-        void UpdateUserSettings(string username, SettingsViewModel settings);
-        void ResetUserSettings(string username);
     }
 }
 

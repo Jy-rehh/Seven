@@ -118,24 +118,24 @@ namespace ASI.Basecode.WebApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Register(UserViewModel model)
+        public IActionResult Register(UserViewModel userModel, SettingsViewModel settingModel)
         {
             try
             {
                 // Check if the email already exists
-                if (_userService.CheckEmailExists(model.Email))
+                if (_userService.CheckEmailExists(userModel.Email))
                 {
                     TempData["ErrorMessage"] = "This email is already in use.";
                     return View(); // Return to the Register view with the error message
                 }
-                if (_userService.CheckUsernameExists(model.UserId))
+                if (_userService.CheckUsernameExists(userModel.UserId))
                 {
                     TempData["ErrorMessage"] = "This username is already in use.";
                     return View();
                 }
 
                 // Add the new user if the email is unique
-                _userService.AddUser(model);
+                _userService.AddUser(userModel, settingModel);
                 return RedirectToAction("Login", "Account");
             }
             catch (InvalidDataException ex)

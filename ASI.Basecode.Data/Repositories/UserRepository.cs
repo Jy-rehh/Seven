@@ -31,6 +31,21 @@ namespace ASI.Basecode.Data.Repositories
             this.GetDbSet<User>().Add(user);
             UnitOfWork.SaveChanges();
         }
+        public void AddSetting(Setting setting)
+        {
+            this.GetDbSet<Setting>().Add(setting);
+            UnitOfWork.SaveChanges();
+        }
+        public User GetUserByUserId(string userId)
+        {
+            return this.GetDbSet<User>().FirstOrDefault(x => x.UserId == userId);
+        }
 
+        public void UpdateUser(User user)
+        {
+            var dbSet = this.GetDbSet<User>();
+            dbSet.Update(user);
+            UnitOfWork.SaveChanges();
+        }
     }
 }
