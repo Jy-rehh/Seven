@@ -87,7 +87,7 @@
     <!-- Filter Dropdown -->
     <div class="filter">
         <select class="filter-control" id="Filter" name="Filter">
-            <option value="" disabled selected>Filter by Category</option>
+            <option value="" enable selected>Filter</option>
             @foreach (var category in Model.CategoryViewModel)
             {
                 <option value="@category.CategoryId">@category.Name</option>
@@ -138,8 +138,8 @@
 </div>
 
 <!-- Main Category Table -->
-<div class="main-content">
-    <table class="table" style="color: white;">
+<div class="main-content" style="height: 100%;">
+    <table class="table" style="color: #FFFFFF;">
         <thead>
             <tr>
                 <th>Title</th>
@@ -149,7 +149,7 @@
                 <th>Description</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
             @foreach (var item in Model.ExpenseViewModel)
             {
                 <tr data-toggle="modal" data-target="#expenseDetailModal"

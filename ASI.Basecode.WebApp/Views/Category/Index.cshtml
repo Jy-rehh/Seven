@@ -105,7 +105,7 @@
 
 <!-- Main Category Table -->
 <div class="main-content">
-    <table class="table" style="color: white;">
+    <table class="table" style="color: #FFFFFF;">
         <thead>
             <tr>
                 <th>Name</th>
@@ -113,13 +113,13 @@
                 <th>Date Updated</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="data" style="background-color: #FFFFFF; color: #000000;>
             @foreach (var item in Model)
             {
                 <tr class="category-row">
                     <td>@item.Name</td>
-                    <td>@item.DateCreated.ToString("yyyy-MM-dd")</td>  <!-- Format for date sorting -->
-                    <td>@item.DateUpdated.ToString("yyyy-MM-dd")</td>
+                    <td>@item.DateCreated.ToString()</td>
+                    <td>@item.DateUpdated.ToString()</td>
                 </tr>
             }
         </tbody>
