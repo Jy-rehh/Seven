@@ -29,12 +29,13 @@
             </button>
 
             <!-- Logout button positioned at the bottom -->
-            <div class="logout-container">
+            <div class="logout-container" onclick="location.href='/Account/SignOutUser';" style="cursor: pointer;">
                 <button class="menu-btn logout-btn" aria-label="Logout">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <a asp-action="SignOutUser" asp-controller="Account">Logout</a>
+                    Logout
                 </button>
             </div>
+
         </div>
     </div>
 </div>

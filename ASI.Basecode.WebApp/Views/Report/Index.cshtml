@@ -18,29 +18,26 @@
         </div>
     </div>
 
-    <div>
-        <div class="report-header2" style="gap: 10px;">
-            <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()">Preview</button>
-            <input type="date" class="header-input" placeholder="Date Start" style="margin-left: 55%; width: 130px;" />
-            <input type="date" class="header-input" placeholder="Date End" style="width: 130px;" />
-            <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Filter</button>
-            <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</button>
-        </div>
-        <div class="main-content" style="margin-top: 0px; color: #FFFFFF; border-radius: 0px;">
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-            <p>4</p>
-            <p>5</p>
-            <p>6</p>
-            <p>7</p>
-            <p>8</p>
-            <p>9</p>
-            <p>10</p>
-            <p>11</p>
-            <p>12</p>
-        </div>
+    <div class="report-header2" style="gap: 10px;">
+        <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()">Preview</button>
+        <input type="date" class="header-input" id="dateStart" placeholder="Date Start" style="margin-left: 55%; width: 130px;" />
+        <input type="date" class="header-input" id="dateEnd" placeholder="Date End" style="width: 130px;" />
+        <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Filter</button>
+        <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</button>
     </div>
+    <div class="main-content" style="margin-top: 0px; color: #000000; border-radius: 0px; background-color: #FFFFFF;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Expense Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
     <!-- Modal Structure -->
     <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
@@ -103,7 +100,7 @@
                 pdf.text(footerText, 10, pageHeight - 10);
 
                 // Save the PDF
-                pdf.save('Expense_Summary.pdf');
+                pdf.save('Expense Summary.pdf');
             });
         }
     </script>

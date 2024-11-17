@@ -7,10 +7,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Main Content Section -->
-<div class="main-content" style="margin-top: 95px;">
-    <h1>
+<div class="header" style="margin-top: 90px; margin-left: 90px;">
+    <h1 style="color: #5A706C; font-weight:700; font-size:xx-large;">
         My Expenses
     </h1>
+</div>
+<div class="main-content" style="margin-top: 50px;">
     <div class="container">
         <div class="expenses">
             <canvas id="expensesChart"></canvas>
@@ -20,21 +22,6 @@
         </div>
     </div>
 </div>
-
-<div class="main-content">
-    <h1>
-        Category
-    </h1>
-    <div class="container">
-        <div class="categories">
-            <canvas id="categoryChart"></canvas>
-        </div>
-        <div class="category">
-            <h2>Category</h2>
-        </div>
-    </div>
-</div>
-
 
 
 <script>
@@ -87,81 +74,6 @@
                     },
                     grid: {
                         color: 'rgba(200, 200, 200, 0.2)'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: '#666'
-                    },
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-
-    var ctxCategoryTrends = document.getElementById('categoryChart').getContext('2d');
-
-    var categoryTrendsChart = new Chart(ctxCategoryTrends, {
-        type: 'line',
-        data: {
-            labels: ['0', '1', '2', '3', '4'],
-            datasets: [
-                {
-                    label: 'Dataset 1',
-                    data: [4, 2, 6, 3, 0],
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    backgroundColor: 'rgba(153, 102, 255, 0.1)',
-                    fill: false,
-                    tension: 0.4,
-                    borderWidth: 2,
-                    pointRadius: 4,
-                    pointBackgroundColor: 'rgba(153, 102, 255, 1)',
-                    pointBorderColor: '#fff'
-                },
-                {
-                    label: 'Dataset 2',
-                    data: [3, 4, 0, 1, 2],
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
-                    fill: false,
-                    tension: 0.4,
-                    borderWidth: 2,
-                    pointRadius: 4,
-                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                    pointBorderColor: '#fff'
-                },
-                {
-                    label: 'Dataset 3',
-                    data: [1, 5, 3, 7, 4],
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
-                    fill: false,
-                    tension: 0.4,
-                    borderWidth: 2,
-                    pointRadius: 4,
-                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
-                    pointBorderColor: '#fff'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#666',
-                        stepSize: 2
-                    },
-                    grid: {
-                        color: 'rgba(200, 200, 200, 0.3)'
                     }
                 },
                 x: {
