@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 }
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+@model ASI.Basecode.Services.ServiceModels.ExpenseDataModel
 
 @{
     ViewData["Title"] = "Report";
@@ -26,18 +26,35 @@
         <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</button>
     </div>
     <div class="main-content" style="margin-top: 0px; color: #000000; border-radius: 0px; background-color: #FFFFFF;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Amount</th>
-                        <th>Expense Date</th>
-                        <th>Description</th>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Expense Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
+                @foreach (var item in Model.ExpenseViewModel)
+                {
+                    <tr data-toggle="modal" data-target="#expenseDetailModal"
+                        data-id="@item.ExpenseId" data-title="@item.Title"
+                        data-category="@item.CategoryId" data-amount="@item.Amount"
+                        data-date="@item.DateCreated" data-description="@item.Description"
+                        class="expense-row">
+
+                        <td>@item.Title</td>
+                        <td>@item.CategoryName</td> <!-- Category Name based on CategoryId -->
+                        <td>@item.Amount</td>
+                        <td>@item.DateCreated</td>
+                        <td>@item.Description</td>
                     </tr>
-                </thead>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
+    </div>
 
     <!-- Modal Structure -->
     <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">

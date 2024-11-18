@@ -1,4 +1,5 @@
 ﻿using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.ServiceModels;
 using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
@@ -12,22 +13,31 @@ namespace ASI.Basecode.WebApp.Controllers
     public class ReportController : ControllerBase<ReportController>
     {
         private readonly IReportService _reportService;
+        private readonly IExpenseService _expenseService;
 
         public ReportController(
             IHttpContextAccessor httpContextAccessor, 
             ILoggerFactory loggerFactory, 
             IConfiguration configuration,
             IReportService reportService,
+            IExpenseService expenseService,
             IMapper mapper = null) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
             _reportService = reportService;
-
+            _expenseService = expenseService;
         }
 
         // GET: /Report/Index
         public IActionResult Index()
         {
-            return View();
+            var expenses = _expenseService.GetExpenseByUserId(UserId);
+            var categories = _expenseService.GetCategories();
+            var data = new ExpenseDataModel
+            {
+                ExpenseViewModel = expenses,
+                CategoryViewModel = categories
+            };
+            return View(data);
         }
     }
 }

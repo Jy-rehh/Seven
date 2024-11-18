@@ -5,11 +5,9 @@ using static ASI.Basecode.Resources.Constants.Enums;
 public interface IUserService
 {
     LoginResult AuthenticateUser(string userIdOrEmail, string password, ref User user);
-    void AddUser(UserViewModel UserModel, SettingsViewModel settingModel);
+    void AddUser(UserViewModel UserModel);
     bool CheckEmailExists(string email);
     bool CheckUsernameExists(string username);
-
-    //void AddUserWithSettings(UserViewModel userModel, );
     UserViewModel GetUserByUserId(string userId);
     void UpdateUser(UserViewModel userModel);
 }
