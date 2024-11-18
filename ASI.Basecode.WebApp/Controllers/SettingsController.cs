@@ -1,4 +1,5 @@
 ﻿using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
 using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Mvc;
@@ -16,67 +17,67 @@ namespace ASI.Basecode.WebApp.Controllers
 {
     public class SettingsController : ControllerBase<SettingsController>
     {
-        private readonly ISettingsService _settingsService;
         private readonly IUserService _userService;
         public SettingsController(
                                 IHttpContextAccessor httpContextAccessor,
                                 ILoggerFactory loggerFactory,
                                 IConfiguration configuration,
-                                ISettingsService settingsService,
                                 IUserService userService,
                                 IMapper mapper = null) : base(httpContextAccessor, loggerFactory, configuration, mapper) 
         {
-            _settingsService = settingsService;
             _userService = userService;
         }
 
         public IActionResult Index()
         {
-            var settingsData = _settingsService.GetSettingsWithUsers();
+            string currentUserId = UserId;
 
-            // Assuming you need to set up ChangePasswordViewModel for the logged-in user
-            var changePasswordViewModel = new ChangePasswordViewModel(); // Initialize a new instance
+            var userViewModel = _userService.GetUserByUserId(currentUserId);
 
-            settingsData.ChangePasswordViewModel = changePasswordViewModel; // Set the model for password change
 
-            return View(settingsData);
+            return View(userViewModel);
+        }
+        [HttpPost]
+        public IActionResult UpdateUserDetails([FromBody] UserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userService.GetUserByUserId(User.Identity.Name);
+                if (user != null)
+                {
+                    user.Name = model.Name;
+                    user.Email = model.Email;
+                    user.UserId = model.UserId;
+                    user.Preference = model.Preference;
+
+                    _userService.UpdateUser(user);
+
+                    return Json(new { success = true, message = "User details updated successfully." });
+                }
+            }
+            return Json(new { success = false, message = "Invalid data." });
         }
 
         [HttpPost]
-        public IActionResult UpdatePassword(ChangePasswordViewModel model)
+        public IActionResult ChangePassword([FromBody] ChangePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                TempData["Error"] = "Invalid form submission.";
-                return RedirectToAction("Index");
+                var user = _userService.GetUserByUserId(User.Identity.Name);
+                if (user != null && user.Password == PasswordManager.EncryptPassword(model.OldPassword))
+                {
+                    if (model.NewPassword == model.ConfirmPassword)
+                    {
+                        user.Password = PasswordManager.EncryptPassword(model.NewPassword);
+                        _userService.UpdateUser(user);
+
+                        return Json(new { success = true, message = "Password changed successfully." });
+                    }
+                    return Json(new { success = false, message = "Passwords do not match." });
+                }
+                return Json(new { success = false, message = "Old password is incorrect." });
             }
-
-            var userId = User.Identity.Name;
-
-            var user = _userService.GetUserByUserId(userId);
-            if (user == null)
-            {
-                TempData["Error"] = "User not found.";
-                return RedirectToAction("Index");
-            }
-
-            if (user.Password != model.oldPassword)
-            {
-                TempData["Error"] = "The old password is incorrect.";
-                return RedirectToAction("Index");
-            }
-
-            if (model.NewPassword != model.ConfirmPassword)
-            {
-                TempData["Error"] = "New password and confirmation do not match.";
-                return RedirectToAction("Index");
-            }
-
-            user.Password = model.NewPassword;
-            _userService.UpdateUser(user);
-
-            TempData["Success"] = "Password updated successfully.";
-            return RedirectToAction("Index");
+            return Json(new { success = false, message = "Invalid data." });
         }
     }
 }

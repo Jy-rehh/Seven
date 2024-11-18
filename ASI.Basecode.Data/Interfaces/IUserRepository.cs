@@ -12,7 +12,6 @@ namespace ASI.Basecode.Data.Interfaces
         IQueryable<User> GetUsers();
         bool UserExists(string userId);
         void AddUser(User user);
-        void AddSetting(Setting setting);
         User GetUserByUserId(string userId);
         void UpdateUser(User user);
     }

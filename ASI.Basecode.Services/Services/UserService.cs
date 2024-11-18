@@ -34,34 +34,19 @@ namespace ASI.Basecode.Services.Services
             return user != null ? LoginResult.Success : LoginResult.Failed;
         }
 
-        public void AddUser(UserViewModel UserModel, SettingsViewModel settingModel)
+        public void AddUser(UserViewModel UserModel)
         {
-            try
-            {
-                var user = new User();
-                _mapper.Map(UserModel, user);
-                user.Email = UserModel.Email;
-                user.Password = PasswordManager.EncryptPassword(UserModel.Password);
-                user.CreatedTime = DateTime.Now;
-                user.UpdatedTime = DateTime.Now;
-                user.CreatedBy = Environment.UserName;
-                user.UpdatedBy = Environment.UserName;
+            var user = new User();
+            _mapper.Map(UserModel, user);
+            user.Email = UserModel.Email;
+            user.Password = PasswordManager.EncryptPassword(UserModel.Password);
+            user.CreatedTime = DateTime.Now;
+            user.UpdatedTime = DateTime.Now;
+            user.CreatedBy = Environment.UserName;
+            user.UpdatedBy = Environment.UserName;
+            user.Preference = "Php";
 
-                _repository.AddUser(user);
-
-                var settings = new Setting
-                {
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    Preference = ""
-                };
-                _repository.AddSetting(settings);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            
+            _repository.AddUser(user);
         }
 
         public bool CheckEmailExists(string email)
@@ -77,7 +62,8 @@ namespace ASI.Basecode.Services.Services
         public UserViewModel GetUserByUserId(string userId)
         {
             var user = _repository.GetUserByUserId(userId);
-            return _mapper.Map<UserViewModel>(user);
+
+            return user != null ? _mapper.Map<UserViewModel>(user) : null;
         }
 
         public void UpdateUser(UserViewModel userModel)
@@ -85,11 +71,16 @@ namespace ASI.Basecode.Services.Services
             var user = _repository.GetUserByUserId(userModel.UserId);
             if (user != null)
             {
-                user.Password = PasswordManager.EncryptPassword(userModel.Password);
+                user.Name = userModel.Name;
+                user.Email = userModel.Email;
+                user.Preference = userModel.DefaultCurrency;
+                user.UpdatedBy = Environment.UserName;
+                user.UpdatedTime = DateTime.Now;
 
                 _repository.UpdateUser(user);
             }
         }
+
     }
 }
 

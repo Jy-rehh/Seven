@@ -30,6 +30,11 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        thead {
+            z-index: 1;
+            position: relative;
+        }
     </style>
 }
 
@@ -104,7 +109,7 @@
 </div>
 
 <!-- Main Category Table -->
-<div class="main-content">
+<div class="main-content" style="height: 100%;">
     <table class="table" style="color: #FFFFFF;">
         <thead>
             <tr>
@@ -113,14 +118,17 @@
                 <th>Date Updated</th>
             </tr>
         </thead>
-        <tbody class="data" style="background-color: #FFFFFF; color: #000000;>
+        <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
             @foreach (var item in Model)
             {
-                <tr class="category-row">
+                <tr class="category-row" data-id="@item.CategoryId" data-name="@item.Name"
+                    data-datecreated="@item.DateCreated" data-dateupdated="@item.DateUpdated"
+                    data-description="@item.Description">
                     <td>@item.Name</td>
-                    <td>@item.DateCreated.ToString()</td>
-                    <td>@item.DateUpdated.ToString()</td>
+                    <td>@item.DateCreated</td>
+                    <td>@item.DateUpdated</td>
                 </tr>
+
             }
         </tbody>
     </table>
@@ -184,24 +192,26 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/your-script.js"></script>
+
     <script>
         $(document).ready(function () {
-            // Load category details into modal on row click
-            $(".category-row").click(function () {
+            // Load category details into form on row click
+            $(document).on("click", ".category-row", function () {
                 let categoryId = $(this).data("id");
                 let categoryName = $(this).data("name");
                 let categoryDateCreated = $(this).data("datecreated");
                 let categoryDateUpdated = $(this).data("dateupdated");
                 let categoryDescription = $(this).data("description");
 
-                // Populate modal fields with row data
                 $("#editCategoryId").val(categoryId);
                 $("#editName").val(categoryName);
                 $("#editDescription").val(categoryDescription);
 
-                // Disable form fields initially
                 $("#editCategoryForm input, #editCategoryForm textarea").prop("disabled", true);
                 $("#saveChanges").hide();
+
+                $("#categoryDetailModal").modal("show");
             });
 
             // Enable edit mode

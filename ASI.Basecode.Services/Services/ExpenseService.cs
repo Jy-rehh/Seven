@@ -29,19 +29,48 @@ namespace ASI.Basecode.Services.Services
             _config = configuration;
             _categoryRepository = categoryRepository;
         }
+        //public void AddExpenses(ExpenseViewModel model, string userId)
+        //{
+        //    var newExpenses = new Expense();
+        //    newExpenses.CategoryId = model.CategoryId;
+        //    newExpenses.UserId = userId;
+        //    newExpenses.Title = model.Title;
+        //    newExpenses.Amount = model.Amount;
+        //    newExpenses.DateCreated = DateTime.Now;
+        //    newExpenses.Description = model.Description;
+        //    newExpenses.IsDeleted = false;
+        //    _expensesRepository.AddExpenses(newExpenses);
+        //}
+
         public void AddExpenses(ExpenseViewModel model, string userId)
         {
-            var newExpenses = new Expense();
-            newExpenses.CategoryId = model.CategoryId;
-            newExpenses.UserId = userId;
-            newExpenses.Title = model.Title;
-            newExpenses.Amount = model.Amount;
-            newExpenses.DateCreated = DateTime.Now;
-            newExpenses.Description = model.Description;
-            newExpenses.IsDeleted = false;
-            _expensesRepository.AddExpenses(newExpenses);
+            var newExpense = new Expense
+            {
+                CategoryId = model.CategoryId,
+                UserId = userId,
+                Title = model.Title,
+                Amount = model.Amount,
+                DateCreated = DateTime.Now,
+                Description = model.Description,
+                IsDeleted = false
+            };
+            _expensesRepository.AddExpenses(newExpense);
 
+            var category = _categoryRepository.GetAllCategory()
+                                               .FirstOrDefault(c => c.CategoryId == model.CategoryId && !c.IsDeleted);
+
+            if (category != null)
+            {
+                var totalExpensesInCategory = _expensesRepository.GetAllExpenses()
+                                                                 .Count(e => e.CategoryId == model.CategoryId && !e.IsDeleted);
+
+                category.TotalAmount = totalExpensesInCategory;
+
+                _categoryRepository.UpdateCategory(category);
+            }
         }
+
+
         public List<ExpenseViewModel> GetAllExpenses()
         {
             var categories = _categoryRepository.GetAllCategory().Select(s => new CategoryViewModel

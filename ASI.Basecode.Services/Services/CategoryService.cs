@@ -28,16 +28,19 @@ namespace ASI.Basecode.Services.Services
         }
         public void AddCategory(CategoryViewModel model, string userId)
         {
-            var newCategory = new Category();
-            newCategory.Name = model.Name;
-            newCategory.CreatedBy = userId;
-            newCategory.DateCreated = DateTime.Now;
-            newCategory.DateUpdated = DateTime.Now;
-            newCategory.IsDeleted = false;
-            newCategory.TotalAmount = 0.00;
-            _categoryRepository.AddCategory(newCategory);
+            var newCategory = new Category
+            {
+                Name = model.Name,
+                CreatedBy = userId,
+                DateCreated = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                IsDeleted = false,
+                TotalAmount = 0.00
+            };
 
+            _categoryRepository.AddCategory(newCategory);
         }
+
         public List<CategoryViewModel> GetAllCategory()
         {
             var serverUrl = _config.GetValue<string>("ServerUrl");
@@ -67,18 +70,23 @@ namespace ASI.Basecode.Services.Services
         }
         public void UpdateCategory(CategoryViewModel model, string userId)
         {
-            var category = _categoryRepository.GetAllCategory().Where(x => x.CategoryId.Equals(model.CategoryId)).FirstOrDefault();
-            model.DateCreated = category.DateCreated;
+            var category = _categoryRepository.GetAllCategory().FirstOrDefault(x => x.CategoryId == model.CategoryId);
             if (category != null)
             {
+                model.DateCreated = category.DateCreated;
+
                 _mapper.Map(model, category);
                 category.DateUpdated = DateTime.Now;
                 category.CreatedBy = userId;
-                category.TotalAmount = 0.00;
 
                 _categoryRepository.UpdateCategory(category);
             }
+            else
+            {
+                throw new KeyNotFoundException($"Category with ID {model.CategoryId} not found.");
+            }
         }
+
         public void DeleteCategory(int Id)
         {
             var category = _categoryRepository.GetAllCategory().FirstOrDefault(x => x.CategoryId == Id);
@@ -90,7 +98,8 @@ namespace ASI.Basecode.Services.Services
         }
         public bool CategoryExists(string categoryName)
         {
-            return _categoryRepository.GetAllCategory().Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+            return _categoryRepository.GetAllCategory()
+                .Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase) && !c.IsDeleted);
         }
     }
 }
