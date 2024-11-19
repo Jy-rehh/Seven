@@ -138,6 +138,7 @@ h2 {
     margin-left: 50px;
 }
 
+
 .nav-upper {
     display: flex;
     justify-content: space-between;
@@ -162,17 +163,22 @@ h2 {
 }
 
 /* Modal adjustments */
-.modal-content {
-    border-radius: 10px;
-}
-
 .modal-header {
     background-color: #1A554F;
     color: #FFFFFF;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.modal-content {
+    border-radius: 25px;
 }
 
 .modal-body {
     padding: 30px;
+}
+
+.form-group .form-control {
+    background-color: #FFFFFF;
 }
 
 .filter .filter-control {
@@ -198,15 +204,18 @@ h2 {
 .table {
     text-align: center;
     margin: 0 auto;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
 }
 
-.tbody, .table th {
-    padding: 20px;
-}
+    .tbody, .table th {
+        padding: 20px;
+    }
 
-.table td {
-    padding: 15px;
-}
+    .table td {
+        text-align: center;
+        vertical-align: middle; /* Ensures content is vertically centered */
+        padding: 14.9px;
+    }
 
 .report-header {
     margin-top: 30px;
@@ -278,3 +287,40 @@ h2 {
     margin-left: 5px;
     color: #1A554F;
 }
+
+#paginationControls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: white;
+    color: #5A6E73;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .pagination-btn.active {
+        background-color: #1A554F;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+    .pagination-btn:hover {
+        background-color: #1A554F;
+        color: #FFFFFF;
+    }
+
+    .pagination-btn[disabled] {
+        background-color: #F1F1F1F1;
+        color: #5A6E73;
+        cursor: not-allowed;
+    }
