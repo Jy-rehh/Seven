@@ -1,16 +1,98 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 }
-
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.SettingsViewModel>
-
-<!-- Your view content here -->
+@model ASI.Basecode.Services.ServiceModels.UserViewModel
 
 @{
     ViewData["Title"] = "Settings";
 }
 
-<div>
-    @await Html.PartialAsync("ChangePassword")
+<div class="main-content container-fluid d-flex align-items-center" style="height: 730px">
+    <div class="row w-100 mx-auto row justify-content-center align-items-center pt-lg-5">
+        <div class="col-lg-4 p-2 mr-lg-5">
+            <form id="userDetailsForm">
+                <div class="form-group mb-2">
+                    <img class="d-block mx-auto img-fluid rounded-circle" src="~/img/profile-logo.png" />
+                    <p class="mb-2 text-white">Name</p>
+                    <input type="text" id="name" value="@Model.Name" class="form-control rounded-pill p-3" />
+                </div>
+                <div class="form-group mb-2">
+                    <p class="mb-2 text-white">Username</p>
+                    <input type="text" id="username" value="@Model.UserId" class="form-control rounded-pill p-3" />
+                </div>
+                <div class="form-group mb-2">
+                    <p class="mb-2 text-white">Email</p>
+                    <input type="text" id="email" value="@Model.Email" class="form-control rounded-pill p-3" />
+                </div>
+                <div class="form-group mb-2">
+                    <p class="mb-2 text-white">Default Currency</p>
+                    <select id="currency" value="@Model.Preference" class="form-control rounded-pill" style="height: 40px">
+                        <option>Php</option>
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <!-- Add more currencies as needed -->
+                    </select>
+                </div>
+                <button type="button" id="saveChangesBtn" class="btn-block rounded-pill login-btn p-2 mt-3">Save Changes</button>
+            </form>
+        </div>
+
+        <div class="col-lg-4 p-2 pt-lg-5 ml-lg-5">
+            <form id="passwordChangeForm">
+                <div class="form-group mb-2">
+                    <h2 class="text-white">Change Password</h2>
+                    <label for="old-password" class="text-white">Old Password</label>
+                    <input type="password" id="old-password" class="form-control rounded-pill p-3" />
+                </div>
+                <div class="form-group mb-2">
+                    <label for="new-password" class="text-white">New Password</label>
+                    <input type="password" id="new-password" class="form-control rounded-pill p-3" />
+                </div>
+                <div class="form-group mb-2">
+                    <label for="confirm-password" class="text-white">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-control rounded-pill p-3" />
+                </div>
+                <button type="button" id="changePasswordBtn" class="btn-block rounded-pill login-btn p-2 mt-3">Change Password</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.getElementById('saveChangesBtn').addEventListener('click', function () {
+        const userDetails = {
+            Name: document.getElementById('name').value,
+            UserId: document.getElementById('username').value,
+            Email: document.getElementById('email').value,
+            Preference: document.getElementById('currency').value
+        };
+
+        fetch('/Settings/UpdateUserDetails', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userDetails)
+        })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('changePasswordBtn').addEventListener('click', function () {
+        const passwordDetails = {
+            OldPassword: document.getElementById('old-password').value,
+            NewPassword: document.getElementById('new-password').value,
+            ConfirmPassword: document.getElementById('confirm-password').value
+        };
+
+        fetch('/Settings/ChangePassword', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(passwordDetails)
+        })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+    });
+</script>

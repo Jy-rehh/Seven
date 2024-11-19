@@ -1,5 +1,6 @@
 ﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Repositories;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
@@ -33,21 +34,17 @@ namespace ASI.Basecode.Services.Services
             return user != null ? LoginResult.Success : LoginResult.Failed;
         }
 
-        public void AddUser(UserViewModel model)
+        public void AddUser(UserViewModel UserModel)
         {
-            if (CheckEmailExists(model.Email))
-            {
-                throw new InvalidOperationException("This email is already in use.");
-            }
-
             var user = new User();
-            _mapper.Map(model, user);
-            user.Email = model.Email;
-            user.Password = PasswordManager.EncryptPassword(model.Password);
+            _mapper.Map(UserModel, user);
+            user.Email = UserModel.Email;
+            user.Password = PasswordManager.EncryptPassword(UserModel.Password);
             user.CreatedTime = DateTime.Now;
             user.UpdatedTime = DateTime.Now;
             user.CreatedBy = Environment.UserName;
             user.UpdatedBy = Environment.UserName;
+            user.Preference = "Php";
 
             _repository.AddUser(user);
         }
@@ -60,6 +57,30 @@ namespace ASI.Basecode.Services.Services
         {
             return _repository.GetUsers().Any(u => u.UserId == username);
         }
+
+
+        public UserViewModel GetUserByUserId(string userId)
+        {
+            var user = _repository.GetUserByUserId(userId);
+
+            return user != null ? _mapper.Map<UserViewModel>(user) : null;
+        }
+
+        public void UpdateUser(UserViewModel userModel)
+        {
+            var user = _repository.GetUserByUserId(userModel.UserId);
+            if (user != null)
+            {
+                user.Name = userModel.Name;
+                user.Email = userModel.Email;
+                user.Preference = userModel.DefaultCurrency;
+                user.UpdatedBy = Environment.UserName;
+                user.UpdatedTime = DateTime.Now;
+
+                _repository.UpdateUser(user);
+            }
+        }
+
     }
 }
 
