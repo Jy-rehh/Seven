@@ -4,7 +4,6 @@
     top: 70px; /* Start the sidebar below the header */
     width: 250px;
     height: calc(100% - 70px); /* Adjust height to fill the space below the header */
-    overflow-y: auto;
 }
 
 .sidebar_menu {
@@ -95,6 +94,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 .dashboard {
     border-radius: 10px;
@@ -278,3 +278,156 @@ h2 {
     margin-left: 5px;
     color: #1A554F;
 }
+
+/*for change password*/
+
+.main-content-change-pass {
+    border-radius: 15px;
+    margin-top: 60px; /* Create space for the fixed header */
+    margin-left:80px;
+    width: 1350px; /x* Set the width to 1021px */
+    height: 100%; /* Set the height to 826px */
+    padding-left: 40px;
+    background-color: white;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+}
+
+.settings-container {
+    padding: 10px;
+    max-width: 1200px;
+}
+
+.settings-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.settings-content {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.form-input:focus {
+    border-color: #1A554F;
+    box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+    outline: none;
+}
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.form-select:focus {
+    border-color: #1A554F;
+    box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+    outline: none;
+}
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.save-btn,
+.change-password-btn {
+    background-color: #1A554F;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.password-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.forgot-password {
+    text-align: right;
+    color: #6c757d; /* Optional: Adjust color */
+    font-size: 0.875rem; /* Optional: Adjust font size */
+    margin-top: 5px;
+    display: block;
+}
+
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #1A554F;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .settings-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.eye-icon {
+    color: #64748b;
+}
+
+.toggle-password:hover .eye-icon {
+    color: #475569;
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
