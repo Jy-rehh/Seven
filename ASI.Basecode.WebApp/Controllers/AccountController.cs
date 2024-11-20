@@ -165,6 +165,13 @@ namespace ASI.Basecode.WebApp.Controllers
             return View();
         }
         
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult LandingPage()
+        {
+            return View();
+        }
+        
         
     }
 }
