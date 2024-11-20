@@ -1,0 +1,142 @@
+﻿ 
+    @section styles {
+        <link rel="stylesheet" href="~/css/landingpage.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    }
+    @{
+        ViewBag.LoginView = true;
+        ViewData["Title"] = "Landing Page";
+    }
+    <div>
+        @Html.AntiForgeryToken()
+    </div>
+<body>
+        <header>
+            <nav class="container">
+                <div class="logosec hover-pointer" style="display: flex; justify-content: center; align-items: center;">
+                    <img src="~/img/expenSave-logo.png"
+                         style="width: 200px; display: block;" alt="logo">
+                </div>
+                <ul class="pt-lg-3">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="container mt-5">
+                    <h1>Manage Your Expenses with ExpenSave</h1>
+                    <p>Track, analyze, and optimize your spending with our powerful expense management system.</p>
+                    <a href="Account/Register" class="btn">Sign Up</a>
+                    <a href="Account/Login" class="btn btn-outline">Sign In</a>
+                </div>
+            </section>
+
+            <section id="features" class="features">
+                <div class="container">
+                    <h2>Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h3>User Authentication</h3>
+                            <p>Secure registration, login, and logout functionality</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Expense Management</h3>
+                            <p>Add, edit, delete, and view your expenses with ease</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Category Management</h3>
+                            <p>Organize your expenses with customizable categories</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Reporting & Analytics</h3>
+                            <p>Generate detailed reports and visualize expense trends</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Expense Trends</h3>
+                            <p>Analyze your spending patterns with interactive charts</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Settings & Preferences</h3>
+                            <p>Customize your experience with user-specific settings</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-it-works" class="how-it-works">
+                <div class="container">
+                    <h2>How It Works</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            <h3>Sign Up</h3>
+                            <p>Create your account securely</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <h3>Add Expenses</h3>
+                            <p>Log your daily expenses easily</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <h3>Categorize</h3>
+                            <p>Organize expenses into categories</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            <h3>Analyze</h3>
+                            <p>Generate reports and view trends</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="about">
+                <div class="container">
+                    <h2>About ExpenSave</h2>
+                    <p>ExpenSave is a comprehensive expense tracking system developed by Group 7 as part of a school project. Our goal is to provide users with a powerful yet user-friendly tool to manage their finances effectively.</p>
+                    <p>With ExpenSave, you can easily track your expenses, categorize them, and gain valuable insights into your spending habits. Whether you're a student managing a tight budget or someone looking to optimize their finances, ExpenSave has the tools you need.</p>
+                    <p>We're committed to continually improving ExpenSave based on user feedback and emerging financial management best practices. Thank you for choosing ExpenSave for your expense tracking needs!</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 ExpenSave by Group 7. All rights reserved.</p>
+                <nav>
+                    <a href="#">Terms of Service</a> |
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Contact</a>
+                </nav>
+            </div>
+        </footer>
+        </body>
+    
+    @section scripts {
+        <script>
+            const togglePassword = document.querySelector("#togglePassword");
+            const password = document.querySelector("#password");
+            const eyeIcon = document.querySelector("#eyeIcon");
+
+            togglePassword.addEventListener("click", function () {
+                // Toggle the password field type
+                const type = password.getAttribute("type") === "password" ? "text" : "password";
+                password.setAttribute("type", type);
+
+                // Toggle the eye icon
+                eyeIcon.classList.toggle("fa-eye");
+                eyeIcon.classList.toggle("fa-eye-slash");
+            });
+            // Check for error message and display Toastr notification
+            var errorMessage = '@TempData["ErrorMessage"]';
+            if (errorMessage) {
+                toastr.error(errorMessage);
+            }
+        
+        </script>
+    }
