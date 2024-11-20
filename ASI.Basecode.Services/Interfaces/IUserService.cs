@@ -10,5 +10,6 @@ public interface IUserService
     bool CheckUsernameExists(string username);
     UserViewModel GetUserByUserId(string userId);
     void UpdateUser(UserViewModel userModel);
+    bool ChangePassword(ChangePasswordViewModel model);
 }
 
