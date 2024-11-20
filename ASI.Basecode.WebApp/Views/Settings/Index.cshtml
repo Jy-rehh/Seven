@@ -6,62 +6,6 @@
 @{
     ViewData["Title"] = "Settings";
 }
-@* 
-
- *@
-@section scripts {
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Toggle visibility for Old Password
-            const toggleOldPassword = document.querySelector("#toggleOldPassword");
-            const oldPassword = document.querySelector("#oldPassword");
-            const eyeIconOldPassword = document.querySelector("#eyeIconOldPassword");
-
-            if (toggleOldPassword && oldPassword && eyeIconOldPassword) {
-                toggleOldPassword.addEventListener("click", function () {
-                    const type = oldPassword.getAttribute("type") === "password" ? "text" : "password";
-                    oldPassword.setAttribute("type", type);
-
-                    // Toggle the eye icon
-                    eyeIconOldPassword.classList.toggle("fa-eye");
-                    eyeIconOldPassword.classList.toggle("fa-eye-slash");
-                });
-            }
-
-            // Toggle visibility for New Password
-            const toggleNewPassword = document.querySelector("#toggleNewPassword");
-            const newPassword = document.querySelector("#newPassword");
-            const eyeIconNewPassword = document.querySelector("#eyeIconNewPassword");
-
-            if (toggleNewPassword && newPassword && eyeIconNewPassword) {
-                toggleNewPassword.addEventListener("click", function () {
-                    const type = newPassword.getAttribute("type") === "password" ? "text" : "password";
-                    newPassword.setAttribute("type", type);
-
-                    // Toggle the eye icon
-                    eyeIconNewPassword.classList.toggle("fa-eye");
-                    eyeIconNewPassword.classList.toggle("fa-eye-slash");
-                });
-            }
-
-            // Toggle visibility for Confirm Password
-            const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
-            const confirmPassword = document.querySelector("#confirmPassword");
-            const eyeIconConfirmPassword = document.querySelector("#eyeIconConfirmPassword");
-
-            if (toggleConfirmPassword && confirmPassword && eyeIconConfirmPassword) {
-                toggleConfirmPassword.addEventListener("click", function () {
-                    const type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
-                    confirmPassword.setAttribute("type", type);
-
-                    // Toggle the eye icon
-                    eyeIconConfirmPassword.classList.toggle("fa-eye");
-                    eyeIconConfirmPassword.classList.toggle("fa-eye-slash");
-                });
-            }
-        });
-    </script>
-}
 
 <div>
     @await Html.PartialAsync("ChangePassword")

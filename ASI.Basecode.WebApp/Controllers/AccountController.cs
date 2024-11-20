@@ -174,6 +174,13 @@ namespace ASI.Basecode.WebApp.Controllers
         {
             return View();
         }
+        
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult LandingPage()
+        {
+            return View();
+        }
         [HttpPost]
         [AllowAnonymous]
         public IActionResult ForgotPassword(ForgotPasswordViewModel model)

@@ -53,13 +53,26 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
         {
+            var duplicateCategoryName = _categoryService.GetDuplicateCategoryName(model.Name);
+            if (duplicateCategoryName != null)
+            {
+                TempData["ErrorMessage"] = $"The category '{duplicateCategoryName}' already exists.";
+                return RedirectToAction("Index");
+            }
+
             _categoryService.AddCategory(model, UserId);
             return RedirectToAction("Index");
         }
-
         [HttpPost]
         public IActionResult Edit(CategoryViewModel model)
         {
+            var duplicateCategoryName = _categoryService.GetDuplicateCategoryName(model.Name, model.CategoryId);
+            if (duplicateCategoryName != null)
+            {
+                TempData["ErrorMessage"] = $"The category '{duplicateCategoryName}' already exists.";
+                return RedirectToAction("Index");
+            }
+
             _categoryService.UpdateCategory(model, UserId);
             return RedirectToAction("Index");
         }

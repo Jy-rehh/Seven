@@ -1,6 +1,8 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         /* Custom button color */
         .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
@@ -53,10 +55,11 @@
 @{
     ViewData["Title"] = "Categories";
 }
-<<div class="nav-upper" style="margin-top: 60px;">
+<div class="nav-upper" style="margin-top: 60px;">
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
         <i class="fa-solid fa-circle-plus"></i> Add Category
-    </a>    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    </a>
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,13 +69,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Add form fields for Category details -->
-                    <form asp-action="Create">
+                    <form asp-action="Create" method="post">
                         <div class="form-group">
                             <label for="Name">Name</label>
                             <input type="text" class="form-control" id="Name" name="Name" style="border-radius: 20px;" required>
                         </div>
-                        <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-secondary">Save Category</button>
                     </form>
                 </div>
@@ -92,6 +93,29 @@
     </div>
 </div>
 
+<!-- Error Modal -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="modal fade show" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-danger">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@TempData["ErrorMessage"]</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <!-- Main Category Table -->
 <div class="main-content" style="height: 100%; margin-top: 20px; background-color: #1A554F">
     <table id="categoryTable" class="table" style="color: #FFFFFF; border-radius: 20px 20px 0px 0px;">
@@ -100,7 +124,7 @@
                 <th>Name</th>
                 <th>Date Created</th>
                 <th>Date Updated</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
@@ -118,7 +142,7 @@
                                 data-toggle="modal"
                                 data-target="#categoryEditModal"
                                 data-id="@item.CategoryId"
-                                data-title="@item.Name"
+                                data-name="@item.Name"
                                 data-date="@item.DateCreated">
                             Edit
                         </button>
@@ -219,12 +243,25 @@
 
     <script>
         $(document).ready(function () {
+            // Show the error modal if there is an error message
+            if ('@TempData["ErrorMessage"]' !== '') {
+                $('#errorModal').modal('show');
+            }
+
+            // Ensure the modal can be closed properly
+            $('#errorModal').on('hidden.bs.modal', function () {
+                $(this).removeClass('show').attr('style', 'display: none;');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
             // Open Expense Details Modal on row click
             $(".category-row").click(function (e) {
                 // Get data attributes from the clicked row
                 const name = $(this).data("name");
                 const date = $(this).data("date");
-
                 // Populate modal fields
                 $("#categoryDetailModal #editName").val(name);
                 $("#categoryDetailModal #editDate").val(date);
@@ -236,6 +273,7 @@
             // Open Delete Confirmation Modal on Delete button click
             $(".delete-category-btn").click(function (e) {
                 e.stopPropagation(); // Prevent triggering row click event
+
 
                 // Populate and show the delete confirmation modal
                 const categoryId = $(this).data("id");
@@ -254,6 +292,7 @@
         $('#Sort').change(function () {
             var sortBy = $(this).val();
             var rows = $('#categoryTable tbody tr').get();
+
 
             rows.sort(function (a, b) {
                 var valA, valB;
@@ -291,6 +330,7 @@
             // Open Edit Expense Modal on Edit button click
             $(".edit-category-btn").click(function (e) {
                 e.stopPropagation(); // Prevent triggering row click event
+
 
                 // Populate the edit modal
                 const categoryId = $(this).data("id");
@@ -344,6 +384,7 @@
                 const end = start + rowsPerPage; // Ending row index
                 rows.slice(start, end).show(); // Show only rows for the current page
                 generatePaginationButtons(page); // Update pagination controls
+
             }
 
             // Function to generate pagination buttons
