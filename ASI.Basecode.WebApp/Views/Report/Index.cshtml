@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="~/css/dashboard.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 }
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+@model ASI.Basecode.Services.ServiceModels.ExpenseDataModel
 
 @{
     ViewData["Title"] = "Report";
@@ -18,28 +18,42 @@
         </div>
     </div>
 
-    <div>
-        <div class="report-header2" style="gap: 10px;">
-            <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()">Preview</button>
-            <input type="date" class="header-input" placeholder="Date Start" style="margin-left: 55%; width: 130px;" />
-            <input type="date" class="header-input" placeholder="Date End" style="width: 130px;" />
-            <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Filter</button>
-            <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</button>
-        </div>
-        <div class="main-content" style="margin-top: 0px; color: #FFFFFF; border-radius: 0px;">
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-            <p>4</p>
-            <p>5</p>
-            <p>6</p>
-            <p>7</p>
-            <p>8</p>
-            <p>9</p>
-            <p>10</p>
-            <p>11</p>
-            <p>12</p>
-        </div>
+    <div class="report-header2" style="gap: 10px;">
+        <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()">Preview</button>
+        <input type="date" class="header-input" id="dateStart" placeholder="Date Start" style="margin-left: 55%; width: 130px;" />
+        <input type="date" class="header-input" id="dateEnd" placeholder="Date End" style="width: 130px;" />
+        <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Filter</button>
+        <button class="header-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</button>
+    </div>
+    <div class="main-content" style="margin-top: 0px; color: #000000; border-radius: 0px; background-color: #FFFFFF;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Expense Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
+                @foreach (var item in Model.ExpenseViewModel)
+                {
+                    <tr data-toggle="modal" data-target="#expenseDetailModal"
+                        data-id="@item.ExpenseId" data-title="@item.Title"
+                        data-category="@item.CategoryId" data-amount="@item.Amount"
+                        data-date="@item.DateCreated" data-description="@item.Description"
+                        class="expense-row">
+
+                        <td>@item.Title</td>
+                        <td>@item.CategoryName</td> <!-- Category Name based on CategoryId -->
+                        <td>@item.Amount</td>
+                        <td>@item.DateCreated</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
     <!-- Modal Structure -->
@@ -103,7 +117,7 @@
                 pdf.text(footerText, 10, pageHeight - 10);
 
                 // Save the PDF
-                pdf.save('Expense_Summary.pdf');
+                pdf.save('Expense Summary.pdf');
             });
         }
     </script>

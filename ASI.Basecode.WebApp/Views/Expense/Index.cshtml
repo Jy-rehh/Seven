@@ -1,7 +1,6 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" /> <!-- Add Bootstrap CSS -->
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         /* Custom button color */
         .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
@@ -12,9 +11,13 @@
         }
 
             /* Optional: Add a hover effect for buttons */
-            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover {
-                background: #548E87;
+            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover {
+                background-color: #548E87;
                 color: white;
+            }
+
+            .btn-danger:hover {
+                background-color: #FF7F7F;
             }
 
         /* Ensures modal is centered */
@@ -31,23 +34,29 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        .close, .close:hover {
+            outline: none;
+            border: none; 
+            color: #FFFFFF;
+        }
     </style>
 }
 
-@model IEnumerable<ASI.Basecode.Services.ServiceModels.ExpenseViewModel>
+@model ASI.Basecode.Services.ServiceModels.ExpenseDataModel
 
 @{
     ViewData["Title"] = "Expenses";
 }
 
 <div class="nav-upper">
-    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal">
+    <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#addExpenseModal">
         <i class="fa-solid fa-circle-plus"></i> Add Expense
     </a>    <div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+                    <h5 class="modal-title" id="addExpenseModalLabel" style="margin-left: 15px;">Add Expense</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -57,22 +66,25 @@
                     <form asp-action="Create">
                         <div class="form-group">
                             <label for="Title">Title</label>
-                            <input type="text" class="form-control" id="Title" name="Title" required>
+                            <input type="text" class="form-control" id="Title" name="Title" style="border-radius: 20px;" required>
                         </div>
                         <div class="form-group">
-                            <label for="Category">Category</label>
-                            <select class="form-control" id="Category" name="Category" @* required *@>
-                                <option value="" disabled selected>Select a category</option>
-                                <!-- Options will be populated here -->
+                            <label for="category">Category</label>
+                            <select class="form-control" id="CategoryId" name="CategoryId" style="border-radius: 20px;" @* required *@>
+                                @foreach (var category in Model.CategoryViewModel)
+                                {
+                                    <option value="@category.CategoryId">@category.Name</option>
+                                }
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="Amount">Amount</label>
-                            <input type="number" class="form-control" id="Amount" name="Amount" step="0.01" required>
+                            <input type="number" class="form-control" id="Amount" name="Amount" step="0.01" style="border-radius: 20px;" required>
                         </div>
                         <div class="form-group">
                             <label for="Description">Description</label>
-                            <input type="text" class="form-control" id="Description" name="Description">
+                            <input type="text" class="form-control" id="Description" name="Description" style="border-radius: 20px;">
                         </div>
                         <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-secondary">Save Expense</button>
@@ -81,10 +93,29 @@
             </div>
         </div>
     </div>
-    <!-- Sort By Button (on the opposite side) -->
-    <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#sortByModal">
-        <i class="fa-solid fa-sort"></i> Sort By
-    </a>
+    <!-- Filter Dropdown -->
+    <div class="filter">
+        <select class="filter-control" id="Filter" name="Filter">
+            <option value="" enable selected>Filter</option>
+            @foreach (var category in Model.CategoryViewModel)
+            {
+                <option value="@category.CategoryId">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <!-- Sort Dropdown -->
+    <div class="sort">
+        <select class="sort-control" id="Sort" name="Sort">
+            <option value="" disabled selected>Sort by</option>
+            <option value="titleAsc">Title (A-Z)</option>
+            <option value="titleDesc">Title (Z-A)</option>
+            <option value="amountAsc">Amount (Low to High)</option>
+            <option value="amountDesc">Amount (High to Low)</option>
+            <option value="dateAsc">Date (Oldest First)</option>
+            <option value="dateDesc">Date (Newest First)</option>
+        </select>
+    </div>
 </div>
 
 <!-- Sort By Modal -->
@@ -116,8 +147,8 @@
 </div>
 
 <!-- Main Category Table -->
-<div class="main-content">
-    <table class="table" style="color: white;">
+<div class="main-content" style="height: 100%; margin-top: 20px; background-color: #1A554F;">
+    <table id="expenseTable" class="table" style="color: #FFFFFF; border-radius: 20px 20px 0px 0px;">
         <thead>
             <tr>
                 <th>Title</th>
@@ -125,94 +156,152 @@
                 <th>Amount</th>
                 <th>Date Created</th>
                 <th>Description</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var item in Model)
+        <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
+            @foreach (var item in Model.ExpenseViewModel)
             {
-                <tr data-toggle="modal" 
-                    data-target="#expenseDetailModal" 
-                    data-id="@item.ExpenseId" 
-                    data-title="@item.Title" 
-                    data-category="@item.CategoryId" 
-                    data-amount="@item.Amount" 
-                    data-date="@item.DateCreated" 
-                    data-description="@item.Description" class="expense-row">
+                <tr data-toggle="modal" data-target="#expenseDetailModal"
+                    data-id="@item.ExpenseId" data-title="@item.Title"
+                    data-category="@item.CategoryId" data-amount="@item.Amount"
+                    data-date="@item.DateCreated" data-description="@item.Description"
+                    class="expense-row">
+
                     <td>@item.Title</td>
-                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td> <!-- Category Name based on CategoryId -->
                     <td>@item.Amount</td>
                     <td>@item.DateCreated</td>
                     <td>@item.Description</td>
+                    <td>
+                        <button style="width: 50px; height: fit-content; border-radius: 20px; padding: 5px;" 
+                                class="btn btn-secondary edit-expense-btn"
+                                data-toggle="modal"
+                                data-target="#expenseEditModal"
+                                data-id="@item.ExpenseId"
+                                data-title="@item.Title"
+                                data-category="@item.CategoryId"
+                                data-amount="@item.Amount"
+                                data-date="@item.DateCreated"
+                                data-description="@item.Description">
+                            Edit
+                        </button>
+                        <button style="width: 60px; height: fit-content; border-radius: 20px; padding: 5px;"
+                                class="btn btn-danger delete-expense-btn"
+                                data-toggle="modal"
+                                data-target="#confirmDeleteModal"
+                                data-id="@item.ExpenseId"
+                                data-title="@item.Title">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
+<!-- Pagination -->
+<div id="paginationControls" class="d-flex justify-content-end mt-3"></div>
+
+<!-- Expense Details Modal -->
 <div class="modal fade" id="expenseDetailModal" tabindex="-1" role="dialog" aria-labelledby="expenseDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="expenseDetailModalLabel">Expense Details</h5>
+                <h5 class="modal-title" id="expenseDetailModalLabel" style="margin-left: 15px;">Expense Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none; outline: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTitle">Title</label>
+                    <input type="text" class="form-control" id="editTitle" name="Title" style="border-radius: 20px;" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="CategoryId" name="CategoryId" style="border-radius: 20px;" disabled></select>
+                </div>
+                <div class="form-group">
+                    <label for="editAmount">Amount</label>
+                    <input type="number" class="form-control" id="editAmount" name="Amount" step="0.01" style="border-radius: 20px;" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" class="form-control" id="editDate" name="Date" style="border-radius: 20px;" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <input class="form-control" id="editDescription" name="Description" rows="3" style="border-radius: 20px;" disabled></input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Expense Modal -->
+<div class="modal fade" id="expenseEditModal" tabindex="-1" role="dialog" aria-labelledby="expenseEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="expenseEditModalLabel" style="margin-left: 15px;">Edit Expense</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Edit form with fields disabled initially -->
                 <form id="editExpenseForm" method="post" asp-action="Edit">
-                    <input type="hidden" id="editExpenseId" name="ExpenseId" />
-
+                    <input type="hidden" id="editExpenseId" name="ExpenseId">
                     <div class="form-group">
                         <label for="editTitle">Title</label>
-                        <input type="text" class="form-control" id="editTitle" name="Title" disabled>
+                        <input type="text" class="form-control" id="editTitle" style="border-radius: 20px;" name="Title">
                     </div>
                     <div class="form-group">
-                        <label for="editCategory">Category</label>
-                        <input type="text" class="form-control" id="editCategory" name="Category" disabled>
+                        <label for="CategoryId">Category</label>
+                        <select class="form-control" id="CategoryId" name="CategoryId" style="border-radius: 20px;">
+                            @foreach (var category in Model.CategoryViewModel)
+                            {
+                                <option value="@category.CategoryId">@category.Name</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="editAmount">Amount</label>
-                        <input type="number" class="form-control" id="editAmount" name="Amount" step="0.01" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="editDate">Date</label>
-                        <input type="date" class="form-control" id="editDate" name="Date" disabled>
+                        <input type="number" class="form-control" id="editAmount" name="Amount" step="0.01" style="border-radius: 20px;">
                     </div>
                     <div class="form-group">
                         <label for="editDescription">Description</label>
-                        <textarea class="form-control" id="editDescription" name="Description" rows="3" disabled></textarea>
+                        <textarea class="form-control" id="editDescription" name="Description" rows="3" style="border-radius: 20px;"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" id="saveChanges" style="display: none;">Save Changes</button>
+                    <button type="submit" id="saveChanges" class="btn btn-secondary" style="display: flex;">Save Changes</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button id="editBtn" class="btn btn-secondary">Edit</button>
-                <button id="deleteBtn" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered-custom" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Expense</h5>
+                <h5 class="modal-title" id="confirmDeleteModalLabel" style="margin-left: 15px;">Delete Expense</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete the expense? "<span id="expenseTitle"></span>"?</p>
+                <p>Are you sure you want to delete expense "<span id="expenseTitle"></span>"?</p>
             </div>
             <div class="modal-footer">
                 <form asp-action="PostDelete" method="post">
                     <input type="hidden" id="expenseId" name="ExpenseId" />
-                    <button type="submit" class="btn btn-danger">Delete</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>
@@ -222,51 +311,211 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         $(document).ready(function () {
-            // Load expense details into form on row click
-            $(".expense-row").click(function () {
-                let expenseId = $(this).data("id");
-                $("#editExpenseId").val(expenseId);
-                $("#editTitle").val($(this).data("title"));
-                $("#editCategory").val($(this).data("category"));
-                $("#editAmount").val($(this).data("amount"));
-                $("#editDate").val($(this).data("date"));
-                $("#editDescription").val($(this).data("description"));
+            // Open Expense Details Modal on row click
+            $(".expense-row").click(function (e) {
+                // Ignore clicks on child buttons (Edit or Delete buttons)
+                if ($(e.target).hasClass("edit-expense-btn") || $(e.target).hasClass("delete-expense-btn")) {
+                    return;
+                }
 
-                // Ensure form fields are disabled initially
-                $("#editExpenseForm input, #editExpenseForm textarea").prop("disabled", true);
-                $("#saveChanges").hide();
+                // Populate and show the details modal
+                const expenseId = $(this).data("id");
+                const title = $(this).data("title");
+                const category = $(this).data("category");
+                const amount = $(this).data("amount");
+                const description = $(this).data("description");
+
+                $("#expenseDetailModal #editTitle").val(title);
+                $("#expenseDetailModal #CategoryId").val(category);
+                $("#expenseDetailModal #editAmount").val(amount);
+                $("#expenseDetailModal #editDescription").val(description);
+
+                $("#expenseDetailModal").modal("show");
             });
 
-            // Enable edit mode
-            $("#editBtn").click(function () {
-                $("#editExpenseForm input, #editExpenseForm textarea").prop("disabled", false);
-                $("#saveChanges").show();
-            });
+            // Open Delete Confirmation Modal on Delete button click
+            $(".delete-expense-btn").click(function (e) {
+                e.stopPropagation(); // Prevent triggering row click event
 
-            // Trigger delete confirmation modal
-            $("#deleteBtn").click(function () {
-                let expenseId = $("#editExpenseId").val();
-                let expenseTitle = $("#editTitle").val();
+                // Populate and show the delete confirmation modal
+                const expenseId = $(this).data("id");
+                const title = $(this).data("title");
 
-                console.log("Deleting Expense ID:", expenseId); // Log the ExpenseId
-                console.log("Deleting Expense Title:", expenseTitle); // Log the title
-
-                $("#expenseId").val(expenseId);
-                $("#expenseTitle").text(expenseTitle);
+                $("#confirmDeleteModal #expenseId").val(expenseId);
+                $("#confirmDeleteModal #expenseTitle").text(title);
 
                 $("#confirmDeleteModal").modal("show");
             });
 
-            // Confirm delete action
-            $("#confirmDelete").click(function () {
-                let expenseId = $("#editExpenseId").val();
-                // Perform delete action here, e.g., submit a delete form
-                alert("Expense " + expenseId + " deleted.");
-                $("#confirmDeleteModal").modal("hide");
-                $("#expenseDetailModal").modal("hide");
+            // Open Edit Expense Modal on Edit button click
+            $(".edit-expense-btn").click(function (e) {
+                e.stopPropagation(); // Prevent triggering row click event
+
+                // Populate the edit modal
+                const expenseId = $(this).data("id");
+                const title = $(this).data("title");
+                const category = $(this).data("category");
+                const amount = $(this).data("amount");
+                const description = $(this).data("description");
+
+                $("#editExpenseForm #editTitle").val(title);
+                $("#editExpenseForm #CategoryId").val(category);
+                $("#editExpenseForm #editAmount").val(amount);
+                $("#editExpenseForm #editDescription").val(description);
+
+                $("#expenseEditModal").modal("show");
             });
         });
     </script>
+    <script>
+      // Function to sort table rows based on selected criteria
+        function sortTable(sortOption) {
+            let rows = $('.expense-row').get();
+
+            rows.sort(function (a, b) {
+                let valueA, valueB;
+
+                switch (sortOption) {
+                    case "titleAsc":
+                        valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                        valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                        return valueA.localeCompare(valueB);
+                    case "titleDesc":
+                        valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
+                        valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
+                        return valueB.localeCompare(valueA);
+                    case "amountAsc":
+                        valueA = parseFloat($(a).find("td:nth-child(3)").text());
+                        valueB = parseFloat($(b).find("td:nth-child(3)").text());
+                        return valueA - valueB;
+                    case "amountDesc":
+                        valueA = parseFloat($(a).find("td:nth-child(3)").text());
+                        valueB = parseFloat($(b).find("td:nth-child(3)").text());
+                        return valueB - valueA;
+                    case "dateAsc":
+                        valueA = new Date($(a).find("td:nth-child(4)").text());
+                        valueB = new Date($(b).find("td:nth-child(4)").text());
+                        return valueA - valueB;
+                    case "dateDesc":
+                        valueA = new Date($(a).find("td:nth-child(4)").text());
+                        valueB = new Date($(b).find("td:nth-child(4)").text());
+                        return valueB - valueA;
+                    default:
+                        return 0;
+                }
+            });
+
+            // Append sorted rows back to the table body
+            $.each(rows, function (index, row) {
+                $("tbody").append(row);
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Open Expense Details Modal on row click
+            $(".expense-row").click(function (e) {
+                // Prevent triggering when clicking the Edit button
+                if ($(e.target).hasClass("edit-expense-btn") || $(e.target).hasClass("delete-expense-btn")) {
+                    return;
+                }
+
+                // Populate and show the details modal
+                const expenseId = $(this).data("id");
+                const title = $(this).data("title");
+                const category = $(this).data("category");
+                const amount = $(this).data("amount");
+                const description = $(this).data("description");
+
+                $("#expenseDetailModal #editTitle").val(title);
+                $("#expenseDetailModal #CategoryId").val(category);
+                $("#expenseDetailModal #editAmount").val(amount);
+                $("#expenseDetailModal #editDescription").val(description);
+
+                $("#expenseDetailModal").modal("show");
+            });
+
+            // Open Edit Expense Modal on Edit button click
+            $(".edit-expense-btn").click(function (e) {
+                e.stopPropagation(); // Prevent triggering row click event
+
+                // Populate the edit modal
+                const expenseId = $(this).data("id");
+                const title = $(this).data("title");
+                const category = $(this).data("category");
+                const amount = $(this).data("amount");
+                const description = $(this).data("description");
+
+                $("#editExpenseForm #editTitle").val(title);
+                $("#editExpenseForm #CategoryId").val(category);
+                $("#editExpenseForm #editAmount").val(amount);
+                $("#editExpenseForm #editDescription").val(description);
+
+                $("#editExpenseForm input, #editExpenseForm textarea, #editExpenseForm select").prop("disabled", false);
+
+                $("#expenseEditModal").modal("show");
+            });
+        });
+    </script>
+
+
+    <script>
+    $(document).ready(function () {
+        const rowsPerPage = 7; // Number of rows per page
+        const rows = $('#expenseTable tbody tr'); // All rows in the table
+        const totalRows = rows.length; // Total number of rows
+        const totalPages = Math.ceil(totalRows / rowsPerPage); // Total pages
+
+        // Function to display a specific page
+        function displayPage(page) {
+            rows.hide(); // Hide all rows
+            const start = (page - 1) * rowsPerPage; // Starting row index
+            const end = start + rowsPerPage; // Ending row index
+            rows.slice(start, end).show(); // Show only rows for the current page
+            generatePaginationButtons(page); // Update pagination controls
+        }
+
+        // Function to generate pagination buttons
+        function generatePaginationButtons(currentPage) {
+            const paginationControls = $('#paginationControls');
+            paginationControls.empty(); // Clear existing buttons
+
+            // Previous Button
+            const prevDisabled = currentPage === 1 ? 'disabled' : '';
+            paginationControls.append(
+                `<button class="pagination-btn" data-page="${currentPage - 1}" ${prevDisabled}>Previous</button>`
+            );
+
+            // Page Numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                paginationControls.append(
+                    `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`
+                );
+            }
+
+            // Next Button
+            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+            paginationControls.append(
+                `<button class="pagination-btn" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`
+            );
+        }
+
+        // Handle button clicks
+        $('#paginationControls').on('click', '.pagination-btn', function () {
+            const page = parseInt($(this).data('page'), 10);
+            if (!isNaN(page)) {
+                displayPage(page);
+            }
+        });
+
+        // Initialize the first page
+        displayPage(1);
+    });
+</script>
+
 }
