@@ -7,95 +7,61 @@
     ViewData["Title"] = "Settings";
 }
 @* 
-<div class="main-content container-fluid d-flex align-items-center" style="height: 730px; background-color: #1A554F;">
-    <div class="row w-100 mx-auto row justify-content-center align-items-center pt-lg-5">
-        <div class="col-lg-4 p-2 mr-lg-5">
-            <form id="userDetailsForm" method="post" asp-action="Edit">
-                <div class="form-group mb-2">
-                    <img class="d-block mx-auto img-fluid rounded-circle" src="~/img/profile-logo.png" />
-                    <p class="mb-2 text-white">Name</p>
-                    <input type="text" id="name" name="Name" value="@Model.Name" class="form-control rounded-pill p-3" />
-                </div>
-                <div class="form-group mb-2">
-                    <p class="mb-2 text-white">Username</p>
-                    <input type="text" id="username" name="UserId" value="@Model.UserId" class="form-control rounded-pill p-3" readonly />
-                </div>
-                <div class="form-group mb-2">
-                    <p class="mb-2 text-white">Email</p>
-                    <input type="text" id="email" name="Email" value="@Model.Email" class="form-control rounded-pill p-3" />
-                </div>
-                <div class="form-group mb-2">
-                    <p class="mb-2 text-white">Default Currency</p>
-                    <select id="currency" name="Preference" class="form-control rounded-pill" style="height: 40px">
-                        <option value="Php" selected="@(Model.Preference == "Php" ? "selected" : null)">Php</option>
-                        <option value="USD" selected="@(Model.Preference == "USD" ? "selected" : null)">USD</option>
-                        <option value="EUR" selected="@(Model.Preference == "EUR" ? "selected" : null)">EUR</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-block rounded-pill login-btn p-2 mt-3">Save Changes</button>
-            </form>
-        </div>
 
-        <div class="col-lg-4 p-2 pt-lg-5 ml-lg-5">
-            <form id="passwordChangeForm" method="post" asp-action="ChangePassword">
-                <input type="hidden" name="UserId" value="@Model.UserId" />
-                <div class="form-group mb-2">
-                    <h2 class="text-white">Change Password</h2>
-                    <label for="old-password" class="text-white">Old Password</label>
-                    <input type="password" id="old-password" name="OldPassword" class="form-control rounded-pill p-3" />
-                </div>
-                <div class="form-group mb-2">
-                    <label for="new-password" class="text-white">New Password</label>
-                    <input type="password" id="new-password" name="NewPassword" class="form-control rounded-pill p-3" />
-                </div>
-                <div class="form-group mb-2">
-                    <label for="confirm-password" class="text-white">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="ConfirmPassword" class="form-control rounded-pill p-3" />
-                </div>
-                <button type="submit" class="btn-block rounded-pill login-btn p-2 mt-3">Change Password</button>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-<script>
-    document.getElementById('saveChangesBtn').addEventListener('click', function () {
-        const userDetails = {
-            Name: document.getElementById('name').value,
-            UserId: document.getElementById('username').value,
-            Email: document.getElementById('email').value,
-            Preference: document.getElementById('currency').value
-        };
-
-        fetch('/Settings/UpdateUserDetails', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userDetails)
-        })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error('Error:', error));
-    });
-
-    document.getElementById('changePasswordBtn').addEventListener('click', function () {
-        const passwordDetails = {
-            OldPassword: document.getElementById('old-password').value,
-            NewPassword: document.getElementById('new-password').value,
-            ConfirmPassword: document.getElementById('confirm-password').value
-        };
-
-        fetch('/Settings/ChangePassword', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(passwordDetails)
-        })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error('Error:', error));
-    });
-</script>
  *@
+@section scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Toggle visibility for Old Password
+            const toggleOldPassword = document.querySelector("#toggleOldPassword");
+            const oldPassword = document.querySelector("#oldPassword");
+            const eyeIconOldPassword = document.querySelector("#eyeIconOldPassword");
+
+            if (toggleOldPassword && oldPassword && eyeIconOldPassword) {
+                toggleOldPassword.addEventListener("click", function () {
+                    const type = oldPassword.getAttribute("type") === "password" ? "text" : "password";
+                    oldPassword.setAttribute("type", type);
+
+                    // Toggle the eye icon
+                    eyeIconOldPassword.classList.toggle("fa-eye");
+                    eyeIconOldPassword.classList.toggle("fa-eye-slash");
+                });
+            }
+
+            // Toggle visibility for New Password
+            const toggleNewPassword = document.querySelector("#toggleNewPassword");
+            const newPassword = document.querySelector("#newPassword");
+            const eyeIconNewPassword = document.querySelector("#eyeIconNewPassword");
+
+            if (toggleNewPassword && newPassword && eyeIconNewPassword) {
+                toggleNewPassword.addEventListener("click", function () {
+                    const type = newPassword.getAttribute("type") === "password" ? "text" : "password";
+                    newPassword.setAttribute("type", type);
+
+                    // Toggle the eye icon
+                    eyeIconNewPassword.classList.toggle("fa-eye");
+                    eyeIconNewPassword.classList.toggle("fa-eye-slash");
+                });
+            }
+
+            // Toggle visibility for Confirm Password
+            const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
+            const confirmPassword = document.querySelector("#confirmPassword");
+            const eyeIconConfirmPassword = document.querySelector("#eyeIconConfirmPassword");
+
+            if (toggleConfirmPassword && confirmPassword && eyeIconConfirmPassword) {
+                toggleConfirmPassword.addEventListener("click", function () {
+                    const type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
+                    confirmPassword.setAttribute("type", type);
+
+                    // Toggle the eye icon
+                    eyeIconConfirmPassword.classList.toggle("fa-eye");
+                    eyeIconConfirmPassword.classList.toggle("fa-eye-slash");
+                });
+            }
+        });
+    </script>
+}
 
 <div>
     @await Html.PartialAsync("ChangePassword")

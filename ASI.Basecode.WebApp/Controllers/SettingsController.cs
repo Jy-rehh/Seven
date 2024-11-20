@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,21 +57,39 @@ namespace ASI.Basecode.WebApp.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public IActionResult ChangePassword(ChangePasswordViewModel model)
+        public IActionResult ChangePassword(string oldPassword, string newPassword, string confirmPassword, string userId)
         {
-            if (ModelState.IsValid)
+            // Validate the new password and confirm password
+            if (newPassword != confirmPassword)
             {
-                var isPasswordChanged = _userService.ChangePassword(model);
-                if (isPasswordChanged)
-                {
-                    TempData["SuccessMessage"] = "Password changed successfully.";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failed to change password. Please check your old password.";
-                }
+                ModelState.AddModelError("", "Passwords do not match.");
+                return View(); // Return the view with error
             }
-            return RedirectToAction("Index");
+
+            // Create the ChangePasswordViewModel to pass to the service
+            var changePasswordModel = new ChangePasswordViewModel
+            {
+                UserId = userId,  // The UserId is passed from the form
+                OldPassword = oldPassword,
+                NewPassword = newPassword
+            };
+
+            // Call the service to change the password
+            bool result = _userService.ChangePassword(changePasswordModel);
+
+            if (result)
+            {
+                // Password changed successfully
+                TempData["SuccessMessage"] = "Password changed successfully!";
+                return RedirectToAction("Index"); // Or another redirect, e.g., to the profile page
+            }
+            else
+            {
+                // If old password is incorrect
+                ModelState.AddModelError("", "Old password is incorrect.");
+                return View(); // Return the view with error
+            }
         }
+
     }
 }
