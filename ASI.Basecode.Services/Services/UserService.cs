@@ -79,7 +79,7 @@ namespace ASI.Basecode.Services.Services
                 _repository.UpdateUser(user);
             }
         }
-        public bool ChangePassword(ChangePasswordViewModel model)
+        public bool ChangePassword(ChangePasswordViewModel model )
         {
             var user = _repository.GetUsers().FirstOrDefault(u => u.UserId == model.UserId);
             if (user != null && user.Password == PasswordManager.EncryptPassword(model.OldPassword))

@@ -96,10 +96,14 @@ namespace ASI.Basecode.Services.Services
                 _categoryRepository.UpdateCategory(category);
             }
         }
-        public bool CategoryExists(string categoryName)
+        public string GetDuplicateCategoryName(string categoryName, int? excludeCategoryId = null)
         {
-            return _categoryRepository.GetAllCategory()
-                .Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase) && !c.IsDeleted);
+            var duplicateCategory = _categoryRepository.GetAllCategory()
+                .FirstOrDefault(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase)
+                                  && !c.IsDeleted
+                                  && (excludeCategoryId == null || c.CategoryId != excludeCategoryId));
+
+            return duplicateCategory?.Name;
         }
     }
 }
