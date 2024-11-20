@@ -79,7 +79,7 @@ namespace ASI.Basecode.Services.Services
                 Name = s.Name,
             });
             var serverUrl = _config.GetValue<string>("ServerUrl");
-            var data = _expensesRepository.GetAllExpenses().Where(s => s.IsDeleted == false).Select(s => new ExpenseViewModel
+            var data = _expensesRepository.GetAllExpenses().Where(s => s.IsDeleted == true).Select(s => new ExpenseViewModel
             {
                 ExpenseId = s.ExpenseId,
                 CategoryId = s.CategoryId,
@@ -98,7 +98,7 @@ namespace ASI.Basecode.Services.Services
                                                 .Where(c => c.IsDeleted == false)
                                                 .ToDictionary(c => c.CategoryId, c => c.Name);
 
-            var expenses = _expensesRepository.GetAllExpenses().Where(e => e.UserId == userId).Select(e => new ExpenseViewModel
+            var expenses = _expensesRepository.GetAllExpenses().Where(e => e.UserId == userId && e.IsDeleted == false).Select(e => new ExpenseViewModel
             {
                 ExpenseId = e.ExpenseId,
                 CategoryId = e.CategoryId,
@@ -135,15 +135,53 @@ namespace ASI.Basecode.Services.Services
             }).FirstOrDefault();
             return expenses;
         }
+        //public void UpdateExpenses(ExpenseViewModel model, string userId)
+        //{
+        //    var expense = _expensesRepository.GetAllExpenses().Where(x => x.ExpenseId.Equals(model.ExpenseId)).FirstOrDefault();
+        //    model.DateCreated = expense.DateCreated;
+        //    if (expense != null)
+        //    {
+        //        _mapper.Map(model, expense);
+        //        expense.UserId = userId;
+        //        _expensesRepository.UpdateExpenses(expense);
+        //    }
+        //}
         public void UpdateExpenses(ExpenseViewModel model, string userId)
         {
-            var expense = _expensesRepository.GetAllExpenses().Where(x => x.ExpenseId.Equals(model.ExpenseId)).FirstOrDefault();
+            var expense = _expensesRepository.GetAllExpenses()
+                                              .FirstOrDefault(x => x.ExpenseId == model.ExpenseId && !x.IsDeleted);
             model.DateCreated = expense.DateCreated;
             if (expense != null)
             {
+                var oldCategoryId = expense.CategoryId;
+
                 _mapper.Map(model, expense);
                 expense.UserId = userId;
+
                 _expensesRepository.UpdateExpenses(expense);
+
+                if (oldCategoryId != model.CategoryId)
+                {
+                    var oldCategory = _categoryRepository.GetAllCategory()
+                                                          .FirstOrDefault(c => c.CategoryId == oldCategoryId && !c.IsDeleted);
+                    if (oldCategory != null)
+                    {
+                        var totalExpensesInOldCategory = _expensesRepository.GetAllExpenses()
+                                                                            .Count(e => e.CategoryId == oldCategoryId && !e.IsDeleted);
+                        oldCategory.TotalAmount = totalExpensesInOldCategory;
+                        _categoryRepository.UpdateCategory(oldCategory);
+                    }
+
+                    var newCategory = _categoryRepository.GetAllCategory()
+                                                          .FirstOrDefault(c => c.CategoryId == model.CategoryId && !c.IsDeleted);
+                    if (newCategory != null)
+                    {
+                        var totalExpensesInNewCategory = _expensesRepository.GetAllExpenses()
+                                                                            .Count(e => e.CategoryId == model.CategoryId && !e.IsDeleted);
+                        newCategory.TotalAmount = totalExpensesInNewCategory;
+                        _categoryRepository.UpdateCategory(newCategory);
+                    }
+                }
             }
         }
         public void DeleteExpenses(int Id)
@@ -159,7 +197,7 @@ namespace ASI.Basecode.Services.Services
         public IEnumerable<CategoryViewModel> GetCategories()
         {
             var categories = _categoryRepository.GetAllCategory()
-                .Where(c => c.IsDeleted == false) // Only include categories with Status = false
+                .Where(c => c.IsDeleted == false)
                 .Select(c => new CategoryViewModel
                 {
                     CategoryId = c.CategoryId,
