@@ -43,10 +43,9 @@
 <!-- Logout Confirmation Modal -->
 <div id="logoutModal" class="logout-modal">
     <div class="logout-modal-content">
-        <span class="logout-close-btn" onclick="closeModal()">&times;</span>
         <h2>Are you sure you want to log out?</h2>
         <div class="logout-modal-buttons">
-            <button onclick="window.location.href='/Account/SignOutUser';" class="logout-confirm-btn">Yes, Log out</button>
+            <button onclick="window.location.href='/Account/SignOutUser';" class="logout-confirm-btn">Yes</button>
             <button onclick="closeModal()" class="logout-cancel-btn">Cancel</button>
         </div>
     </div>
@@ -56,14 +55,10 @@
     // Get modal element
     var modal = document.getElementById("logoutModal");
 
-    // Get the logout button and add event listener to show the modal
-    var logoutButton = document.querySelector(".logout-btn");
-
     function openModal() {
         modal.style.display = "block";
     }
 
-    // Close the modal if the user clicks on the close button
     function closeModal() {
         modal.style.display = "none";
     }
@@ -98,29 +93,11 @@
         width: 400px; /* Fixed width for the modal */
         text-align: center;
         border-radius: 8px; /* Rounded corners */
-        box-shadow: none; /* Remove any box shadow */
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); /* Center the modal */
     }
-
-    /* Close Button */
-    .logout-close-btn {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-    }
-
-        .logout-close-btn:hover,
-        .logout-close-btn:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
 
     /* Header */
     .logout-modal h2 {
@@ -146,28 +123,30 @@
 
     .logout-confirm-btn,
     .logout-cancel-btn {
-        padding: 8px 15px; /* Smaller buttons */
+        padding: 10px 20px; /* Equal padding for both buttons */
         font-size: 14px;
         cursor: pointer;
         border: none;
         border-radius: 25px; /* Fully rounded buttons */
+        width: 100px; /* Fixed width for consistent button sizes */
     }
 
     .logout-confirm-btn {
-        background-color: #548E87; /* Custom color for 'Yes' */
+        background-color: #1A554F; /* Custom color for 'Yes' */
         color: white;
     }
 
     .logout-cancel-btn {
-        background-color: #FF7F7F; /* Custom color for 'No' */
+        background-color: #FF7F7F; /* Custom color for 'Cancel' */
         color: white;
     }
 
     .logout-confirm-btn:hover {
-        background-color: #4e7c73;
+        background-color: #15403c;
     }
 
     .logout-cancel-btn:hover {
         background-color: #f06a6a;
     }
 </style>
+
