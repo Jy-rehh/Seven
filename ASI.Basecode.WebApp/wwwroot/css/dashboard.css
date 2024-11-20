@@ -48,9 +48,10 @@
     }
 
 .logout-btn {
-    margin-top: 200px; /* Pushes it to the bottom of the sidebar */
+    margin-top: 180px; /* Pushes it to the bottom of the sidebar */
     background-color: transparent;
     border: none;
+    outline: none;
     color: #1A554F;
     font-weight: bold;
     display: flex;
@@ -63,8 +64,8 @@
 }
 
     .logout-btn:hover {
-        background-color: #D9D9D9;
-        transition: background-color 0.1s ease;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
         cursor: pointer;
     }
 
