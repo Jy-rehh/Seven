@@ -107,7 +107,7 @@
     <!-- Sort Dropdown -->
     <div class="sort">
         <select class="sort-control" id="Sort" name="Sort">
-            <option value="" disabled selected>Sort by</option>
+            <option value="" enable selected>Sort by</option>
             <option value="titleAsc">Title (A-Z)</option>
             <option value="titleDesc">Title (Z-A)</option>
             <option value="amountAsc">Amount (Low to High)</option>
@@ -340,7 +340,7 @@
             $('#Filter').change(function () {
                 var selectedCategory = $(this).val();
                 $('#expenseTable tbody tr').each(function () {
-                    var categoryId = $(this).data('category-id');
+                    var categoryId = $(this).data('category');
                     if (selectedCategory === "" || categoryId == selectedCategory) {
                         $(this).show();
                     } else {

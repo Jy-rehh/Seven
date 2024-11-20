@@ -11,9 +11,13 @@
         }
 
             /* Optional: Add a hover effect for buttons */
-            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover, .btn-danger:hover {
+            .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover {
                 background: #548E87;
                 color: white;
+            }
+
+            .btn-danger:hover {
+                background-color: #FF7F7F;
             }
 
         /* Ensures modal is centered */
@@ -29,6 +33,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .close, .close:hover {
+            outline: none;
+            border: none;
+            color: #FFFFFF;
         }
 
         thead {
@@ -60,7 +70,7 @@
                     <form asp-action="Create">
                         <div class="form-group">
                             <label for="Name">Name</label>
-                            <input type="text" class="form-control" id="Name" name="Name" required>
+                            <input type="text" class="form-control" id="Name" name="Name" style="border-radius: 20px;" required>
                         </div>
                         <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-secondary">Save Category</button>
@@ -69,10 +79,10 @@
             </div>
         </div>
     </div>
-    <!-- Sort By Button (on the opposite side) -->
+    <!-- Sort Dropdown -->
     <div class="sort">
         <select class="sort-control" id="Sort" name="Sort">
-            <option value="" disabled selected>Sort by</option>
+            <option value="" enable selected>Sort by</option>
             <option value="titleAsc">Title (A-Z)</option>
             <option value="titleDesc">Title (Z-A)</option>
             <option value="dateAsc">Date Created (Oldest First)</option>
@@ -81,41 +91,16 @@
 
     </div>
 </div>
-<!-- Sort By Modal -->
-<div class="modal fade" id="sortByModal" tabindex="-1" role="dialog" aria-labelledby="sortByModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered-custom" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="sortByModalLabel">Sort Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="sortBy">Sort By</label>
-                        <select class="form-control" id="sortBy">
-                            <option value="name">Name</option>
-                            <option value="dateCreated">Date Created</option>
-                            <option value="dateUpdated">Date Updated</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sort</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Main Category Table -->
 <div class="main-content" style="height: 100%; margin-top: 20px; background-color: #1A554F">
-    <table class="table" style="color: #FFFFFF;">
+    <table id="categoryTable" class="table" style="color: #FFFFFF; border-radius: 20px 20px 0px 0px;">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Date Created</th>
                 <th>Date Updated</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
@@ -127,39 +112,77 @@
                     <td>@item.Name</td>
                     <td>@item.DateCreated</td>
                     <td>@item.DateUpdated</td>
+                    <td>
+                        <button style="width: 50px; height: fit-content; border-radius: 20px; padding: 5px;"
+                                class="btn btn-secondary edit-category-btn"
+                                data-toggle="modal"
+                                data-target="#categoryEditModal"
+                                data-id="@item.CategoryId"
+                                data-title="@item.Name"
+                                data-date="@item.DateCreated">
+                            Edit
+                        </button>
+                        <button style="width: 60px; height: fit-content; border-radius: 20px; padding: 5px;"
+                                class="btn btn-danger delete-catgeory-btn"
+                                data-toggle="modal"
+                                data-target="#confirmDeleteModal"
+                                data-id="@item.CategoryId"
+                                data-title="@item.Name">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
-
             }
         </tbody>
     </table>
 </div>
 
-<!-- Edit Modal -->
+<!-- Pagination -->
+<div id="paginationControls" class="d-flex justify-content-end mt-3"></div>
+
+<!-- Category Details Modal -->
 <div class="modal fade" id="categoryDetailModal" tabindex="-1" role="dialog" aria-labelledby="categoryDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="categoryDetailModalLabel">Category Details</h5>
+                <h5 class="modal-title" id="categoryDetailModalLabel" style="margin-left: 15px;">Category Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none; outline: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editName">Name</label>
+                    <input type="text" class="form-control" id="editName" name="Name" style="border-radius: 20px;" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" class="form-control" id="editDate" name="Date" style="border-radius: 20px;" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" aria-labelledby="categoryEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryEditModalLabel" style="margin-left: 15px;">Edit Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Edit form with fields disabled initially -->
                 <form id="editCategoryForm" method="post" asp-action="Edit">
-                    <input type="hidden" id="editCategoryId" name="CategoryId" />
-
+                    <input type="hidden" id="editCategoryId" name="CategoryId">
                     <div class="form-group">
                         <label for="editName">Name</label>
-                        <input type="text" class="form-control" id="editName" name="Name" disabled>
+                        <input type="text" class="form-control" id="editName" style="border-radius: 20px;" name="Name">
                     </div>
-
-                    <button type="submit" class="btn btn-primary" id="saveChanges" style="display: none;">Save Changes</button>
+                    <button type="submit" id="saveChanges" class="btn btn-secondary" style="display: flex;">Save Changes</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button id="editBtn" class="btn btn-secondary">Edit</button>
-                <button id="deleteBtn" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
@@ -170,19 +193,19 @@
     <div class="modal-dialog modal-dialog-centered-custom" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Category</h5>
+                <h5 class="modal-title" id="confirmDeleteModalLabel" style="margin-left: 15px;">Delete Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete the category "<span id="categoryName"></span>"?</p>
+                <p>Are you sure you want to delete category "<span id="categoryTitle"></span>"?</p>
             </div>
             <div class="modal-footer">
                 <form asp-action="PostDelete" method="post">
-                    <input type="hidden" id="categoryId" name="CategoryId" />
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <input type="hidden" id="expenseId" name="ExpenseId" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>
@@ -196,80 +219,169 @@
 
     <script>
         $(document).ready(function () {
-            // Load category details into form on row click
-            $(document).on("click", ".category-row", function () {
-                let categoryId = $(this).data("id");
-                let categoryName = $(this).data("name");
-                let categoryDateCreated = $(this).data("datecreated");
-                let categoryDateUpdated = $(this).data("dateupdated");
-                let categoryDescription = $(this).data("description");
+            // Open Expense Details Modal on row click
+            $(".category-row").click(function (e) {
+                // Get data attributes from the clicked row
+                const name = $(this).data("name");
+                const date = $(this).data("date");
 
-                $("#editCategoryId").val(categoryId);
-                $("#editName").val(categoryName);
-                $("#editDescription").val(categoryDescription);
+                // Populate modal fields
+                $("#categoryDetailModal #editName").val(name);
+                $("#categoryDetailModal #editDate").val(date);
 
-                $("#editCategoryForm input, #editCategoryForm textarea").prop("disabled", true);
-                $("#saveChanges").hide();
-
+                // Show the modal
                 $("#categoryDetailModal").modal("show");
             });
 
-            // Enable edit mode
-            $("#editBtn").click(function () {
-                $("#editCategoryForm input, #editCategoryForm textarea").prop("disabled", false);
-                $("#saveChanges").show();
-            });
+            // Open Delete Confirmation Modal on Delete button click
+            $(".delete-category-btn").click(function (e) {
+                e.stopPropagation(); // Prevent triggering row click event
 
-            // Trigger delete confirmation modal with category name
-            $("#deleteBtn").click(function () {
-                let categoryId = $("#editCategoryId").val();
-                let categoryName = $("#editName").val(); // Retrieve the category name from the edit modal
+                // Populate and show the delete confirmation modal
+                const categoryId = $(this).data("id");
+                const name = $(this).data("name");
 
-                $("#categoryId").val(categoryId);
-                $("#categoryName").text(categoryName);
+                $("#confirmDeleteModal #categoryId").val(categoryId);
+                $("#confirmDeleteModal #categoryTitle").text(name);
+
                 $("#confirmDeleteModal").modal("show");
             });
+        });
+    </script>
 
-            // Trigger sorting when an option is selected in the sort dropdown
-            $('#Sort').change(function () {
-                let selectedSort = $(this).val();
-                sortTable(selectedSort);
+    <script>
+        // Sort Table
+        $('#Sort').change(function () {
+            var sortBy = $(this).val();
+            var rows = $('#categoryTable tbody tr').get();
+
+            rows.sort(function (a, b) {
+                var valA, valB;
+
+                switch (sortBy) {
+                    case 'titleAsc':
+                        valA = $(a).data('name').toLowerCase();
+                        valB = $(b).data('name').toLowerCase();
+                        return valA.localeCompare(valB);
+                    case 'titleDesc':
+                        valA = $(a).data('name').toLowerCase();
+                        valB = $(b).data('name').toLowerCase();
+                        return valB.localeCompare(valA);
+                    case 'dateAsc':
+                        valA = new Date($(a).data('date'));
+                        valB = new Date($(b).data('date'));
+                        return valA - valB;
+                    case 'dateDesc':
+                        valA = new Date($(a).data('date'));
+                        valB = new Date($(b).data('date'));
+                        return valB - valA;
+                    default:
+                        return 0;
+                }
             });
 
-            // Function to sort category table rows based on selected criteria
-            function sortTable(sortOption) {
-                let rows = $('.category-row').get();
+            // Append sorted rows back to the table
+            $.each(rows, function (index, row) {
+                $('#categoryTable tbody').append(row);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Open Edit Expense Modal on Edit button click
+            $(".edit-category-btn").click(function (e) {
+                e.stopPropagation(); // Prevent triggering row click event
 
-                rows.sort(function (a, b) {
-                    let valueA, valueB;
+                // Populate the edit modal
+                const categoryId = $(this).data("id");
+                const name = $(this).data("name");
 
-                    switch (sortOption) {
-                        case "titleAsc":
-                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
-                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
-                            return valueA.localeCompare(valueB);
-                        case "titleDesc":
-                            valueA = $(a).find("td:nth-child(1)").text().toLowerCase();
-                            valueB = $(b).find("td:nth-child(1)").text().toLowerCase();
-                            return valueB.localeCompare(valueA);
-                        case "dateAsc":
-                            valueA = new Date($(a).find("td:nth-child(2)").text());
-                            valueB = new Date($(b).find("td:nth-child(2)").text());
-                            return valueA - valueB;
-                        case "dateDesc":
-                            valueA = new Date($(a).find("td:nth-child(2)").text());
-                            valueB = new Date($(b).find("td:nth-child(2)").text());
-                            return valueB - valueA;
-                        default:
-                            return 0;
-                    }
+                // Set values in the modal form fields
+                $("#editCategoryForm #editCategoryId").val(categoryId);
+                $("#editCategoryForm #editName").val(name);
+
+                // Enable form fields
+                $("#editCategoryForm input, #editCategoryForm textarea, #editCategoryForm select").prop("disabled", false);
+
+                // Show the modal
+                $("#categoryEditModal").modal("show");
+            });
+
+            // Form submission for Edit Expense
+            $(document).ready(function () {
+                $('#editCategoryForm').submit(function (e) {
+                    e.preventDefault(); // Prevent the default form submission
+
+                    var formData = $(this).serialize(); // Serialize the form data
+
+                    $.ajax({
+                        url: '/Category/Edit', // The URL of the Edit action
+                        type: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            // After successful submission, reload the page to show the updated data
+                            window.location.href = '/Category/Index'; // Redirect to the Index page
+                        },
+                        error: function () {
+                            alert('An error occurred while updating the category.');
+                        }
+                    });
                 });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            const rowsPerPage = 7; // Number of rows per page
+            const rows = $('#categoryTable tbody tr'); // All rows in the table
+            const totalRows = rows.length; // Total number of rows
+            const totalPages = Math.ceil(totalRows / rowsPerPage); // Total pages
 
-                // Append sorted rows back to the table body
-                $.each(rows, function (index, row) {
-                    $("tbody").append(row);
-                });
+            // Function to display a specific page
+            function displayPage(page) {
+                rows.hide(); // Hide all rows
+                const start = (page - 1) * rowsPerPage; // Starting row index
+                const end = start + rowsPerPage; // Ending row index
+                rows.slice(start, end).show(); // Show only rows for the current page
+                generatePaginationButtons(page); // Update pagination controls
             }
+
+            // Function to generate pagination buttons
+            function generatePaginationButtons(currentPage) {
+                const paginationControls = $('#paginationControls');
+                paginationControls.empty(); // Clear existing buttons
+
+                // Previous Button
+                const prevDisabled = currentPage === 1 ? 'disabled' : '';
+                paginationControls.append(
+                    `<button class="pagination-btn" data-page="${currentPage - 1}" ${prevDisabled}>Previous</button>`
+                );
+
+                // Page Numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const activeClass = i === currentPage ? 'active' : '';
+                    paginationControls.append(
+                        `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`
+                    );
+                }
+
+                // Next Button
+                const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+                paginationControls.append(
+                    `<button class="pagination-btn" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`
+                );
+            }
+
+            // Handle button clicks
+            $('#paginationControls').on('click', '.pagination-btn', function () {
+                const page = parseInt($(this).data('page'), 10);
+                if (!isNaN(page)) {
+                    displayPage(page);
+                }
+            });
+
+            // Initialize the first page
+            displayPage(1);
         });
     </script>
 }
