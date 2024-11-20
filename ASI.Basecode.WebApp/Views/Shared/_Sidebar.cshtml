@@ -29,13 +29,14 @@
             </button>
 
             <!-- Logout button positioned at the bottom -->
-            <div class="logout-container" onclick="location.href='/Account/SignOutUser';" style="cursor: pointer;">
-                <button class="menu-btn logout-btn" aria-label="Logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout
-                </button>
+            <div class="logout-container">
+                <form asp-action="SignOutUser" asp-controller="Account" method="post" style="cursor: pointer; justify-content: center;">
+                    <button type="submit" class="menu-btn logout-btn" aria-label="Logout" style="cursor: pointer;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
-
         </div>
     </div>
 </div>

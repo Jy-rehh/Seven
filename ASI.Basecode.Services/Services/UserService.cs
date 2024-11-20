@@ -68,19 +68,31 @@ namespace ASI.Basecode.Services.Services
 
         public void UpdateUser(UserViewModel userModel)
         {
-            var user = _repository.GetUserByUserId(userModel.UserId);
+            var user = _repository.GetUsers().FirstOrDefault(u => u.Id == userModel.Id);
+
             if (user != null)
             {
                 user.Name = userModel.Name;
                 user.Email = userModel.Email;
-                user.Preference = userModel.DefaultCurrency;
-                user.UpdatedBy = Environment.UserName;
-                user.UpdatedTime = DateTime.Now;
+                user.Preference = userModel.Preference;
 
                 _repository.UpdateUser(user);
             }
         }
-
+        public bool ChangePassword(ChangePasswordViewModel model)
+        {
+            var user = _repository.GetUsers().FirstOrDefault(u => u.UserId == model.UserId);
+            if (user != null && user.Password == PasswordManager.EncryptPassword(model.OldPassword))
+            {
+                user.Password = PasswordManager.EncryptPassword(model.NewPassword);
+                _repository.UpdateUser(user);
+                return true;
+            }
+            return false;
+        }
+        public static bool VerifyPassword(string storedPassword, string inputPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(inputPassword, storedPassword);
+        }
     }
 }
-
