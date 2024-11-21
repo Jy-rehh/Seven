@@ -30,5 +30,7 @@ namespace ASI.Basecode.Services.ServiceModels
         public string ConfirmPassword { get; set; }
         public string Preference { get; set; }
         public string DefaultCurrency {  get; set; }
+        public string Token { get; set; }
+        public DateTime? TokenExpiry { get; set; }
     }
 }

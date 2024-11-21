@@ -59,17 +59,15 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult ChangePassword(string oldPassword, string newPassword, string confirmPassword, string userId)
         {
-            // Validate the new password and confirm password
             if (newPassword != confirmPassword)
             {
                 ModelState.AddModelError("", "Passwords do not match.");
-                return View(); // Return the view with error
+                return View();
             }
 
-            // Create the ChangePasswordViewModel to pass to the service
             var changePasswordModel = new ChangePasswordViewModel
             {
-                UserId = userId,  // The UserId is passed from the form
+                UserId = userId,
                 OldPassword = oldPassword,
                 NewPassword = newPassword
             };

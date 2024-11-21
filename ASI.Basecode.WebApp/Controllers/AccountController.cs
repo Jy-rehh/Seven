@@ -2,6 +2,7 @@
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
 using ASI.Basecode.Services.ServiceModels;
+using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Authentication;
 using ASI.Basecode.WebApp.Models;
 using ASI.Basecode.WebApp.Mvc;
@@ -27,7 +28,7 @@ namespace ASI.Basecode.WebApp.Controllers
         private readonly TokenProviderOptionsFactory _tokenProviderOptionsFactory;
         private readonly IConfiguration _appConfiguration;
         private readonly IUserService _userService;
-
+        private readonly IEmailService _emailService;
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
@@ -47,6 +48,7 @@ namespace ASI.Basecode.WebApp.Controllers
                             IConfiguration configuration,
                             IMapper mapper,
                             IUserService userService,
+                            IEmailService emailService,
                             TokenValidationParametersFactory tokenValidationParametersFactory,
                             TokenProviderOptionsFactory tokenProviderOptionsFactory) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
@@ -56,6 +58,7 @@ namespace ASI.Basecode.WebApp.Controllers
             this._tokenValidationParametersFactory = tokenValidationParametersFactory;
             this._appConfiguration = configuration;
             this._userService = userService;
+            this._emailService = emailService;
         }
 
         /// <summary>
@@ -124,16 +127,16 @@ namespace ASI.Basecode.WebApp.Controllers
             try
             {
                 // Check if the email already exists
-                    if (_userService.CheckEmailExists(userModel.Email))
-                    {
-                        TempData["ErrorMessage"] = "This email is already in use.";
-                        return View();
-                    }
-                    if (_userService.CheckUsernameExists(userModel.UserId))
-                    {
-                        TempData["ErrorMessage"] = "This username is already in use.";
-                        return View();
-                    }
+                if (_userService.CheckEmailExists(userModel.Email))
+                {
+                    TempData["ErrorMessage"] = "This email is already in use.";
+                    return View();
+                }
+                if (_userService.CheckUsernameExists(userModel.UserId))
+                {
+                    TempData["ErrorMessage"] = "This username is already in use.";
+                    return View();
+                }
 
                 // Add the new user if the email is unique  
                 _userService.AddUser(userModel);
@@ -172,31 +175,110 @@ namespace ASI.Basecode.WebApp.Controllers
         [AllowAnonymous]
         public IActionResult ForgotPassword()
         {
-            return View();
+            var model = new ForgotPasswordViewModel();
+            return View(model);
         }
-        
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult LandingPage()
         {
             return View();
         }
+        // ForgotPassword POST method
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                TempData["ErrorMessage"] = "Email address is required.";
+                return View(model);
+            }
+
+            var resetToken = await _userService.SetPasswordResetTokenAsync(model.Email);
+            if (!resetToken)
+            {
+                TempData["ErrorMessage"] = "The provided email does not exist in our system.";
+                return View(model);
+            }
+
+            model.EmailIsSent = true; // Set flag if email was sent
+            TempData["SuccessMessage"] = "If the email exists, a reset link has been sent.";
             return View(model);
         }
+
+        // ResetPassword GET method
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword()
+        public IActionResult ResetPassword(string token)
         {
-            return View();
+            if (string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Invalid token.");
+            }
+
+            var user = _userService.GetUserByToken(token);
+            if (user == null || user.TokenExpiry < DateTime.UtcNow)
+            {
+                return BadRequest("Invalid or expired token.");
+            }
+
+            var model = new ResetPasswordViewModel
+            {
+                Email = user.Email,
+                Token = token
+            };
+
+            return View(model);
         }
+
+        // ResetPassword POST method
         [HttpPost]
-        public IActionResult ResetPassword(string email)
+        //public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+
+        //    var user = await _userService.GetUserByTokenAsync(model.Token);
+        //    if (user == null || user.TokenExpiry < DateTime.UtcNow)
+        //    {
+        //        TempData["ErrorMessage"] = "Invalid or expired reset token.";
+        //        return RedirectToAction("ForgotPassword");
+        //    }
+
+        //    user.Password = PasswordManager.EncryptPassword(model.Password);
+        //    user.Token = null;
+        //    user.TokenExpiry = null;
+        //    await _userService.UpdateUserPassword(user);
+
+        //    TempData["SuccessMessage"] = "Password reset successfully!";
+        //    return RedirectToAction("Login");
+        //}
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userService.GetUserByTokenAsync(model.Token);
+            if (user == null || user.TokenExpiry < DateTime.UtcNow)
+            {
+                TempData["ErrorMessage"] = "Invalid or expired reset token.";
+                return RedirectToAction("ForgotPassword");
+            }
+
+            user.Password = PasswordManager.EncryptPassword(model.Password);
+            user.Token = null;
+            user.TokenExpiry = null;
+            await _userService.UpdateUserPassword(user);
+
+            TempData["SuccessMessage"] = "Password reset successfully!";
+            return RedirectToAction("Login");
         }
+
     }
 }

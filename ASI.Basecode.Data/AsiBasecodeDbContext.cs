@@ -94,8 +94,11 @@ namespace ASI.Basecode.Data
                     .IsUnicode(false);
 
                 entity.Property(e => e.Preference)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TokenExpiry).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedBy)
                     .IsRequired()
