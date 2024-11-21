@@ -6,6 +6,7 @@ using ASI.Basecode.WebApp.Authentication;
 using ASI.Basecode.WebApp.Models;
 using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -155,8 +156,17 @@ namespace ASI.Basecode.WebApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> SignOutUser()
         {
-            await this._signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
+            HttpContext.Session.Clear(); // Clear any session data
+            await HttpContext.SignOutAsync(); // Ensure cookies are cleared
             return RedirectToAction("Login", "Account");
+        }
+        public IActionResult SomeAuthenticatedPage()
+        {
+            Response.Headers.Add("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+            Response.Headers.Add("Pragma", "no-cache");
+            Response.Headers.Add("Expires", "-1");
+            return View();
         }
         [HttpGet]
         [AllowAnonymous]
@@ -171,7 +181,22 @@ namespace ASI.Basecode.WebApp.Controllers
         {
             return View();
         }
-        
-        
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            return View(model);
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ResetPassword(string email)
+        {
+            return View();
+        }
     }
 }

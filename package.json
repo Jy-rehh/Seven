@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@highcharts/dashboards": "^3.0.0"
+  }
+}

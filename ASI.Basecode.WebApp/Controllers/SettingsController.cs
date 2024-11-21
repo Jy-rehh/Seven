@@ -37,47 +37,40 @@ namespace ASI.Basecode.WebApp.Controllers
 
             return View(userViewModel);
         }
+
         [HttpPost]
-        public IActionResult UpdateUserDetails([FromBody] UserViewModel model)
+        public IActionResult Edit(UserViewModel model)
         {
-            if (ModelState.IsValid)
+            var existingUser = _userService.GetUserByUserId(UserId);
+
+            if (existingUser != null)
             {
-                var user = _userService.GetUserByUserId(User.Identity.Name);
-                if (user != null)
-                {
-                    user.Name = model.Name;
-                    user.Email = model.Email;
-                    user.UserId = model.UserId;
-                    user.Preference = model.Preference;
+                existingUser.Name = model.Name;
+                existingUser.Email = model.Email;
+                existingUser.Preference = model.Preference;
 
-                    _userService.UpdateUser(user);
-
-                    return Json(new { success = true, message = "User details updated successfully." });
-                }
+                // Save the changes
+                _userService.UpdateUser(existingUser);
             }
-            return Json(new { success = false, message = "Invalid data." });
+
+            return RedirectToAction("Index");
         }
-
         [HttpPost]
-        public IActionResult ChangePassword([FromBody] ChangePasswordViewModel model)
+        public IActionResult ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = _userService.GetUserByUserId(User.Identity.Name);
-                if (user != null && user.Password == PasswordManager.EncryptPassword(model.OldPassword))
+                var isPasswordChanged = _userService.ChangePassword(model);
+                if (isPasswordChanged)
                 {
-                    if (model.NewPassword == model.ConfirmPassword)
-                    {
-                        user.Password = PasswordManager.EncryptPassword(model.NewPassword);
-                        _userService.UpdateUser(user);
-
-                        return Json(new { success = true, message = "Password changed successfully." });
-                    }
-                    return Json(new { success = false, message = "Passwords do not match." });
+                    TempData["SuccessMessage"] = "Password changed successfully.";
                 }
-                return Json(new { success = false, message = "Old password is incorrect." });
+                else
+                {
+                    TempData["ErrorMessage"] = "Failed to change password. Please check your old password.";
+                }
             }
-            return Json(new { success = false, message = "Invalid data." });
+            return RedirectToAction("Index");
         }
     }
 }
