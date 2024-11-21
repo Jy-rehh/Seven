@@ -5,23 +5,80 @@
     ViewData["Title"] = "Home Page";
 }
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Main Content Section -->
-<div class="header" style="margin-top: 80px; margin-left: 90px;">
-    <h1 style="color: #5A706C; font-weight:700; font-size:xx-large; color: #1A554F;">
-        My Expenses
-    </h1>
-</div>
-<div class="main-content" style="margin-top: 50px; background-color: #1A554F;">
-    <div class="container">
-        <div class="expenses">
-            <canvas id="expensesChart"></canvas>
+<body>
+    <div class="header" style="margin-top: 80px; margin-left: 90px;">
+        <h1 style="color: #5A706C; font-weight:700; font-size:xx-large; color: #1A554F;">
+            My Expenses
+        </h1>
+    </div>
+
+    <div>
+        <div class="totalExpense">
         </div>
-        <div class="expense">
-            <h2>Expenses</h2>
+        <div class="topCategory">
         </div>
     </div>
-</div>
+
+    <div class="main-content" style="margin-top: 50px; background-color: #1A554F;">
+        <div class="container">
+            <div class="expenses">
+                <div id="expensesChart" style="border-radius: 20px; height: 65vh;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 
-<script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script>
+        Highcharts.chart('expensesChart', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'My Expenses'
+            },
+            subtitle: {
+                text: 'Source: ' +
+                    '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+                    'target="_blank">expensave.com</a>'
+            },
+            xAxis: {
+                categories: [
+                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+                    'Oct', 'Nov', 'Dec'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'Expense Amount'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: 'Reggane',
+                data: [
+                    16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                    22.0, 17.8
+                ]
+            }, {
+                name: 'Tallinn',
+                data: [
+                    -2.9, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5,
+                    2.0, -0.9
+                ]
+            }]
+        });
+
+    </script>
+</body>
