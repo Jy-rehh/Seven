@@ -1,7 +1,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: black;
     margin: 0;
     padding: 0;
     height: auto;
@@ -9,11 +9,12 @@ body {
 }
 .container {
     align-items: center;   
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 10px;
     padding: 0 20px;
 }
+
 header {
     background-color: #f4f4f4;
     padding: 1rem 0;
@@ -22,6 +23,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 nav ul {
     list-style: none;
@@ -30,50 +32,98 @@ nav ul {
 nav ul li {
     margin-left: 20px;
 }
+
+nav ul li a:hover {
+    color: #1A554F; /* Change this to your desired hover color */
+}
+
 a {
     text-decoration: none;
     color: #333;
 }
 .hero {
-    background-color: #e9ecef;
-    padding: 4rem 0;
+    width: 100%;
+    /*background: linear-gradient(90deg, #1A554F, #548E87);*/
+    background: linear-gradient(135deg, #548E87 0%, #0f3443 100%);
+
     text-align: center;
+    margin-top: 100px;
+    padding: 180px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: #FFFFFF;
+}
+.hero p {
+    margin-top: 0;
     margin-bottom: 1rem;
+    color: #FFFFFF;
 }
 .btn {
     display: inline-block;
-    background: #333;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
+    background: #fff;
+    color: #1A554F;
+    margin-top: 20px;
+    padding: 0.5rem 2rem;
     cursor: pointer;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
+
+.btn:hover {
+    background: #1A554F; /* Dark green background */
+    color: #fff; /* White text */
+    box-shadow: 0 0 15px rgba(26, 85, 79, 0.5); /* Highlight the button */
+    transition: all 0.3s ease;
+    border: 1px solid #fff;
+}
+
+
 .btn-outline {
     background: transparent;
-    border: 1px solid #333;
-    color: #333;
+    border: 1px solid white;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
+
+.btn-outline:hover {
+    background: #1A554F; /* Dark green background */
+    color: #fff; /* White text */
+    box-shadow: 0 0 15px rgba(26, 85, 79, 0.5); /* Highlight the button */
+    transition: all 0.3s ease;
+    border: 1px solid #fff;
+}
+
 .features {
     padding: 4rem 0;
-    background-color: #f8f9fa;
 }
 .features h2, .how-it-works h2, .about h2 {
+    font-size: 2.5rem;
+    /*font-weight: bold;*/
     text-align: center;
     margin-bottom: 2rem;
 }
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
 }
 .feature-item {
     text-align: center;
     padding: 1rem;
+}
+.feature-icon {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+    color: #1A554F;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+;
 }
 .how-it-works {
     padding: 4rem 0;
@@ -87,25 +137,29 @@ a {
     text-align: center;
     flex-basis: 200px;
     margin: 1rem;
+    
 }
 .step-number {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: #333;
+    background-color: #1A554F;
+    padding: 30px;
     color: #fff;
     border-radius: 50%;
     text-align: center;
-    line-height: 30px;
-    margin-bottom: 0.5rem;
+    line-height: 25px;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 80px; /* Set width */
+    height: 80px; /* Set height */
 }
 .about {
     padding: 4rem 0;
-    background-color: #e9ecef;
+    text-align: center; /* Center-align the text */
 }
 footer {
-    background-color: #333;
-    color: #fff;
+    /*background-color: #333;*/
+    color: black;
     text-align: center;
     padding: 1rem 0;
 }
