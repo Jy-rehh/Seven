@@ -15,7 +15,9 @@
     <div class="row w-100 mx-auto align-items-center">
         <!-- Left Graphic Section -->
         <div class="col-lg-6 d-flex p-0">
-            <img style="height:600px; padding-left: 70px;"src="~/img/Track-Expenses.png" />
+            <a href="~/Account/LandingPage">
+                <img style="height:600px; padding-left: 70px;text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" src="~/img/Track-Expenses.png" />
+            </a>
         </div>
 
         <!-- Right Form Section -->
@@ -26,7 +28,7 @@
                     <p class="mb-3">Welcome to expense tracker!</p>
                     <hr class="text-muted mb-4">
 
-                    <form method="post" action="/Account/Register" id="loginForm">
+                    <form method="post" action="~/Account/Register" id="loginForm">
                         <div class="form-group mb-2">
                             <p class="mb-2">Name</p>
                             <input type="text" id="name" class="form-control rounded-pill p-3" asp-for="Name"/>

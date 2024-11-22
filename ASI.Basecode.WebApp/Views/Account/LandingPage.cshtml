@@ -11,19 +11,22 @@
         @Html.AntiForgeryToken()
     </div>
 <body>
-        <header>
-            <nav class="container">
-                <div class="logosec hover-pointer" style="display: flex; justify-content: center; align-items: center;">
-                    <img src="~/img/expenSave-logo.png"
-                         style="width: 200px; display: block;" alt="logo">
-                </div>
-                <ul class="pt-lg-3">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            </nav>
-        </header>
+<header>
+    <nav class="container">
+        <div class="logosec hover-pointer" style="display: flex; justify-content: center; align-items: center;">
+            <a href="~/Account/LandingPage">
+                <img src="~/img/expenSave-logo.png"
+                     style="width: 200px; display: block;" alt="logo">
+            </a>
+            
+        </div>
+        <ul class="pt-lg-3">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+</header>
 
         <main>
             <section class="hero">
@@ -38,8 +41,8 @@
                              alt="ExpenSave Logo">
                     </h1>
                     <p>Track, analyze, and optimize your spending with our powerful expense management system.</p>
-                    <a href="Account/Register" class="btn mr-2">Sign Up</a>
-                    <a href="Account/Login" class="btn btn-outline ml-2">Sign In</a>
+                    <a href="~/Account/Register" class="btn mr-2">Sign Up</a>
+                    <a href="~/Account/Login" class="btn btn-outline ml-2">Sign In</a>
                 </div>
             </section>
 
