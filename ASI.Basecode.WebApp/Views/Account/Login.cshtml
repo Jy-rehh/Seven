@@ -64,25 +64,30 @@
     </div>
 
     @section scripts {
-        <script>
-            const togglePassword = document.querySelector("#togglePassword");
-            const password = document.querySelector("#password");
-            const eyeIcon = document.querySelector("#eyeIcon");
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+        const eyeIcon = document.querySelector("#eyeIcon");
 
-            togglePassword.addEventListener("click", function () {
-                // Toggle the password field type
-                const type = password.getAttribute("type") === "password" ? "text" : "password";
-                password.setAttribute("type", type);
+        togglePassword.addEventListener("click", function () {
+            // Toggle the password field type
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
 
-                // Toggle the eye icon
-                eyeIcon.classList.toggle("fa-eye");
-                eyeIcon.classList.toggle("fa-eye-slash");
-            });
-            // Check for error message and display Toastr notification
-            var errorMessage = '@TempData["ErrorMessage"]';
-            if (errorMessage) {
-                toastr.error(errorMessage);
-            }
-        
-        </script>
-    }
+            // Toggle the eye icon
+            eyeIcon.classList.toggle("fa-eye");
+            eyeIcon.classList.toggle("fa-eye-slash");
+        });
+        // Check for error message and display Toastr notification
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage) {
+            toastr.error(errorMessage);
+        }
+        // Check for success message and display Toastr notification
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            toastr.success(successMessage);
+        }
+
+    </script>
+}

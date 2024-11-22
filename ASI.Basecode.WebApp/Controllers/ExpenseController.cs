@@ -83,6 +83,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Create(ExpenseViewModel model)
         {
+            TempData["SuccessMessage"] = "Expense added successfully.";
             _expensesService.AddExpenses(model, UserId);
             return RedirectToAction("Index");
         }
@@ -90,6 +91,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Edit(ExpenseViewModel model)
         {
+            TempData["SuccessMessage"] = "Expense updated successfully.";
             _expensesService.UpdateExpenses(model, UserId);
             return RedirectToAction("Index");
         }
@@ -97,6 +99,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult PostDelete(int ExpenseId)
         {
+            TempData["SuccessMessage"] = "Expense deleted successfully.";
             _expensesService.DeleteExpenses(ExpenseId);
             return RedirectToAction("Index");
         }
