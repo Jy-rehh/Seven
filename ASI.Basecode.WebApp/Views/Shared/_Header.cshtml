@@ -1,5 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    // Get the user's name from the session.
+    string userName = HttpContextAccessor.HttpContext.Session.GetString("UserName") ?? "";
+
+    // Extract initials from the user's name.
+    string initials = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var nameParts = userName.Split(' ');
+        foreach (var part in nameParts)
+        {
+            if (!string.IsNullOrEmpty(part) && char.IsLetter(part[0]))
+            {
+                initials += part[0];
+            }
+        }
+    }
+}
+
 <header class="@((ViewBag.LoginView == true) ? "hide-navbar" : "")">
     <div class="logosec hover-pointer" style="display: flex; justify-content: center; align-items: center;">
         <img src="~/img/expenSave-logo.png"
@@ -7,12 +27,17 @@
              onclick="window.location.href = '@Url.Action("Index", "Home")';">
     </div>
     <div class="logosec">
-        @HttpContextAccessor.HttpContext.Session.GetString("UserName")
+        @userName
         <div class="mr-20 hover-pointer" style="position: relative">
-            <div class="dp">
-                <img src="~/img/profile-logo.png"
-                     class="dpicn hover-pointer"
-                     alt="dp">
+            <div class="dp" style="display: flex; justify-content: center; align-items: center; background-color: #1A554F; color: #FFFFFF; width: 50px; height: 50px; border-radius: 50%;">
+                @if (!string.IsNullOrEmpty(initials))
+                {
+                    <span>@initials</span> <!-- Display user's initials -->
+                }
+                else
+                {
+                    <img src="~/img/profile-logo.png" class="dpicn hover-pointer" alt="dp">
+                }
             </div>
             <div class="dropdown">
                 <ul>
@@ -21,8 +46,8 @@
                         <a href="@Url.Action("Index", "Settings")">Profile</a>
                     </li>
                     @* <li>
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <a asp-action="SignOutUser" asp-controller="Account">Logout</a>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a asp-action="SignOutUser" asp-controller="Account">Logout</a>
                     </li> *@
                 </ul>
             </div>
