@@ -11,11 +11,10 @@
 }
 <body>
     <div class="report-header2" style="gap: 10px; margin-top: 5%;">
-        <select class="header-btn" data-toggle="modal" data-target="#reportModal" style="border-radius: 20px; font-weight: bold; width: 130px;">
-            <option value="" enable selected>Report</option>
-            <option value="" enable selected>Expense</option>
-            <option value="" enable selected>Category</option>
-            
+        <select class="header-btn" id="reportType" style="border-radius: 20px; font-weight: bold; width: 130px;">
+            <option value="" disabled selected>Report</option>
+            <option value="Expense">Expense</option>
+            <option value="Category">Category</option>
         </select>
         <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()" style="outline: none;">Preview</button>
         <input type="date" class="header-input" id="dateStart" placeholder="Date Start" style="margin-left: 30%; width:fit-content; outline: none;" />
@@ -75,6 +74,27 @@
                 </tr>
             </tfoot>
         </table>
+        <table class="table" id="categoryTable" style="display: none;">
+            <thead>
+                <tr style="background-color: #1A554F; color: #FFFFFF;">
+                    <th>Category Name</th>
+                    <th>Usage</th>
+                    <th>Date Created</th>
+                    <th>Date Updated</th>
+                </tr>
+            </thead>
+            <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
+                @foreach (var category in Model.CategoryViewModel)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.TotalAmount</td>
+                        <td>@category.DateCreated</td>
+                        <td>@category.DateUpdated</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
     <!-- Modal Structure -->
@@ -107,6 +127,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.getElementById('reportType').addEventListener('change', function () {
+                const selectedValue = this.value;
+                const reportTable = document.getElementById('reportTable');
+                const categoryTable = document.getElementById('categoryTable');
+
+                if (selectedValue === 'Expense') {
+                    reportTable.style.display = 'table';
+                    categoryTable.style.display = 'none';
+                } else if (selectedValue === 'Category') {
+                    reportTable.style.display = 'none';
+                    categoryTable.style.display = 'table';
+                } else {
+                    reportTable.style.display = 'none';
+                    categoryTable.style.display = 'none';
+                }
+            });
+        </script>
 
         <script>
             function loadPreviewContent() {
