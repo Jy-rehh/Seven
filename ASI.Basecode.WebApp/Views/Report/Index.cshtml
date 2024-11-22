@@ -10,21 +10,12 @@
     ViewData["Title"] = "Report";
 }
 <body>
-
-    <div class="report-header">
-        <h1 style="margin-top: 20px;">MY EXPENSE SUMMARY</h1>
-    </div>
-
-    <div class="report-header2" style="gap: 10px;">
+    <div class="report-header2" style="gap: 10px; margin-top: 5%;">
         <select class="header-btn" data-toggle="modal" data-target="#reportModal" style="border-radius: 20px; font-weight: bold; width: 130px;">
             <option value="" enable selected>Report</option>
-            @if (Model.CategoryViewModel != null && Model.CategoryViewModel.Any())
-            {
-                foreach (var category in Model.CategoryViewModel)
-                {
-                    <option value="@category.CategoryId">@category.Name</option>
-                }
-            }
+            <option value="" enable selected>Expense</option>
+            <option value="" enable selected>Category</option>
+            
         </select>
         <button class="header-btn" data-toggle="modal" data-target="#previewModal" onclick="loadPreviewContent()" style="outline: none;">Preview</button>
         <input type="date" class="header-input" id="dateStart" placeholder="Date Start" style="margin-left: 30%; width:fit-content; outline: none;" />
@@ -49,15 +40,15 @@
             <option value="dateDesc">Date (Newest First)</option>
         </select>
     </div>
-    <div class="main-content" style="margin-top: 0px; color: #000000; border-radius: 20px 20px 0px 0px; background-color: #FFFFFF;">
+    <div class="main-content" style="margin-top: 10px; color: #000000; border-radius: 20px">
         <table class="table" id="reportTable">
             <thead>
                 <tr style="background-color: #1A554F; color: #FFFFFF;">
                     <th>Name</th>
                     <th>Category</th>
-                    <th>Amount</th>
-                    <th>Expense Date</th>
                     <th>Description</th>
+                    <th>Expense Date</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
             <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
@@ -70,13 +61,19 @@
                         class="expense-row">
 
                         <td>@item.Title</td>
-                        <td>@item.CategoryName</td> <!-- Category Name based on CategoryId -->
-                        <td>@item.Amount</td>
-                        <td>@item.DateCreated</td>
+                        <td>@item.CategoryName</td>
                         <td>@item.Description</td>
+                        <td>@item.DateCreated</td>
+                        <td>@item.Amount</td>
                     </tr>
                 }
             </tbody>
+            <tfoot style="background-color: #f8f9fa; font-weight: bold;">
+                <tr>
+                    <td colspan="4" style="text-align: right;">Total Amount:</td>
+                    <td id="totalAmount">0</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -92,7 +89,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="main-content-preview">
-                        <!-- Content will be cloned here by JavaScript -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,7 +101,7 @@
 
     <div id="paginationControls" class="d-flex justify-content-end mt-3"></div>
 
-    <!-- Include jsPDF and html2canvas Libraries -->
+
     @section Scripts {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -124,125 +120,28 @@
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF();
 
-                // Capture the content of the modal's body
                 const content = document.querySelector('.main-content-preview');
 
-                // Use html2canvas to convert the content to an image
                 await html2canvas(content, {
                     scale: 2
                 }).then((canvas) => {
                     const imgData = canvas.toDataURL('image/png');
-                    const imgWidth = 190; // PDF width in mm
+                    const imgWidth = 190; 
                     const pageHeight = pdf.internal.pageSize.height;
                     const imgHeight = canvas.height * imgWidth / canvas.width;
 
-                    // Add the image to the PDF
                     pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
 
-                    // Add date and time to the footer
                     const currentDate = new Date();
                     const footerText = `Generated on: ${currentDate.toLocaleString()}`;
                     pdf.setFontSize(10);
                     pdf.text(footerText, 10, pageHeight - 10);
 
-                    // Save the PDF
                     pdf.save('Expense Summary.pdf');
                 });
             }
         </script>
 
-        <script>
-            $(document).ready(function () {
-                const rowsPerPage = 7; // Number of rows per page
-                const rows = $('#reportTable tbody tr'); // All rows in the table
-                const totalRows = rows.length; // Total number of rows
-                const totalPages = Math.ceil(totalRows / rowsPerPage); // Total pages
-
-                // Function to display rows for a specific page
-                function displayPage(page) {
-                    rows.hide(); // Hide all rows
-                    const start = (page - 1) * rowsPerPage; // Start index
-                    const end = start + rowsPerPage; // End index
-                    rows.slice(start, end).show(); // Show only the rows for the current page
-                    updatePaginationButtons(page); // Update pagination buttons
-                }
-
-                // Function to generate and update pagination buttons
-                function updatePaginationButtons(currentPage) {
-                    const paginationContainer = $('.page-numbers'); // Ensure selector matches your pagination buttons container
-                    paginationContainer.empty(); // Clear existing buttons
-
-                    // Generate page buttons dynamically
-                    for (let i = 1; i <= totalPages; i++) {
-                        const activeClass = i === currentPage ? 'btn-green' : 'btn-rounded-outline-gray';
-                        paginationContainer.append(
-                            `<button class="btn ${activeClass}" onclick="displayPage(${i})">${i}</button>`
-                        );
-                    }
-
-                    // Enable or disable Previous and Next buttons
-                    $('.btn-rounded-outline-gray[data-action="prev"]').prop('disabled', currentPage === 1);
-                    $('.btn-rounded-outline-gray[data-action="next"]').prop('disabled', currentPage === totalPages);
-                }
-
-                function loadPreviewContent() {
-                    const mainContent = document.querySelector('.main-content');
-                    const modalContent = document.querySelector('.main-content-preview');
-                    modalContent.innerHTML = '';
-                    modalContent.appendChild(mainContent.cloneNode(true)); // Deep clone
-                }
-                // Handle Previous button click
-                $('.btn-rounded-outline-gray[data-action="prev"]').on('click', function () {
-                    const currentPage = parseInt($('.btn-green').text(), 10);
-                    if (currentPage > 1) {
-                        displayPage(currentPage - 1);
-                    }
-                });
-
-                // Handle Next button click
-                $('.btn-rounded-outline-gray[data-action="next"]').on('click', function () {
-                    const currentPage = parseInt($('.btn-green').text(), 10);
-                    if (currentPage < totalPages) {
-                        displayPage(currentPage + 1);
-                    }
-                });
-
-                // Initialize the first page
-                displayPage(1);
-            });
-
-            // Expose displayPage globally (needed for dynamically created buttons)
-            window.displayPage = function (page) {
-                const rowsPerPage = 4;
-                const rows = $('#reportTable tbody tr');
-                const totalRows = rows.length;
-                const totalPages = Math.ceil(totalRows / rowsPerPage);
-
-                rows.hide();
-                const start = (page - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-                rows.slice(start, end).show();
-
-                const paginationContainer = $('.page-numbers');
-                paginationContainer.empty();
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const activeClass = i === page ? 'btn-green' : 'btn-rounded-outline-gray';
-                    paginationContainer.append(
-                        `<button class="btn ${activeClass}" onclick="displayPage(${i})">${i}</button>`
-                    );
-                }
-                if (rows.length === 0) {
-                    console.warn("No rows available for pagination.");
-                    return;
-                }
-
-                $('.btn-rounded-outline-gray[data-action="prev"]').prop('disabled', page === 1);
-                $('.btn-rounded-outline-gray[data-action="next"]').prop('disabled', page === totalPages);
-            };
-        </script>
-
-        //Filter & Sort
         <script>
             $(document).ready(function () {
                 // Filter by Category
@@ -284,25 +183,144 @@
                                 valB = parseFloat($(b).data('amount'));
                                 return valB - valA;
                             case 'dateAsc':
-                                valA = new Date($(a).data('date'));
-                                valB = new Date($(b).data('date'));
+                                valA = parseDate($(a).data('date'));
+                                valB = parseDate($(b).data('date'));
                                 return valA - valB;
                             case 'dateDesc':
-                                valA = new Date($(a).data('date'));
-                                valB = new Date($(b).data('date'));
+                                valA = parseDate($(a).data('date'));
+                                valB = parseDate($(b).data('date'));
                                 return valB - valA;
                             default:
                                 return 0;
                         }
                     });
 
-                    // Append sorted rows back to the table
+                    function parseDate(dateStr) {
+                        var parts = dateStr.split('/');
+                        var day = parseInt(parts[0], 10);
+                        var month = parseInt(parts[1], 10) - 1;
+                        var year = parseInt(parts[2], 10);
+                        return new Date(year, month, day);
+                    }
+
                     $.each(rows, function (index, row) {
-                        $('#expenseTable tbody').append(row);
+                        $('#reportTable tbody').append(row);
                     });
                 });
             });
         </script>
-    }
 
+        <script>
+            $(document).ready(function () {
+                function calculateTotalAmount() {
+                    let total = 0;
+                    $('#reportTable tbody tr').each(function () {
+                        const amount = parseFloat($(this).data('amount')) || 0;
+                        total += amount;
+                    });
+                    $('#totalAmount').text(total.toFixed(2)); 
+                }
+
+                function displayPage(page) {
+                    const rowsPerPage = 7; 
+                    const rows = $('#reportTable tbody tr'); 
+                    rows.hide(); 
+                    const start = (page - 1) * rowsPerPage; 
+                    const end = start + rowsPerPage; 
+                    rows.slice(start, end).show(); 
+                    generatePaginationButtons(page); 
+                }
+
+                function generatePaginationButtons(currentPage) {
+                    const rowsPerPage = 7; 
+                    const rows = $('#reportTable tbody tr');
+                    const totalRows = rows.length; 
+                    const totalPages = Math.ceil(totalRows / rowsPerPage); 
+
+                    const paginationControls = $('#paginationControls');
+                    paginationControls.empty(); 
+
+                    // Previous Button
+                    const prevDisabled = currentPage === 1 ? 'disabled' : '';
+                    paginationControls.append(
+                        `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage - 1}" ${prevDisabled}>Previous</button>`
+                    );
+
+                    // Page Numbers
+                    for (let i = 1; i <= totalPages; i++) {
+                        const activeClass = i === currentPage ? 'active' : '';
+                        paginationControls.append(
+                            `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`
+                        );
+                    }
+
+                    // Next Button
+                    const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+                    paginationControls.append(
+                        `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`
+                    );
+                }
+
+                // Handle pagination button clicks
+                $('#paginationControls').on('click', '.pagination-btn', function () {
+                    const page = parseInt($(this).data('page'), 10);
+                    if (!isNaN(page)) {
+                        displayPage(page);
+                    }
+                });
+
+                // Calculate total on page load
+                calculateTotalAmount();
+
+                $('#Sort, #Filter, #dateStart, #dateEnd').on('change', function () {
+                    calculateTotalAmount();
+                });
+                displayPage(1);
+            });
+
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#dateStart, #dateEnd').on('change', function () {
+                    var dateStart = $('#dateStart').val() ? parseISODate($('#dateStart').val()) : null;
+                    var dateEnd = $('#dateEnd').val() ? parseISODate($('#dateEnd').val()) : null;
+
+                    var hasData = false;
+
+                    $('#reportTable tbody tr').each(function () {
+                        var dateStr = $(this).data('date');
+                        var expenseDate = parseDate(dateStr); 
+
+                        if ((!dateStart || expenseDate >= dateStart) && (!dateEnd || expenseDate <= dateEnd)) {
+                            $(this).show(); 
+                            hasData = true;
+                        } else {
+                            $(this).hide(); 
+                        }
+                    });
+
+                    if (!hasData) {
+                        alert("No data available for the selected date range.");
+                    }
+                });
+
+                function parseDate(dateStr) {
+                    var parts = dateStr.split('/');
+                    var day = parseInt(parts[0], 10);
+                    var month = parseInt(parts[1], 10) - 1;
+                    var year = parseInt(parts[2], 10);
+                    return new Date(year, month, day);
+                }
+
+                function parseISODate(dateStr) {
+                    var parts = dateStr.split('-');
+                    var year = parseInt(parts[0], 10);
+                    var month = parseInt(parts[1], 10) - 1; 
+                    var day = parseInt(parts[2], 10);
+                    return new Date(year, month, day);
+                }
+            });
+        </script>
+    }
 </body>
