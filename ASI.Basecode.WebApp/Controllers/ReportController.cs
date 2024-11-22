@@ -12,18 +12,15 @@ namespace ASI.Basecode.WebApp.Controllers
 {
     public class ReportController : ControllerBase<ReportController>
     {
-        private readonly IReportService _reportService;
         private readonly IExpenseService _expenseService;
 
         public ReportController(
             IHttpContextAccessor httpContextAccessor, 
             ILoggerFactory loggerFactory, 
             IConfiguration configuration,
-            IReportService reportService,
             IExpenseService expenseService,
             IMapper mapper = null) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
-            _reportService = reportService;
             _expenseService = expenseService;
         }
 

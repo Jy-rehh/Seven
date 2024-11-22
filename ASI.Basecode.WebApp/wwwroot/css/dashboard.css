@@ -77,14 +77,15 @@ h1 {
     font-size: x-large;
     font-weight: bold;
     color: #FFFFFF;
-
 }
+
 h2 {
     font-family: "Poppins", sans-serif;
     font-size: x-large;
     font-weight: bold;
     color: #1A554F;
 }
+
 .main-content {
     border-radius: 10px;
     margin-top: 50px; /* Create space for the fixed header */
@@ -97,6 +98,7 @@ h2 {
     align-items: center;
     overflow: hidden;
 }
+
 .dashboard {
     border-radius: 10px;
     margin-top: 50px; /* Create space for the fixed header */
@@ -118,17 +120,17 @@ h2 {
     margin-bottom: 50px;
 }
 
-.expenses, .categories {
-    width: 60%; /* Adjust as needed */
+.expenses {
+    width: 100%; /* Adjust as needed */
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 10px;
 }
-.expense, .category {
-    width: 450px; /* Adjust as needed */
-    height: 310px; /* Adjust height for better visibility */
+
+.expense {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust height for better visibility */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,11 +138,10 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 50px;
 }
 
 
-.nav-upper {
+.nav-upper, .report-header2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -155,6 +156,7 @@ h2 {
         color: #FFFFFF;
         border-radius: 20px;
     }
+
 
 .btn-secondary {
     background-color: #1A554F;
@@ -191,7 +193,9 @@ h2 {
     color: #FFFFFF;
     margin-left: 950px;
     padding: 5px;
+    font-weight: bold;
 }
+
 .sort .sort-control {
     align-content: center;
     width: 100px;
@@ -200,6 +204,11 @@ h2 {
     border-color: #1A554F;
     color: #FFFFFF;
     padding: 5px;
+    font-weight: bold;
+}
+
+.filter-control:hover, .sort-control:hover {
+    background-color: #548E87;
 }
 
 .table {
@@ -219,7 +228,8 @@ h2 {
     }
 
 .report-header {
-    margin-top: 30px;
+    border: none;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: start; /* Aligns content to the start (left) */
@@ -233,10 +243,10 @@ h2 {
 
 .report-btn {
     display: inline-block;
-    margin-top: 10px; /* Adds space between h1 and button */
+    margin-top: 20px; /* Adds space between h1 and button */
     margin-left: 55px;
     margin-bottom: 20px;
-    padding: 10px 20px;
+    padding: 8px 15px;
     font-size: 1em;
     color: #ffff; /* White text color */
     background-color: #1A554F; /* Blue background color */
@@ -253,34 +263,36 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: start;
-    background-color: #1A554F; /* Background color */
     padding: 10px;
     border-radius: 10px 10px 0px 0px;
-    margin-top: 100px;
-    margin-left: 75px;
+    margin-top: 20px;
+    margin-left: 65px;
 }
 
 .header-btn {
-    background-color: #ffffff;
-    color: #1A554F;
+    background-color: #1A554F;
+    color: #ffffff;
     border: none;
     padding: 8px 15px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
 }
 
     .header-btn:hover {
         background-color: #548E87;
+        color: #FFFFFF;
+        transition: background-color 0.3s ease;
     }
 
 .header-input {
-    padding: 8px;
+    background-color: #1A554F;
+    color: #FFFFFF;
+    padding: 8px 15px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 1px solid #ddd;
-    width: 120px;
     font-size: 1em;
 }
 
@@ -294,15 +306,14 @@ h2 {
 .main-content-change-pass {
     border-radius: 15px;
     margin-top: 60px; /* Create space for the fixed header */
-    margin-left:80px;
-    width: 1350px; /x* Set the width to 1021px */
-    height: 100%; /* Set the height to 826px */
+    margin-left: 80px;
+    width: 1350px;
+    /x* Set the width to 1021px */ height: 100%; /* Set the height to 826px */
     padding-left: 40px;
     background-color: white;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-
 }
 
 .settings-container {
@@ -327,12 +338,12 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
 
 .form-input {
     width: 100%;
@@ -342,11 +353,13 @@ h2 {
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-.form-input:focus {
-    border-color: #1A554F;
-    box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
-    outline: none;
-}
+
+    .form-input:focus {
+        border-color: #1A554F;
+        box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+        outline: none;
+    }
+
 .form-select {
     width: 100%;
     padding: 0.75rem;
@@ -355,11 +368,13 @@ h2 {
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-.form-select:focus {
-    border-color: #1A554F;
-    box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
-    outline: none;
-}
+
+    .form-select:focus {
+        border-color: #1A554F;
+        box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+        outline: none;
+    }
+
 .password-input-container {
     position: relative;
 }
@@ -402,10 +417,10 @@ h2 {
 }
 
 
-.forgot-password:hover {
-    text-decoration: underline;
-    color: #1A554F;
-}
+    .forgot-password:hover {
+        text-decoration: underline;
+        color: #1A554F;
+    }
 
 .sr-only {
     position: absolute;

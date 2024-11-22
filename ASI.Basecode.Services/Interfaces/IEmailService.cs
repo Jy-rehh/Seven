@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ASI.Basecode.Services.Interfaces;
-using ASI.Basecode.Services.Services;
 
 namespace ASI.Basecode.Services.Interfaces
 {
-    public interface IReportService
+    public interface IEmailService
     {
+        Task SendEmailAsync(string toEmail, string subject, string body);
     }
 }

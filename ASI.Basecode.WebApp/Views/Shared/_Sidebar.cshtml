@@ -29,14 +29,125 @@
             </button>
 
             <!-- Logout button positioned at the bottom -->
-            <div class="logout-container">
-                <form asp-action="SignOutUser" asp-controller="Account" method="post" style="cursor: pointer; justify-content: center;">
-                    <button type="submit" class="menu-btn logout-btn" aria-label="Logout" style="cursor: pointer;">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>Logout</span>
-                    </button>
-                </form>
+            <div class="logout-container" onclick="openModal()" style="cursor: pointer;">
+                <button class="menu-btn logout-btn" aria-label="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="logout-modal">
+    <div class="logout-modal-content">
+        <h2>Are you sure you want to log out?</h2>
+        <div class="logout-modal-buttons">
+            <button onclick="window.location.href='/Account/SignOutUser';" class="logout-confirm-btn">Yes</button>
+            <button onclick="closeModal()" class="logout-cancel-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get modal element
+    var modal = document.getElementById("logoutModal");
+
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Close the modal if the user clicks outside the modal
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    };
+</script>
+
+<style>
+    /* Modal Background (darkened screen effect) */
+    .logout-modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000; /* Ensure it's on top */
+        top: 0;
+        left: 0;
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
+        background-color: rgba(0, 0, 0, 0.6); /* Darken the screen */
+    }
+
+    /* Modal Content */
+    .logout-modal-content {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #888;
+        width: 400px; /* Fixed width for the modal */
+        text-align: center;
+        border-radius: 8px; /* Rounded corners */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the modal */
+    }
+
+    /* Header */
+    .logout-modal h2 {
+        background-color: #1A554F; /* Custom Header Color */
+        color: white;
+        padding: 15px;
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.3;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        width: 100%;
+    }
+
+    /* Modal Buttons */
+    .logout-modal-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px; /* Adjusted margin for proper spacing */
+    }
+
+    .logout-confirm-btn,
+    .logout-cancel-btn {
+        padding: 10px 20px; /* Equal padding for both buttons */
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        border-radius: 25px; /* Fully rounded buttons */
+        width: 100px; /* Fixed width for consistent button sizes */
+    }
+
+    .logout-confirm-btn {
+        background-color: #15403c; /* Custom color for 'Yes' */
+        color: white;
+    }
+
+    .logout-cancel-btn {
+        background-color: #f06a6a; /* Custom color for 'Cancel' */
+        color: white;
+    }
+
+    .logout-confirm-btn:hover {
+        background-color: #1A554F;
+        
+    }
+
+    .logout-cancel-btn:hover {
+        background-color: #FF7F7F;
+        
+    }
+</style>
+
