@@ -11,10 +11,17 @@ namespace ASI.Basecode.Services.ServiceModels
     {
         public int ExpenseId { get; set; }
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string UserId { get; set; }
         public string Title { get; set; }
         public float Amount { get; set; }
         public DateTime DateCreated { get; set; }
         public string Description { get; set; }
+        public bool Status { get; set; }
+    }
+    public class ExpenseDataModel
+    {
+        public IEnumerable<ExpenseViewModel> ExpenseViewModel { get; set; }
+        public IEnumerable<CategoryViewModel> CategoryViewModel { get; set; }
     }
 }

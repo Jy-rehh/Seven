@@ -1,10 +1,10 @@
 .sidebar {
     position: fixed;
     left: 0;
-    top: 70px; /* Start the sidebar below the header */
+    top: 70px;
     width: 250px;
-    height: calc(100% - 70px); /* Adjust height to fill the space below the header */
-    overflow-y: auto;
+    height: calc(100% - 70px);
+
 }
 
 .sidebar_menu {
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px; /* Space between buttons */
+    gap: 25px;
 }
 
 .menu-btn {
@@ -24,22 +24,22 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 5px; /* Space between icon and text */
-    padding: 5px 0; /* Optional padding */
-    width: 100%; /* Ensures button width matches sidebar width */
-    outline: none; /* Removes the outline on click/focus */
+    gap: 5px;
+    padding: 5px 0;
+    width: 100%; 
+    outline: none; 
 }
 
     .menu-btn:focus {
-        outline: none; /* Ensures no outline on focus as well */
+        outline: none; 
     }
 
     .menu-btn i {
-        font-size: 1.5em; /* Icon size */
+        font-size: 1.5em; 
     }
 
     .menu-btn span {
-        font-size: 1em; /* Text size */
+        font-size: 1em; 
     }
 
     .menu-btn:hover {
@@ -49,9 +49,10 @@
     }
 
 .logout-btn {
-    margin-top: 200px; /* Pushes it to the bottom of the sidebar */
+    margin-top: 180px; 
     background-color: transparent;
     border: none;
+    outline: none;
     color: #1A554F;
     font-weight: bold;
     display: flex;
@@ -64,8 +65,8 @@
 }
 
     .logout-btn:hover {
-        background-color: #D9D9D9;
-        transition: background-color 0.1s ease;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
         cursor: pointer;
     }
 
@@ -77,31 +78,33 @@ h1 {
     font-size: x-large;
     font-weight: bold;
     color: #FFFFFF;
-
 }
+
 h2 {
     font-family: "Poppins", sans-serif;
     font-size: x-large;
     font-weight: bold;
     color: #1A554F;
 }
+
 .main-content {
     border-radius: 10px;
-    margin-top: 50px; /* Create space for the fixed header */
+    margin-top: 50px; 
     margin-left: 75px;
-    width: 1350px; /* Set the width to 1021px */
-    height: 100%; /* Set the height to 826px */
-    background-color: #5A706C;
+    width: 1350px; 
+    height: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(26, 85, 79);
 }
 .dashboard {
     border-radius: 10px;
-    margin-top: 50px; /* Create space for the fixed header */
+    margin-top: 50px; 
     margin-left: 75px;
-    width: 1350px; /* Set the width to 1021px */
-    height: 100%; /* Set the height to 826px */
+    width: 1350px; 
+    height: 100%; 
     background-color: #5A706C;
     display: flex;
     flex-direction: column;
@@ -117,17 +120,17 @@ h2 {
     margin-bottom: 50px;
 }
 
-.expenses, .categories {
-    width: 60%; /* Adjust as needed */
+.expenses {
+    width: 100%; 
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 10px;
 }
-.expense, .category {
-    width: 450px; /* Adjust as needed */
-    height: 310px; /* Adjust height for better visibility */
+
+.expense {
+    width: 100%; 
+    height: 100%; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,10 +138,10 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-left: 50px;
 }
 
-.nav-upper {
+
+.nav-upper, .report-header2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,13 +149,13 @@ h2 {
     margin-left: 80px;
 }
 
-    /* Button styling */
     .nav-upper .btn-primary {
         background-color: #1A554F;
         border-color: #1A554F;
         color: #FFFFFF;
         border-radius: 20px;
     }
+
 
 .btn-secondary {
     background-color: #1A554F;
@@ -161,18 +164,22 @@ h2 {
     border-radius: 20px;
 }
 
-/* Modal adjustments */
-.modal-content {
-    border-radius: 10px;
-}
-
 .modal-header {
     background-color: #1A554F;
     color: #FFFFFF;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.modal-content {
+    border-radius: 25px;
 }
 
 .modal-body {
     padding: 30px;
+}
+
+.form-group .form-control {
+    background-color: #FFFFFF;
 }
 
 .filter .filter-control {
@@ -184,7 +191,9 @@ h2 {
     color: #FFFFFF;
     margin-left: 950px;
     padding: 5px;
+    font-weight: bold;
 }
+
 .sort .sort-control {
     align-content: center;
     width: 100px;
@@ -193,17 +202,314 @@ h2 {
     border-color: #1A554F;
     color: #FFFFFF;
     padding: 5px;
+    font-weight: bold;
+}
+
+.filter-control:hover, .sort-control:hover {
+    background-color: #548E87;
 }
 
 .table {
     text-align: center;
     margin: 0 auto;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
 }
 
-.tbody, .table th {
-    padding: 20px;
+    .tbody, .table th {
+        padding: 20px;
+    }
+
+    .table td {
+        text-align: center;
+        vertical-align: middle; 
+        padding: 14.9px;
+    }
+
+
+.report-btn {
+    display: inline-block;
+    margin-top: 20px; 
+    margin-left: 55px;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: #1A554F; 
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.table td {
-    padding: 15px;
+    .report-btn:hover {
+        background-color: #548E87; 
+    }
+
+.report-header2 {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.header-btn {
+    background-color: #1A554F;
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .header-btn:hover {
+        background-color: #548E87;
+        color: #FFFFFF;
+        transition: background-color 0.3s ease;
+    }
+
+.header-input {
+    background-color: #1A554F;
+    color: #FFFFFF;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+.dropdown-toggle::after {
+    margin-left: 5px;
+    color: #1A554F;
+}
+
+.main-content-change-pass {
+    border-radius: 15px;
+    margin-top: 60px; 
+    margin-left: 80px;
+    width: 1350px;
+    /x* Set the width to 1021px */ height: 100%; 
+    padding-left: 40px;
+    background-color: white;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.settings-container {
+    padding: 10px;
+    max-width: 1200px;
+}
+
+.settings-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.settings-content {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+.form-input {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+    .form-input:focus {
+        border-color: #1A554F;
+        box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+        outline: none;
+    }
+
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+    .form-select:focus {
+        border-color: #1A554F;
+        box-shadow: 0 0 5px rgba(26, 85, 79, 0.5);
+        outline: none;
+    }
+
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.save-btn,
+.change-password-btn {
+    background-color: #1A554F;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.password-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+    .save-btn:hover, .change-password-btn:hover {
+        background-color: #548E87;
+        color: #FFFFFF;
+        transition: background-color 0.3s ease;
+    }
+
+.forgot-password {
+    text-align: right;
+    color: #6c757d; 
+    font-size: 0.875rem; 
+    margin-top: 5px;
+    display: block;
+}
+
+
+    .forgot-password:hover {
+        text-decoration: underline;
+        color: #1A554F;
+    }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .settings-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.eye-icon {
+    color: #64748b;
+}
+
+.toggle-password:hover .eye-icon {
+    color: #475569;
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#paginationControls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: white;
+    color: #5A6E73;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .pagination-btn.active {
+        background-color: #1A554F;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+.pagination-btn:hover {
+    background-color: #1A554F;
+    color: #FFFFFF;
+}
+
+    .pagination-btn[disabled] {
+        background-color: #F1F1F1F1;
+        color: #5A6E73;
+        cursor: not-allowed;
+    }
+
+.expense-list, .category-list {
+    height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.expense-item, .category-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.total-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 45%; 
+    border-radius: 10px; 
+    margin-left: 3%; 
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+.expense-header{
+    flex-direction: row; 
+    border-radius: 10px; 
+    display: flex;  
+    margin-left: 5%; 
+    width: 95%; 
+    padding: 10px;
+    background: linear-gradient(180deg, #548E87 80%, #0f3443 250%);
 }

@@ -53,13 +53,27 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Create(CategoryViewModel model)
         {
+            var duplicateCategoryName = _categoryService.GetDuplicateCategoryName(model.Name);
+            if (duplicateCategoryName != null)
+            {
+                TempData["ErrorMessage"] = $"The category '{duplicateCategoryName}' already exists.";
+                return RedirectToAction("Index");
+            }
+            TempData["SuccessMessage"] = "Category added successfully.";
             _categoryService.AddCategory(model, UserId);
             return RedirectToAction("Index");
         }
-
         [HttpPost]
         public IActionResult Edit(CategoryViewModel model)
         {
+            var duplicateCategoryName = _categoryService.GetDuplicateCategoryName(model.Name, model.CategoryId);
+            if (duplicateCategoryName != null)
+            {
+                TempData["ErrorMessage"] = $"The category '{duplicateCategoryName}' already exists.";
+                return RedirectToAction("Index");
+            }
+
+            TempData["SuccessMessage"] = "Expense uppdated successfully.";
             _categoryService.UpdateCategory(model, UserId);
             return RedirectToAction("Index");
         }
@@ -67,6 +81,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult PostDelete(int CategoryId)
         {
+            TempData["SuccessMessage"] = "CAtegory deleted successfully.";
             _categoryService.DeleteCategory(CategoryId);
             return RedirectToAction("Index");
         }

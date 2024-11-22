@@ -1,6 +1,7 @@
 ﻿using ASI.Basecode.Data.Interfaces;
 using ASI.Basecode.Data.Models;
 using Basecode.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace ASI.Basecode.Data.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork) 
+        private readonly AsiBasecodeDBContext _dbContext;
+        public UserRepository(AsiBasecodeDBContext dBContext, IUnitOfWork unitOfWork) : base(unitOfWork) 
         {
-
+            _dbContext = dBContext;
         }
 
         public IQueryable<User> GetUsers()
@@ -30,6 +32,27 @@ namespace ASI.Basecode.Data.Repositories
         {
             this.GetDbSet<User>().Add(user);
             UnitOfWork.SaveChanges();
+        }
+        public User GetUserByUserId(string userId)
+        {
+            return this.GetDbSet<User>().FirstOrDefault(x => x.UserId == userId);
+        }
+
+        public void UpdateUser(User user)
+        {
+            var dbSet = this.GetDbSet<User>();
+            dbSet.Update(user);
+            UnitOfWork.SaveChanges();
+        }
+
+        public User GetUserByToken(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                return null;
+            }
+
+            return _dbContext.Users.FirstOrDefault(u => u.Token == token && u.TokenExpiry > DateTime.Now);
         }
 
     }

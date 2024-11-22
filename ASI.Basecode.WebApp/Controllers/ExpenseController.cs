@@ -5,6 +5,7 @@ using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,7 +28,14 @@ namespace ASI.Basecode.WebApp.Controllers
         }
         public IActionResult Index()
         {
-            var data = _expensesService.GetAllExpenses();
+            var expenses = _expensesService.GetExpenseByUserId(UserId);
+            var categories = _expensesService.GetCategories();
+            var data = new ExpenseDataModel
+            {
+                ExpenseViewModel = expenses,
+                CategoryViewModel = categories
+            };
+            //var data = _expensesService.GetAllExpenses();
             return View(data);
         }
 
@@ -75,6 +83,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Create(ExpenseViewModel model)
         {
+            TempData["SuccessMessage"] = "Expense added successfully.";
             _expensesService.AddExpenses(model, UserId);
             return RedirectToAction("Index");
         }
@@ -82,6 +91,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult Edit(ExpenseViewModel model)
         {
+            TempData["SuccessMessage"] = "Expense updated successfully.";
             _expensesService.UpdateExpenses(model, UserId);
             return RedirectToAction("Index");
         }
@@ -89,6 +99,7 @@ namespace ASI.Basecode.WebApp.Controllers
         [HttpPost]
         public IActionResult PostDelete(int ExpenseId)
         {
+            TempData["SuccessMessage"] = "Expense deleted successfully.";
             _expensesService.DeleteExpenses(ExpenseId);
             return RedirectToAction("Index");
         }

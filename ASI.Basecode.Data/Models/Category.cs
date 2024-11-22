@@ -10,6 +10,7 @@ namespace ASI.Basecode.Data.Models
         public string CreatedBy { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
-        public string Description { get; set; }
+        public double TotalAmount { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

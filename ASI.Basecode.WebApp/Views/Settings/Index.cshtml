@@ -1,0 +1,12 @@
+﻿@section styles {
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+}
+@model ASI.Basecode.Services.ServiceModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div>
+    @await Html.PartialAsync("ChangePassword")
+</div>

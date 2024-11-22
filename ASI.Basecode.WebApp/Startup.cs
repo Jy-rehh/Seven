@@ -2,6 +2,7 @@
 using ASI.Basecode.Resources.Constants;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.Manager;
+using ASI.Basecode.Services.ServiceModels;
 using ASI.Basecode.Services.Services;
 using ASI.Basecode.WebApp.Authentication;
 using ASI.Basecode.WebApp.Extensions.Configuration;
@@ -121,6 +122,16 @@ namespace ASI.Basecode.WebApp
             services.AddSingleton<IFileProvider>(
                 new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+            // SMTP and email service setup
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.AddTransient<IEmailService, EmailService>(); // Register IEmailService
+            services.AddTransient<IUserService, UserService>(); // Register IUserService
+
+            // Session and other configurations
+            services.AddSession(options => { options.Cookie.Name = Const.Issuer; });
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         }
 
         /// <summary>

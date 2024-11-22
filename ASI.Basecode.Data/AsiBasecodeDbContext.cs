@@ -44,10 +44,6 @@ namespace ASI.Basecode.Data
 
                 entity.Property(e => e.DateUpdated).HasColumnType("datetime");
 
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .IsUnicode(false);
@@ -96,6 +92,13 @@ namespace ASI.Basecode.Data
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Preference)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TokenExpiry).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedBy)
                     .IsRequired()

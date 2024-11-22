@@ -2,6 +2,7 @@
     @using static ASI.Basecode.Resources.Views.Screen
     @section styles {
         <link rel="stylesheet" href="~/css/login.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     }
     @{
         ViewBag.LoginView = true;
@@ -10,57 +11,14 @@
     <div>
         @Html.AntiForgeryToken()
     </div>
-    @* <div class="container py-5" style="display:flex; align-content:start;height:calc(100vh - 64px)"> *@
-    @*     <div class="col-xl-10"> *@
-    @*         <div class="card rounded-3 text-black"> *@
-    @*             <div class="row g-0 w-1000px"> *@
-    @* *@
-    @*                 <div class="col-lg-6"> *@
-    @*                     <div class="card-body p-md-5 mx-md-4"> *@
-    @*                         <form method="post" action="/Account/Login" id="loginForm"> *@
-    @* *@
-    @*                             <div class="form-outline mb-4"> *@
-    @*                                 <label class="form-label" for="form2Example11">@UserId</label> *@
-    @*                                 <input type="text" id="form2Example11" class="form-control" *@
-    @*                                        asp-for="UserId"/> *@
-    @*                                 <span asp-validation-for="UserId" class="text-danger"></span> *@
-    @*                             </div> *@
-    @*                             <div class="form-outline mb-4"> *@
-    @*                                 <label class="form-label" for="form2Example22">@Password</label> *@
-    @*                                 <input type="password" id="form2Example22" class="form-control" *@
-    @*                                        asp-for="Password" placeholder="Enter password"/> *@
-    @*                                 <span asp-validation-for="Password" class="text-danger"></span> *@
-    @*                             </div> *@
-    @*                             <div class="text-center pt-1 mb-5 pb-1 d-flex flex-column align-items-center"> *@
-    @*                                 <button class="btn btn-primary btn-block login-btn gradient-custom-2 mb-3" type="submit"> *@
-    @*                                     @Login *@
-    @*                                 </button> *@
-    @*                                 <div> *@
-    @*                                     <a class="text-muted" href="#!">@ForgotPass</a> *@
-    @*                                 </div> *@
-    @*                             </div> *@
-    @*                             <div class="d-flex align-items-center justify-content-center pb-4"> *@
-    @*                                 <p class="mb-0 me-2 mr-1">@DontHaveAcc</p> *@
-    @*                                 <a asp-controller="Account" asp-action="Register" class="btn btn-outline-danger">@CreateNew</a> *@
-    @*                             </div> *@
-    @*                         </form> *@
-    @*                     </div> *@
-    @*                 </div> *@
-    @*                 $1$ <div class="col-lg-6 d-flex"> #1# *@
-    @*                 $1$     <img style="width:400px"src="~/img/LiveIT.png" /> #1# *@
-    @*                 $1$ </div> #1# *@
-    @*             </div> *@
-    @*         </div> *@
-    @*     </div> *@
-    @* </div> *@
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <div class="container-fluid d-flex align-items-center justify-content-center">
         <div class="row w-100 mx-auto">
             <!-- Left Graphic Section -->
             <div class="col-lg-6 d-flex p-0">
-                <img style="height:600px"src="~/img/Track-Expenses.png" />
+                <a href="~/Account/LandingPage">
+                    <img style="height:600px; padding-left: 70px;" src="~/img/Track-Expenses.png" />
+                </a>
             </div>
 
             <!-- Right Form Section -->
@@ -74,22 +32,24 @@
                         <p class="mb-3">Welcome back to expense tracker!</p>
                         <hr class="text-muted mb-4">
 
-                        <form method="post" action="/Account/Login" id="loginForm">
+                        <form method="post" action="~/Account/Login" id="loginForm">
                             <div class="form-group mb-3">
-                                <p class="mb-2">Email</p>
+                                <p class="mb-2">Username or Email</p>
                                 <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="userIdOrEmail"/>
-                                <span asp-validation-for="userIdOrEmail" class="text-danger small"></span>
+                                <span asp-validation-for="userIdOrEmail" class="text-danger small input-validation-error"></span>
                             </div>
                             <p class="mb-2">Password</p>
-                            <div class="form-group mb-5 position-relative d-flex align-items-center">
-                                
-                                <input type="password" id="password" class="form-control rounded-pill p-3" asp-for="Password"/>
-                                <span asp-validation-for="Password" class="text-danger small"></span>
-                                <!-- Eye icon for toggling password visibility -->
-                                <i class="position-absolute" id="togglePassword" style="right: 20px; cursor: pointer;">
-                                    <i class="fas fa-eye-slash" id="eyeIcon"></i>
-                                </i>
-                                <a href="#!" class="text-muted small forgot-password">Forgot Password?</a>
+                            <div class="form-group mb-5 position-relative">
+                                <div class=" d-flex align-items-center pb-2">
+                                    <input type="password" id="password" class="form-control rounded-pill p-3" asp-for="Password"/>
+                                    <!-- Eye icon for toggling password visibility -->
+                                    <i class="position-absolute" id="togglePassword" style="right: 20px; cursor: pointer;">
+                                        <i class="fas fa-eye-slash" id="eyeIcon"></i>
+                                    </i>
+                                    
+                                </div>
+                            <a asp-controller="Account" asp-action="ForgotPassword" class="text-muted small forgot-password">Forgot Password?</a>
+                                <span asp-validation-for="Password" class="text-danger small input-validation-error"></span>
                             </div>
                             <div class="form-group mb-2">
                                 <button class="btn btn-block text-white rounded-pill gradient-bg p-2" type="submit">Sign in</button>
@@ -106,25 +66,30 @@
     </div>
 
     @section scripts {
-        <script>
-            const togglePassword = document.querySelector("#togglePassword");
-            const password = document.querySelector("#password");
-            const eyeIcon = document.querySelector("#eyeIcon");
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+        const eyeIcon = document.querySelector("#eyeIcon");
 
-            togglePassword.addEventListener("click", function () {
-                // Toggle the password field type
-                const type = password.getAttribute("type") === "password" ? "text" : "password";
-                password.setAttribute("type", type);
+        togglePassword.addEventListener("click", function () {
+            // Toggle the password field type
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
 
-                // Toggle the eye icon
-                eyeIcon.classList.toggle("fa-eye");
-                eyeIcon.classList.toggle("fa-eye-slash");
-            });
-            // Check for error message and display Toastr notification
-            var errorMessage = '@TempData["ErrorMessage"]';
-            if (errorMessage) {
-                toastr.error(errorMessage);
-            }
-        
-        </script>
-    }
+            // Toggle the eye icon
+            eyeIcon.classList.toggle("fa-eye");
+            eyeIcon.classList.toggle("fa-eye-slash");
+        });
+        // Check for error message and display Toastr notification
+        var errorMessage = '@TempData["ErrorMessage"]';
+        if (errorMessage) {
+            toastr.error(errorMessage);
+        }
+        // Check for success message and display Toastr notification
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            toastr.success(successMessage);
+        }
+
+    </script>
+}
