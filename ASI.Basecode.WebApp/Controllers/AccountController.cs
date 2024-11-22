@@ -233,48 +233,39 @@ namespace ASI.Basecode.WebApp.Controllers
             return View(model);
         }
 
-        // ResetPassword POST method
         [HttpPost]
-        //public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-
-        //    var user = await _userService.GetUserByTokenAsync(model.Token);
-        //    if (user == null || user.TokenExpiry < DateTime.UtcNow)
-        //    {
-        //        TempData["ErrorMessage"] = "Invalid or expired reset token.";
-        //        return RedirectToAction("ForgotPassword");
-        //    }
-
-        //    user.Password = PasswordManager.EncryptPassword(model.Password);
-        //    user.Token = null;
-        //    user.TokenExpiry = null;
-        //    await _userService.UpdateUserPassword(user);
-
-        //    TempData["SuccessMessage"] = "Password reset successfully!";
-        //    return RedirectToAction("Login");
-        //}
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string password)
         {
-            if (!ModelState.IsValid)
+            if (model == null || !ModelState.IsValid)
             {
+                TempData["ErrorMessage"] = "Invalid input.";
                 return View(model);
             }
 
-            var user = await _userService.GetUserByTokenAsync(model.Token);
+            var user = _userService.GetUserByToken(model.Token);
             if (user == null || user.TokenExpiry < DateTime.UtcNow)
             {
                 TempData["ErrorMessage"] = "Invalid or expired reset token.";
                 return RedirectToAction("ForgotPassword");
             }
 
-            user.Password = PasswordManager.EncryptPassword(model.Password);
-            user.Token = null;
-            user.TokenExpiry = null;
-            await _userService.UpdateUserPassword(user);
+            var resetPassword = new ResetPasswordViewModel
+            {
+                UserId = UserId,
+                Email = user.Email,
+                Password = password
+            };
+
+            // Call the service to change the password
+            bool result = _userService.ChangePasswordWithoutOldPassword(resetPassword);
+
+            if (!result)
+            {
+                TempData["ErrorMessage"] = "An error occurred while resetting the password.";
+                return View(model);
+            }
+
+            await _userService.ClearResetTokenAsync(user.Id);
 
             TempData["SuccessMessage"] = "Password reset successfully!";
             return RedirectToAction("Login");

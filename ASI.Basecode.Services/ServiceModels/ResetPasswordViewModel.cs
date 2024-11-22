@@ -9,6 +9,7 @@ namespace ASI.Basecode.Services.ServiceModels
 {
     public class ResetPasswordViewModel
     {
+        public string UserId { get; set; }
         [Required]
         public string Token { get; set; }
 

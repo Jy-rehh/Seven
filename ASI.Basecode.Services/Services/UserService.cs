@@ -10,6 +10,7 @@ using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using static ASI.Basecode.Resources.Constants.Enums;
@@ -102,7 +103,6 @@ namespace ASI.Basecode.Services.Services
         public bool ChangePassword(ChangePasswordViewModel model)
         {
             var user = _repository.GetUsers().FirstOrDefault(u => u.UserId == model.UserId);
-            //if (user != null && VerifyPassword(user, model.OldPassword))
             if (user != null)
             {
                 user.Password = PasswordManager.EncryptPassword(model.NewPassword);
@@ -164,10 +164,10 @@ namespace ASI.Basecode.Services.Services
             }
         }
 
-        public async Task<User> GetUserByTokenAsync(string token)
-        {
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.Token == token);
-        }
+        //public async Task<User> GetUserByTokenAsync(string token)
+        //{
+        //    return await _dbContext.Users.FirstOrDefaultAsync(u => u.Token == token);
+        //}
 
         public async Task ClearResetTokenAsync(int userId)
         {
@@ -181,7 +181,59 @@ namespace ASI.Basecode.Services.Services
         }
         public User GetUserByToken(string token)
         {
-            return _repository.GetUserByToken(token);
+            return _dbContext.Users.FirstOrDefault(u => u.Token == token);
+        }
+
+        //// helper for reset pass
+        //public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
+        //{
+        //    var user = _repository.GetUsers().FirstOrDefault(u => u.Email == model.Email);
+        //    if (user != null)
+        //    {
+        //        user.Password = PasswordManager.EncryptPassword(model.Password);
+        //        _repository.UpdateUser(user);
+        //        return true;
+        //    }
+        //    return false;
+        //}
+        //public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
+        //{
+        //    try
+        //    {
+        //        var user = _repository.GetUsers().FirstOrDefault(u => u.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase));
+        //        if (user == null)
+        //        {
+        //            Debug.WriteLine($"User not found with email: {model.Email}");
+        //            return false; // User not found
+        //        }
+
+        //        var encryptedPassword = PasswordManager.EncryptPassword(model.Password);
+        //        Debug.WriteLine($"Encrypted password for {model.Email}: {encryptedPassword}");
+
+        //        user.Password = encryptedPassword;
+        //        _repository.UpdateUser(user);
+
+        //        Debug.WriteLine($"Password updated successfully for user: {model.Email}");
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"Error in ChangePasswordWithoutOldPassword: {ex.Message}");
+        //        return false;
+        //    }
+        //}
+        public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
+        {
+            var user = _repository.GetUsers().FirstOrDefault(u => u.UserId == model.UserId);
+            if (user != null)
+            {
+                user.Password = PasswordManager.EncryptPassword(model.Password);
+                user.Token = null;
+                user.TokenExpiry = null;
+                _repository.UpdateUser(user);
+                return true;
+            }
+            return false;
         }
     }
 }
