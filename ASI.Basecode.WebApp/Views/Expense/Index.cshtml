@@ -138,6 +138,35 @@
         <tbody class="data" style="background-color: #FFFFFF; color: #000000;">
             @foreach (var item in Model.ExpenseViewModel)
             {
+                <tr data-id="@item.ExpenseId" class="expense-row">
+                    <td>@item.Title</td>
+                    <td>@item.CategoryName</td>
+                    <td class="amount">@item.Amount</td> <!-- Add class for JavaScript targeting -->
+                    <td>@item.DateCreated</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <button style="width: 50px; height: fit-content; border-radius: 20px; padding: 5px;"
+                                class="btn btn-secondary edit-expense-btn"
+                                data-toggle="modal"
+                                data-target="#expenseEditModal"
+                                data-id="@item.ExpenseId"
+                                data-title="@item.Title"
+                                data-category="@item.CategoryId"
+                                data-amount="@item.Amount"
+                                data-date="@item.DateCreated"
+                                data-description="@item.Description">
+                            Edit
+                        </button>
+                        <button style="width: 60px; height: fit-content; border-radius: 20px; padding: 5px;"
+                                class="btn btn-danger delete-expense-btn"
+                                data-toggle="modal"
+                                data-target="#confirmDeleteModal"
+                                data-id="@item.ExpenseId"
+                                data-title="@item.Title">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
                 <tr data-toggle="modal" data-target="#expenseDetailModal"
                     data-id="@item.ExpenseId" data-title="@item.Title"
                     data-category="@item.CategoryId" data-amount="@item.Amount"
@@ -292,6 +321,27 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Define a mapping of currency codes to symbols
+        const currencySymbols = {
+            PHP: '₱',
+            USD: '$',
+            EUR: '€',
+            JPY: '¥',
+            SGD: '$'
+        };
+
+        // Get the preferred currency from local storage
+        const preferredCurrency = localStorage.getItem('preferredCurrency') || 'PHP'; // Default to PHP
+
+ 
+        const amountCells = document.querySelectorAll('.amount');
+        amountCells.forEach(cell => {
+            const amount = parseFloat(cell.textContent); // Extract numeric value
+            cell.textContent = `${currencySymbols[preferredCurrency]}${amount.toLocaleString()}`; // Update with symbol
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
