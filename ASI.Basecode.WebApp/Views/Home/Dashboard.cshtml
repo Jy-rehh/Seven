@@ -7,23 +7,30 @@
 
 <!-- Main Content Section -->
 <body>
-    <div class="header" style="margin-top: 80px; margin-left: 90px;">
-        <h1 style="color: #5A706C; font-weight:700; font-size:xx-large; color: #1A554F;">
-            My Expenses
-        </h1>
+    <div class="header" style="margin-top: 4%; width: 100%; display: flex; justify-content: center; align-items: center; height: 100px; margin-left: 35%;">
+        <h1 style="color: #5A706C; font-weight:700; font-size:xxx-large; letter-spacing: 5px; color: #1A554F;">MY EXPENSES</h1>
     </div>
 
-    <div>
-        <div class="totalExpense">
+    <div class="expense-header" style="flex-direction: row; border-radius: 10px; align-items: center; display: flex; gap: 50px; margin-left: 5%; margin-top: 30px; width: 95%; height: 25vh; background: linear-gradient(180deg, #548E87 80%, #0f3443 250%);">
+        <div class="totalAmount" style="width: 45%; height: 15vh; border-radius: 10px; margin-left: 3%; background-color: #FFFFFF;">
+            <label style="margin: 10px; font-weight: bold; color: #1A554F;">Total Expense</label>
+            <div class="totalExpense">
+
+            </div>
         </div>
-        <div class="topCategory">
+        <div class="top-header" style="width: 45%; height: 15vh; background-color: #1A554F; border-radius: 10px; background-color: #FFFFFF;">
+            <label style="margin: 10px; font-weight: bold; color: #1A554F;">Top Category</label>
+            <div class="topCategory">
+
+            </div>
         </div>
     </div>
 
-    <div class="main-content" style="margin-top: 50px; background-color: #1A554F;">
-        <div class="container">
-            <div class="expenses">
-                <div id="expensesChart" style="border-radius: 20px; height: 65vh;"></div>
+    <div class="main-content" style="margin-top: 50px;
+    background: linear-gradient(135deg, #548E87 0%, #0f3443 100%);">
+        <div class="container" style="margin-left: 100px;">
+            <div class="expenses" style="margin-top: 30px;">
+                <div id="expensesChart" style=" height: 70vh; margin: 20px; padding: 10px;"></div>
             </div>
         </div>
     </div>
@@ -32,14 +39,13 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-
     <script>
         Highcharts.chart('expensesChart', {
             chart: {
                 type: 'line'
             },
             title: {
-                text: 'My Expenses'
+                text: ''
             },
             subtitle: {
                 text: 'Source: ' +
