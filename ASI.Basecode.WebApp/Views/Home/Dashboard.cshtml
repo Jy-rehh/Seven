@@ -11,31 +11,79 @@
         <h1 style="color: #5A706C; font-weight:700; font-size:xxx-large; letter-spacing: 5px; color: #1A554F;">MY EXPENSES</h1>
     </div>
 
-    <div class="expense-header" style="flex-direction: row; border-radius: 10px; align-items: center; display: flex; gap: 50px; margin-left: 5%; margin-top: 30px; width: 95%; height: 25vh; background: linear-gradient(180deg, #548E87 80%, #0f3443 250%);">
-        <div class="totalAmount" style="width: 45%; height: 15vh; border-radius: 10px; margin-left: 3%; background-color: #FFFFFF;">
+    <div class="expense-header" >
+        <div class="total-container">
             <label style="margin: 10px; font-weight: bold; color: #1A554F;">Total Expense</label>
-            <div class="totalExpense">
-
-            </div>
+            <div class="totalExpense" style="margin-left: 10px; font-size: 30px; font-weight: bold"></div>
+            <div class="expense-list"></div>
         </div>
-        <div class="top-header" style="width: 45%; height: 15vh; background-color: #1A554F; border-radius: 10px; background-color: #FFFFFF;">
+        <div class="total-container">
             <label style="margin: 10px; font-weight: bold; color: #1A554F;">Top Category</label>
-            <div class="topCategory">
-
-            </div>
+            <div class="topCategory"></div>
+            <div class="category-list"></div>
         </div>
     </div>
 
-    <div class="main-content" style="margin-top: 50px;
+<div class="main-content" style="margin-top: 50px;
     background: linear-gradient(135deg, #548E87 0%, #0f3443 100%);">
-        <div class="container" style="margin-left: 100px;">
-            <div class="expenses" style="margin-top: 30px;">
-                <div id="expensesChart" style=" height: 70vh; margin: 20px; padding: 10px;"></div>
-            </div>
+    <div class="container" style="margin-left: 100px;">
+        <div class="expenses" style="margin-top: 30px;">
+            <div id="expensesChart" style=" height: 70vh; margin: 20px; padding: 10px;"></div>
         </div>
     </div>
+</div>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        // Simulated expense data
+        const expenses = [
+            { id: 1, amount: 1200, category: "Housing", date: "2023-11-22" },
+            { id: 2, amount: 400, category: "Transportation", date: "2023-11-21" },
+            { id: 3, amount: 300, category: "Food", date: "2023-11-20" },
+            { id: 4, amount: 150, category: "Entertainment", date: "2023-11-19" },
+            { id: 5, amount: 100, category: "Utilities", date: "2023-11-18" }
+        ];
+
+        // Calculate total expense
+        const totalExpense = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+
+        // Calculate top categories
+        const categoryTotals = expenses.reduce((acc, expense) => {
+            acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
+            return acc;
+        }, {});
+
+        const topCategories = Object.entries(categoryTotals)
+            .map(([category, total]) => ({ category, total }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 5);
+
+        // Update the DOM
+        document.querySelector('.totalExpense').textContent = `${totalExpense.toLocaleString()}`;
+
+        const expenseList = document.querySelector('.expense-list');
+        expenses.forEach(expense => {
+            const expenseItem = document.createElement('div');
+            expenseItem.className = 'expense-item';
+            expenseItem.innerHTML = `
+                <span>${expense.date}</span>
+                <span>${expense.amount.toLocaleString()}</span>
+            `;
+            expenseList.appendChild(expenseItem);
+        });
+
+        const categoryList = document.querySelector('.category-list');
+        topCategories.forEach(category => {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'category-item';
+            categoryItem.innerHTML = `
+                <span>${category.category}</span>
+                <span>${category.total.toLocaleString()}</span>
+            `;
+            categoryList.appendChild(categoryItem);
+        });
+    </script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
@@ -46,11 +94,6 @@
             },
             title: {
                 text: ''
-            },
-            subtitle: {
-                text: 'Source: ' +
-                    '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
-                    'target="_blank">expensave.com</a>'
             },
             xAxis: {
                 categories: [
@@ -72,13 +115,13 @@
                 }
             },
             series: [{
-                name: 'Reggane',
+                name: 'Food',
                 data: [
                     16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
                     22.0, 17.8
                 ]
             }, {
-                name: 'Tallinn',
+                name: 'School',
                 data: [
                     -2.9, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5,
                     2.0, -0.9

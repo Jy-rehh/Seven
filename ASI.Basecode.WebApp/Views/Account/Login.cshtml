@@ -16,7 +16,9 @@
         <div class="row w-100 mx-auto">
             <!-- Left Graphic Section -->
             <div class="col-lg-6 d-flex p-0">
-                <img style="height:600px; padding-left: 70px;"src="~/img/Track-Expenses.png" />
+                <a href="~/Account/LandingPage">
+                    <img style="height:600px; padding-left: 70px;" src="~/img/Track-Expenses.png" />
+                </a>
             </div>
 
             <!-- Right Form Section -->
@@ -30,7 +32,7 @@
                         <p class="mb-3">Welcome back to expense tracker!</p>
                         <hr class="text-muted mb-4">
 
-                        <form method="post" action="/Account/Login" id="loginForm">
+                        <form method="post" action="~/Account/Login" id="loginForm">
                             <div class="form-group mb-3">
                                 <p class="mb-2">Username or Email</p>
                                 <input type="text" id="email" class="form-control rounded-pill p-3" asp-for="userIdOrEmail"/>
