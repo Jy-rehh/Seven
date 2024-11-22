@@ -99,7 +99,6 @@ h2 {
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(26, 85, 79);
 }
-
 .dashboard {
     border-radius: 10px;
     margin-top: 50px; 
@@ -481,3 +480,36 @@ h2 {
         color: #5A6E73;
         cursor: not-allowed;
     }
+
+.expense-list, .category-list {
+    height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.expense-item, .category-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.total-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 45%; 
+    border-radius: 10px; 
+    margin-left: 3%; 
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+.expense-header{
+    flex-direction: row; 
+    border-radius: 10px; 
+    display: flex;  
+    margin-left: 5%; 
+    width: 95%; 
+    padding: 10px;
+    background: linear-gradient(180deg, #548E87 80%, #0f3443 250%);
+}
