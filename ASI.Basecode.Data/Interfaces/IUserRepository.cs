@@ -14,5 +14,6 @@ namespace ASI.Basecode.Data.Interfaces
         void AddUser(User user);
         User GetUserByUserId(string userId);
         void UpdateUser(User user);
+        User GetUserByToken(string token);
     }
 }

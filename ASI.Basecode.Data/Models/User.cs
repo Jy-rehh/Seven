@@ -15,5 +15,7 @@ namespace ASI.Basecode.Data.Models
         public string UpdatedBy { get; set; }
         public DateTime UpdatedTime { get; set; }
         public string Preference { get; set; }
+        public string Token { get; set; }
+        public DateTime? TokenExpiry { get; set; }
     }
 }

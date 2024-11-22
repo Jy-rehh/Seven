@@ -1,5 +1,6 @@
 ﻿using ASI.Basecode.Data.Models;
 using ASI.Basecode.Services.ServiceModels;
+using System.Threading.Tasks;
 using static ASI.Basecode.Resources.Constants.Enums;
 
 public interface IUserService
@@ -11,8 +12,17 @@ public interface IUserService
     UserViewModel GetUserByUserId(string userId);
     void UpdateUser(UserViewModel userModel);
     User GetUserById(string userId);
-    bool VerifyPassword(User user, string inputPassword);
     bool ChangePassword(ChangePasswordViewModel model); // Use ViewModel for password change
+
+
+    Task<User> GetUserByEmail(string email);
+    Task ClearResetTokenAsync(int userId);
+    Task<bool> SetPasswordResetTokenAsync(string email);
+    User GetUserByToken(string token);
+
+    // helper
+    bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model);
+
 }
 
 

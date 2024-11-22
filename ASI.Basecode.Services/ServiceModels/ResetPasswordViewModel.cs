@@ -7,16 +7,27 @@ using System.Threading.Tasks;
 
 namespace ASI.Basecode.Services.ServiceModels
 {
-    public class ChangePasswordViewModel
+    public class ResetPasswordViewModel
     {
         public string UserId { get; set; }
         [Required]
-        public string OldPassword { get; set; }
+        public string Token { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+
         [Required]
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
-        public string NewPassword { get; set; }
+        public string Password { get; set; }
+
         [Required]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
     }
+    public class ResultModel
+    {
+        public bool IsSuccess { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+
 }
