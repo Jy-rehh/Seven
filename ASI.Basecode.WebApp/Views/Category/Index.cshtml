@@ -423,5 +423,12 @@
             // Initialize the first page
             displayPage(1);
         });
+
+        // Check for success message and display Toastr notification
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            toastr.success(successMessage);
+        }
+
     </script>
 }

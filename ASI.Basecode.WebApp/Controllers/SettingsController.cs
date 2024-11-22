@@ -51,6 +51,7 @@ namespace ASI.Basecode.WebApp.Controllers
                 existingUser.Preference = model.Preference;
 
                 // Save the changes
+                TempData["SuccessMessage"] = "Profile changed successfully!";
                 _userService.UpdateUser(existingUser);
             }
 

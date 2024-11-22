@@ -100,6 +100,7 @@ namespace ASI.Basecode.WebApp.Controllers
             if (loginResult == LoginResult.Success)
             {
                 // 認証OK
+                TempData["SuccessMessage"] = "Login successful.";
                 await this._signInManager.SignInAsync(user);
                 this._session.SetString("UserName", user.Name);
                 return RedirectToAction("Index", "Home");
@@ -139,6 +140,7 @@ namespace ASI.Basecode.WebApp.Controllers
                 }
 
                 // Add the new user if the email is unique  
+                TempData["SuccessMessage"] = "User created Successfully.";
                 _userService.AddUser(userModel);
                 return RedirectToAction("Login", "Account");
             }
@@ -150,6 +152,7 @@ namespace ASI.Basecode.WebApp.Controllers
             {
                 TempData["ErrorMessage"] = "An error occurred while processing your request. Please try again.";
             }
+
             return View();
         }
         /// <summary>
@@ -159,6 +162,8 @@ namespace ASI.Basecode.WebApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> SignOutUser()
         {
+
+            TempData["SuccessMessage"] = "Logout successful.";
             await _signInManager.SignOutAsync();
             HttpContext.Session.Clear(); // Clear any session data
             await HttpContext.SignOutAsync(); // Ensure cookies are cleared
@@ -204,7 +209,7 @@ namespace ASI.Basecode.WebApp.Controllers
             }
 
             model.EmailIsSent = true; // Set flag if email was sent
-            TempData["SuccessMessage"] = "If the email exists, a reset link has been sent.";
+            TempData["SuccessMessage"] = "A reset link has been sent.";
             return View(model);
         }
 
