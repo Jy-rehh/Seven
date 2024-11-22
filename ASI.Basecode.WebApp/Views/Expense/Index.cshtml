@@ -475,6 +475,12 @@
             if (!isNaN(page)) {
                 displayPage(page);
             }
+           // Check for success message and display Toastr notification
+            var successMessage = '@TempData["SuccessMessage"]';
+            if (successMessage) {
+                toastr.success(successMessage);
+            }
+
         });
     });
 </script>

@@ -13,3 +13,14 @@
 <div>
     @await Html.PartialAsync("Dashboard")
 </div>
+
+@section scripts {
+    <script>
+        // Check for success message and display Toastr notification
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage) {
+            toastr.success(successMessage);
+        }
+
+    </script>
+}
