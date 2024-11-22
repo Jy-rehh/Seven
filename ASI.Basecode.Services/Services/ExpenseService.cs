@@ -119,7 +119,7 @@ namespace ASI.Basecode.Services.Services
             .Select(s => new CategoryViewModel
             {
                 CategoryId = s.CategoryId,
-                Name = s.Name,
+                Name = s.Name
             });
             var expenses = _expensesRepository.GetAllExpenses().Where(x => x.ExpenseId.Equals(Id)).Select(s => new ExpenseViewModel
             {
@@ -184,15 +184,34 @@ namespace ASI.Basecode.Services.Services
                 }
             }
         }
+        //public void DeleteExpenses(int Id)
+        //{
+        //    var expenses = _expensesRepository.GetAllExpenses().FirstOrDefault(x => x.ExpenseId == Id);
+        //    if (expenses != null)
+        //    {
+        //        expenses.IsDeleted = true;
+        //        _expensesRepository.UpdateExpenses(expenses);
+        //    }
+        //}
+
         public void DeleteExpenses(int Id)
         {
-            var expenses = _expensesRepository.GetAllExpenses().FirstOrDefault(x => x.ExpenseId == Id);
-            if (expenses != null)
+            var expense = _expensesRepository.GetAllExpenses().FirstOrDefault(x => x.ExpenseId == Id && !x.IsDeleted);
+            if (expense != null)
             {
-                expenses.IsDeleted = true;
-                _expensesRepository.UpdateExpenses(expenses);
+                expense.IsDeleted = true;
+                _expensesRepository.UpdateExpenses(expense);
+
+                var category = _categoryRepository.GetAllCategory()
+                                                  .FirstOrDefault(c => c.CategoryId == expense.CategoryId && !c.IsDeleted);
+                if (category != null)
+                {
+                    category.TotalAmount -= 1;
+                    _categoryRepository.UpdateCategory(category);
+                }
             }
         }
+
         // Ari ang pag call sa Id sa category nya makuha sa dropdown select sa expense nga add
         public IEnumerable<CategoryViewModel> GetCategories()
         {
@@ -201,7 +220,10 @@ namespace ASI.Basecode.Services.Services
                 .Select(c => new CategoryViewModel
                 {
                     CategoryId = c.CategoryId,
-                    Name = c.Name
+                    Name = c.Name,
+                    DateCreated = c.DateCreated,
+                    DateUpdated = c.DateUpdated,
+                    TotalAmount = c.TotalAmount,
                 });
 
             return categories;

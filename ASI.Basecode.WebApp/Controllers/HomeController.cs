@@ -1,4 +1,6 @@
-﻿using ASI.Basecode.WebApp.Mvc;
+﻿using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.ServiceModels;
+using ASI.Basecode.WebApp.Mvc;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +22,15 @@ namespace ASI.Basecode.WebApp.Controllers
         /// <param name="configuration"></param>
         /// <param name="localizer"></param>
         /// <param name="mapper"></param>
+        /// 
+        private readonly IExpenseService _expenseService;
         public HomeController(IHttpContextAccessor httpContextAccessor,
                               ILoggerFactory loggerFactory,
                               IConfiguration configuration,
+                              IExpenseService expenseService,
                               IMapper mapper = null) : base(httpContextAccessor, loggerFactory, configuration, mapper)
         {
-
+            _expenseService = expenseService;
         }
 
         /// <summary>
@@ -34,7 +39,26 @@ namespace ASI.Basecode.WebApp.Controllers
         /// <returns> Home View </returns>
         public IActionResult Index()
         {
-            return View();
+            var expenses = _expenseService.GetExpenseByUserId(UserId);
+            var categories = _expenseService.GetCategories();
+            var data = new ExpenseDataModel
+            {
+                ExpenseViewModel = expenses,
+                CategoryViewModel = categories
+            };
+            return View(data);
+        }
+
+        public IActionResult DashBoard()
+        {
+            var expenses = _expenseService.GetExpenseByUserId(UserId);
+            var categories = _expenseService.GetCategories();
+            var data = new ExpenseDataModel
+            {
+                ExpenseViewModel = expenses,
+                CategoryViewModel = categories
+            };
+            return View(data);
         }
     }
 }

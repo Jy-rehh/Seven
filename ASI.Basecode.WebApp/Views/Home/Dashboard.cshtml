@@ -1,17 +1,19 @@
 ﻿@section styles {
     <link rel="stylesheet" href="~/css/dashboard.css" />
 }
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Main Content Section -->
 <body>
+    <!-- Header Section -->
     <div class="header" style="margin-top: 4%; width: 100%; display: flex; justify-content: center; align-items: center; height: 100px; margin-left: 35%;">
         <h1 style="color: #5A706C; font-weight:700; font-size:xxx-large; letter-spacing: 5px; color: #1A554F;">MY EXPENSES</h1>
     </div>
 
-    <div class="expense-header" >
+    <!-- Expense Header Section -->
+    <div class="expense-header">
         <div class="total-container">
             <label style="margin: 10px; font-weight: bold; color: #1A554F;">Total Expense</label>
             <div class="totalExpense" style="margin-left: 10px; font-size: 30px; font-weight: bold"></div>
@@ -19,115 +21,91 @@
         </div>
         <div class="total-container">
             <label style="margin: 10px; font-weight: bold; color: #1A554F;">Top Category</label>
-            <div class="topCategory"></div>
+            <div class="topCategory" style="margin-left: 10px; font-size: 30px; font-weight: bold"></div>
             <div class="category-list"></div>
         </div>
     </div>
 
-<div class="main-content" style="margin-top: 50px;
-    background: linear-gradient(135deg, #548E87 0%, #0f3443 100%);">
-    <div class="container" style="margin-left: 100px;">
-        <div class="expenses" style="margin-top: 30px;">
-            <div id="expensesChart" style=" height: 70vh; margin: 20px; padding: 10px;"></div>
+    <!-- Main Content Section -->
+    <div class="main-content" style="margin-top: 50px; background: linear-gradient(135deg, #548E87 0%, #0f3443 100%);">
+        <div class="container" style="margin-left: 100px;">
+            <div class="expenses" style="margin-top: 30px;">
+                <div id="expensesChart" style="height: 70vh; margin: 20px; padding: 10px;"></div>
+            </div>
         </div>
     </div>
-</div>
 
     <script>
-        // Simulated expense data
-        const expenses = [
-            { id: 1, amount: 1200, category: "Housing", date: "2023-11-22" },
-            { id: 2, amount: 400, category: "Transportation", date: "2023-11-21" },
-            { id: 3, amount: 300, category: "Food", date: "2023-11-20" },
-            { id: 4, amount: 150, category: "Entertainment", date: "2023-11-19" },
-            { id: 5, amount: 100, category: "Utilities", date: "2023-11-18" }
-        ];
-
-        // Calculate total expense
-        const totalExpense = expenses.reduce((sum, expense) => sum + expense.amount, 0);
-
-        // Calculate top categories
-        const categoryTotals = expenses.reduce((acc, expense) => {
-            acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
-            return acc;
-        }, {});
-
-        const topCategories = Object.entries(categoryTotals)
-            .map(([category, total]) => ({ category, total }))
-            .sort((a, b) => b.total - a.total)
-            .slice(0, 5);
-
-        // Update the DOM
-        document.querySelector('.totalExpense').textContent = `${totalExpense.toLocaleString()}`;
-
-        const expenseList = document.querySelector('.expense-list');
-        expenses.forEach(expense => {
-            const expenseItem = document.createElement('div');
-            expenseItem.className = 'expense-item';
-            expenseItem.innerHTML = `
-                <span>${expense.date}</span>
-                <span>${expense.amount.toLocaleString()}</span>
-            `;
-            expenseList.appendChild(expenseItem);
-        });
-
-        const categoryList = document.querySelector('.category-list');
-        topCategories.forEach(category => {
-            const categoryItem = document.createElement('div');
-            categoryItem.className = 'category-item';
-            categoryItem.innerHTML = `
-                <span>${category.category}</span>
-                <span>${category.total.toLocaleString()}</span>
-            `;
-            categoryList.appendChild(categoryItem);
-        });
     </script>
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
     <script>
-        Highcharts.chart('expensesChart', {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: ''
-            },
-            xAxis: {
-                categories: [
-                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-                    'Oct', 'Nov', 'Dec'
-                ]
-            },
-            yAxis: {
-                title: {
-                    text: 'Expense Amount'
-                }
-            },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: false
-                }
-            },
-            series: [{
-                name: 'Food',
-                data: [
-                    16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
-                    22.0, 17.8
-                ]
-            }, {
-                name: 'School',
-                data: [
-                    -2.9, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5,
-                    2.0, -0.9
-                ]
-            }]
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const expenses = @Html.Raw(Json.Serialize(Model.ExpenseViewModel ?? new List<object>()));
+            const categories = @Html.Raw(Json.Serialize(Model.CategoryViewModel ?? new List<object>()));
 
+            const totalExpense = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+            document.querySelector('.totalExpense').textContent = `₱ ${totalExpense.toLocaleString()}`;
+            // expense
+            const expenseList = document.querySelector('.expense-list');
+            expenses.forEach(expense => {
+                const expenseItem = document.createElement('div');
+                expenseItem.className = 'expense-item';
+                expenseItem.style.display = "flex";
+                expenseItem.style.justifyContent = "space-between";
+                expenseItem.style.margin = "10px 0";
+                expenseItem.style.color = "#000";
+
+                expenseItem.innerHTML = `
+                        <div style="flex: 1;"><strong>${expense.title}</strong></div>
+                        <div style="flex: 0; text-align: right;">₱${expense.amount.toLocaleString()}</div>
+                    `;
+                expenseList.appendChild(expenseItem);
+            });
+            // category
+            const topCategory = categories.sort((a, b) => b.totalAmount - a.totalAmount)[0];
+            if (topCategory) {
+                document.querySelector('.topCategory').textContent = `${topCategory.name}`;
+            }
+
+            const categoryList = document.querySelector('.category-list');
+            categories.forEach(category => {
+                const categoryItem = document.createElement('div');
+                categoryItem.className = 'category-item';
+                categoryItem.style.display = "flex";
+                categoryItem.style.justifyContent = "space-between";
+                categoryItem.style.margin = "10px 0";
+
+                categoryItem.innerHTML = `
+                        <div style="flex: 1;"><strong>${category.name}</strong></div>
+                        <div style="flex: 0; text-align: right;">${category.totalAmount}</div>
+                    `;
+                categoryList.appendChild(categoryItem);
+            });
+
+            // graph
+            Highcharts.chart('expensesChart', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Expenses Over Time'
+                },
+                xAxis: {
+                    categories: expenses.map(exp => exp.date)
+                },
+                yAxis: {
+                    title: {
+                        text: 'Expense Amount'
+                    }
+                },
+                series: [{
+                    name: 'Expenses',
+                    data: expenses.map(exp => exp.amount)
+                }]
+            });
+        });
     </script>
+
 </body>

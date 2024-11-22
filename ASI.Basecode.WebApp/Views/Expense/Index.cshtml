@@ -5,12 +5,14 @@
         .btn:hover {
             background-color: #548E87;
         }
+
         .btn-custom, .btn-primary, .btn-secondary, .btn-danger {
             border-radius: 50px;
             padding: 10px 20px;
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
+
             .btn-custom:hover, .btn-primary:hover, .btn-secondary:hover {
                 background-color: #548E87;
                 color: white;
@@ -19,12 +21,14 @@
             .btn-danger:hover {
                 background-color: #FF7F7F;
             }
+
         .modal-dialog-centered-custom {
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
         }
+
         .nav-upper {
             display: flex;
             justify-content: space-between;
@@ -302,10 +306,10 @@
                     $("#expenseDetailModal #editDescription").val(description);
 
                     const categoryDropdown = $("#expenseDetailModal #CategoryId");
-                    categoryDropdown.val(categoryId); 
+                    categoryDropdown.val(categoryId);
 
                     if (categoryDropdown.val() !== categoryId.toString()) {
-                        categoryDropdown.val(""); 
+                        categoryDropdown.val("");
                     }
 
                     $("#expenseDetailModal").modal("show");
@@ -313,7 +317,7 @@
 
                 // Open Delete Confirmation Modal
                 $(".delete-expense-btn").click(function (e) {
-                    e.stopPropagation(); 
+                    e.stopPropagation();
 
                     const expenseId = $(this).data("id");
                     const title = $(this).data("title");
@@ -406,16 +410,16 @@
 
                 $(document).ready(function () {
                     $('#editExpenseForm').submit(function (e) {
-                        e.preventDefault(); 
+                        e.preventDefault();
 
-                        var formData = $(this).serialize(); 
+                        var formData = $(this).serialize();
 
                         $.ajax({
-                            url: '/Expense/Edit', 
+                            url: '/Expense/Edit',
                             type: 'POST',
                             data: formData,
                             success: function (response) {
-                                window.location.href = '/Expense/Index'; 
+                                window.location.href = '/Expense/Index';
                             },
                             error: function () {
                                 alert('An error occurred while updating the expense.');
@@ -428,62 +432,62 @@
 
         @* Pagination *@
         <script>
-    $(document).ready(function () {
-        function displayPage(page) {
-            rows.hide();
-            const start = (page - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            rows.slice(start, end).show();
-            generatePaginationButtons(page);
-        }
-        
-        function generatePaginationButtons(currentPage) {
-            const paginationControls = $('#paginationControls');
-            paginationControls.empty();
+            $(document).ready(function () {
+                function displayPage(page) {
+                    rows.hide();
+                    const start = (page - 1) * rowsPerPage;
+                    const end = start + rowsPerPage;
+                    rows.slice(start, end).show();
+                    generatePaginationButtons(page);
+                }
 
-            // Previous Button
-            const prevDisabled = currentPage === 1 ? 'disabled' : '';
-            paginationControls.append(
-                `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage - 1}" ${prevDisabled}>Previous</button>`
-            );
+                function generatePaginationButtons(currentPage) {
+                    const paginationControls = $('#paginationControls');
+                    paginationControls.empty();
 
-            // Page Numbers
-            for (let i = 1; i <= totalPages; i++) {
-                const activeClass = i === currentPage ? 'active' : '';
-                paginationControls.append(
-                    `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`
-                );
-            }
+                    // Previous Button
+                    const prevDisabled = currentPage === 1 ? 'disabled' : '';
+                    paginationControls.append(
+                        `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage - 1}" ${prevDisabled}>Previous</button>`
+                    );
 
-            // Next Button
-            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
-            paginationControls.append(
-                `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`
-            );
-        }
-        const rowsPerPage = 7;
-        const rows = $('#expenseTable tbody tr');
-        const totalRows = rows.length;
-        const totalPages = Math.ceil(totalRows / rowsPerPage);
+                    // Page Numbers
+                    for (let i = 1; i <= totalPages; i++) {
+                        const activeClass = i === currentPage ? 'active' : '';
+                        paginationControls.append(
+                            `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`
+                        );
+                    }
 
-        // Initial display
-        displayPage(1);
+                    // Next Button
+                    const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+                    paginationControls.append(
+                        `<button class="btn btn-secondary mr-1 pagination-btn" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`
+                    );
+                }
+                const rowsPerPage = 7;
+                const rows = $('#expenseTable tbody tr');
+                const totalRows = rows.length;
+                const totalPages = Math.ceil(totalRows / rowsPerPage);
 
-        // Handle pagination button clicks
-        $('#paginationControls').on('click', '.pagination-btn', function () {
-            const page = parseInt($(this).data('page'), 10);
-            if (!isNaN(page)) {
-                displayPage(page);
-            }
-           // Check for success message and display Toastr notification
-            var successMessage = '@TempData["SuccessMessage"]';
-            if (successMessage) {
-                toastr.success(successMessage);
-            }
+                // Initial display
+                displayPage(1);
 
-        });
-    });
-</script>
+                // Handle pagination button clicks
+                $('#paginationControls').on('click', '.pagination-btn', function () {
+                    const page = parseInt($(this).data('page'), 10);
+                    if (!isNaN(page)) {
+                        displayPage(page);
+                    }
+
+                });
+                // Check for success message and display Toastr notification
+                var successMessage = '@TempData["SuccessMessage"]';
+                if (successMessage) {
+                    toastr.success(successMessage);
+                }
+            });
+        </script>
 
     }
 </body>
