@@ -234,7 +234,8 @@ namespace ASI.Basecode.WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string password)
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (model == null || !ModelState.IsValid)
             {
@@ -249,23 +250,9 @@ namespace ASI.Basecode.WebApp.Controllers
                 return RedirectToAction("ForgotPassword");
             }
 
-            var resetPassword = new ResetPasswordViewModel
-            {
-                UserId = UserId,
-                Email = user.Email,
-                Password = password
-            };
-
-            // Call the service to change the password
-            bool result = _userService.ChangePasswordWithoutOldPassword(resetPassword);
-
-            if (!result)
-            {
-                TempData["ErrorMessage"] = "An error occurred while resetting the password.";
-                return View(model);
-            }
-
-            await _userService.ClearResetTokenAsync(user.Id);
+            // Reset the password
+            user.Password = PasswordManager.EncryptPassword(model.Password);
+            await _userService.ClearResetTokenAsync(user.Id); // Clear the token to prevent reuse
 
             TempData["SuccessMessage"] = "Password reset successfully!";
             return RedirectToAction("Login");

@@ -75,17 +75,6 @@ namespace ASI.Basecode.Services.Services
             return user != null ? _mapper.Map<UserViewModel>(user) : null;
         }
 
-        //public async Task UpdateUser(UserViewModel userModel)
-        //{
-        //    var user = _repository.GetUsers().FirstOrDefault(u => u.Id == userModel.Id);
-        //    if (user != null)
-        //    {
-        //        user.Name = userModel.Name;
-        //        user.Email = userModel.Email;
-        //        user.Preference = userModel.Preference;
-        //        await Task.Run(() => _repository.UpdateUser(user));
-        //    }
-        //}
         public void UpdateUser(UserViewModel userModel)
         {
             var user = _repository.GetUsers().FirstOrDefault(u => u.Id == userModel.Id);
@@ -123,12 +112,6 @@ namespace ASI.Basecode.Services.Services
         {
             return await Task.FromResult(_repository.GetUsers().FirstOrDefault(u => u.Email == email));
         }
-        public async Task<bool> UpdateUserPassword(User user)
-        {
-            _repository.UpdateUser(user);
-            return await Task.FromResult(true);
-        }
-
         public async Task<bool> SetPasswordResetTokenAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -148,7 +131,7 @@ namespace ASI.Basecode.Services.Services
 
             _repository.UpdateUser(user);
 
-            var resetLink = $"https://localhost:52992/Account/ResetPassword?token={token}";
+            var resetLink = $"https://localhost:50885/Account/ResetPassword?token={token}";
             await _emailService.SendEmailAsync(user.Email, "Reset Password", $"Click the link to reset your password: {resetLink}");
 
             return true;
@@ -163,11 +146,6 @@ namespace ASI.Basecode.Services.Services
                 await _dbContext.SaveChangesAsync();
             }
         }
-
-        //public async Task<User> GetUserByTokenAsync(string token)
-        //{
-        //    return await _dbContext.Users.FirstOrDefaultAsync(u => u.Token == token);
-        //}
 
         public async Task ClearResetTokenAsync(int userId)
         {
@@ -184,52 +162,12 @@ namespace ASI.Basecode.Services.Services
             return _dbContext.Users.FirstOrDefault(u => u.Token == token);
         }
 
-        //// helper for reset pass
-        //public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
-        //{
-        //    var user = _repository.GetUsers().FirstOrDefault(u => u.Email == model.Email);
-        //    if (user != null)
-        //    {
-        //        user.Password = PasswordManager.EncryptPassword(model.Password);
-        //        _repository.UpdateUser(user);
-        //        return true;
-        //    }
-        //    return false;
-        //}
-        //public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
-        //{
-        //    try
-        //    {
-        //        var user = _repository.GetUsers().FirstOrDefault(u => u.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase));
-        //        if (user == null)
-        //        {
-        //            Debug.WriteLine($"User not found with email: {model.Email}");
-        //            return false; // User not found
-        //        }
-
-        //        var encryptedPassword = PasswordManager.EncryptPassword(model.Password);
-        //        Debug.WriteLine($"Encrypted password for {model.Email}: {encryptedPassword}");
-
-        //        user.Password = encryptedPassword;
-        //        _repository.UpdateUser(user);
-
-        //        Debug.WriteLine($"Password updated successfully for user: {model.Email}");
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine($"Error in ChangePasswordWithoutOldPassword: {ex.Message}");
-        //        return false;
-        //    }
-        //}
         public bool ChangePasswordWithoutOldPassword(ResetPasswordViewModel model)
         {
             var user = _repository.GetUsers().FirstOrDefault(u => u.UserId == model.UserId);
             if (user != null)
             {
                 user.Password = PasswordManager.EncryptPassword(model.Password);
-                user.Token = null;
-                user.TokenExpiry = null;
                 _repository.UpdateUser(user);
                 return true;
             }

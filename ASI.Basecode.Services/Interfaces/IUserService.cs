@@ -16,8 +16,6 @@ public interface IUserService
 
 
     Task<User> GetUserByEmail(string email);
-    Task<bool> UpdateUserPassword(User user);
-    //Task<User> GetUserByTokenAsync(string token);
     Task ClearResetTokenAsync(int userId);
     Task<bool> SetPasswordResetTokenAsync(string email);
     User GetUserByToken(string token);
