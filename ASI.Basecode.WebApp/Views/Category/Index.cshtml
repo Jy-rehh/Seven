@@ -135,8 +135,8 @@
                         data-datecreated="@item.DateCreated" data-dateupdated="@item.DateUpdated"
                         data-description="@item.Description">
                         <td>@item.Name</td>
-                        <td>@item.DateCreated</td>
-                        <td>@item.DateUpdated</td>
+                        <td>@item.DateCreated.ToString("yyyy-MM-dd")</td>
+                        <td>@item.DateUpdated.ToString("yyyy-MM-dd")</td>
                         <td>
                             <button style="width: 50px; height: fit-content; border-radius: 20px; padding: 5px;"
                                     class="btn btn-secondary edit-category-btn"

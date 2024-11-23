@@ -59,6 +59,15 @@ public class ExpenseController : ControllerBase<ExpenseController>
         return View();
     }
 
+    [HttpPost]
+    public IActionResult Create(ExpenseViewModel model)
+    {
+        TempData["SuccessMessage"] = "Expense added successfully.";
+        _expensesService.AddExpenses(model, UserId);
+        return RedirectToAction("Index");
+    }
+
+
     [HttpGet]
     public IActionResult Edit(int id)
     {
