@@ -143,8 +143,8 @@
 
                         <td>@item.Title</td>
                         <td>@item.CategoryName</td>
-                        <td>@item.Amount</td>
-                        <td>@item.DateCreated</td>
+                        <td>@ViewBag.CurrencySymbol @String.Format("{0:N2}", item.Amount)</td>
+                        <td>@item.DateCreated.ToString("yyyy-MM-dd")</td>
                         <td>@item.Description</td>
                         <td>
                             <button style="width: 50px; height: fit-content; border-radius: 20px; padding: 5px;"
@@ -487,6 +487,30 @@
                     toastr.success(successMessage);
                 }
             });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#CurrencySelector').change(function () {
+                    var selectedCurrency = $(this).val();
+                    $('.expense-row').each(function () {
+                        var amount = parseFloat($(this).data('amount'));
+                        var formattedAmount = formatAmount(amount, selectedCurrency);
+                        $(this).find('td:nth-child(3)').text(formattedAmount);
+                    });
+                });
+
+                function formatAmount(amount, currency) {
+                    let symbol = '';
+                    switch (currency) {
+                        case 'USD': symbol = '$'; break;
+                        case 'EUR': symbol = '€'; break;
+                        default: symbol = '₱'; break; // Default to PHP
+                    }
+                    return `${symbol} ${amount.toFixed(2)}`;
+                }
+            });
+
         </script>
 
     }

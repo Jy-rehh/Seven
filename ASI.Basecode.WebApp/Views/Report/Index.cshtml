@@ -63,14 +63,14 @@
                         <td>@item.CategoryName</td>
                         <td>@item.Description</td>
                         <td>@item.DateCreated</td>
-                        <td>@item.Amount</td>
+                        <td>₱@item.Amount.ToString("N2")</td>
                     </tr>
                 }
             </tbody>
             <tfoot style="background-color: #f8f9fa; font-weight: bold;">
                 <tr>
                     <td colspan="4" style="text-align: right;">Total Amount:</td>
-                    <td id="totalAmount">0</td>
+                    <td id="totalAmount">₱0.00</td>
                 </tr>
             </tfoot>
         </table>
@@ -164,7 +164,7 @@
                     scale: 2
                 }).then((canvas) => {
                     const imgData = canvas.toDataURL('image/png');
-                    const imgWidth = 190; 
+                    const imgWidth = 190;
                     const pageHeight = pdf.internal.pageSize.height;
                     const imgHeight = canvas.height * imgWidth / canvas.width;
 
@@ -256,27 +256,27 @@
                         const amount = parseFloat($(this).data('amount')) || 0;
                         total += amount;
                     });
-                    $('#totalAmount').text(total.toFixed(2)); 
+                    $('#totalAmount').text(`₱${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`); // Adding ₱ symbol with accounting format
                 }
 
                 function displayPage(page) {
-                    const rowsPerPage = 7; 
-                    const rows = $('#reportTable tbody tr'); 
-                    rows.hide(); 
-                    const start = (page - 1) * rowsPerPage; 
-                    const end = start + rowsPerPage; 
-                    rows.slice(start, end).show(); 
-                    generatePaginationButtons(page); 
+                    const rowsPerPage = 7;
+                    const rows = $('#reportTable tbody tr');
+                    rows.hide();
+                    const start = (page - 1) * rowsPerPage;
+                    const end = start + rowsPerPage;
+                    rows.slice(start, end).show();
+                    generatePaginationButtons(page);
                 }
 
                 function generatePaginationButtons(currentPage) {
-                    const rowsPerPage = 7; 
+                    const rowsPerPage = 7;
                     const rows = $('#reportTable tbody tr');
-                    const totalRows = rows.length; 
-                    const totalPages = Math.ceil(totalRows / rowsPerPage); 
+                    const totalRows = rows.length;
+                    const totalPages = Math.ceil(totalRows / rowsPerPage);
 
                     const paginationControls = $('#paginationControls');
-                    paginationControls.empty(); 
+                    paginationControls.empty();
 
                     // Previous Button
                     const prevDisabled = currentPage === 1 ? 'disabled' : '';
@@ -328,13 +328,13 @@
 
                     $('#reportTable tbody tr').each(function () {
                         var dateStr = $(this).data('date');
-                        var expenseDate = parseDate(dateStr); 
+                        var expenseDate = parseDate(dateStr);
 
                         if ((!dateStart || expenseDate >= dateStart) && (!dateEnd || expenseDate <= dateEnd)) {
-                            $(this).show(); 
+                            $(this).show();
                             hasData = true;
                         } else {
-                            $(this).hide(); 
+                            $(this).hide();
                         }
                     });
 
@@ -354,7 +354,7 @@
                 function parseISODate(dateStr) {
                     var parts = dateStr.split('-');
                     var year = parseInt(parts[0], 10);
-                    var month = parseInt(parts[1], 10) - 1; 
+                    var month = parseInt(parts[1], 10) - 1;
                     var day = parseInt(parts[2], 10);
                     return new Date(year, month, day);
                 }
